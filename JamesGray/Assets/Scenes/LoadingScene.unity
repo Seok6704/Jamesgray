@@ -344,8 +344,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD130\uCE58\uD558\uC5EC \uC9C4\uD589 ..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a37d43b991cfd44e8eeeac28e8150d9, type: 2}
-  m_sharedMaterial: {fileID: -2226437168528454013, guid: 3a37d43b991cfd44e8eeeac28e8150d9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
+  m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
