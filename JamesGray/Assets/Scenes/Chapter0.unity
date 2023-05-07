@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_Speed: 5
+  dialogue_mod: {x: 25, y: 0}
   player: {fileID: 1486070434}
 --- !u!1 &461043306
 GameObject:
@@ -347,7 +348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 893.93164, y: -146.08307}
+  m_AnchoredPosition: {x: 303, y: 365}
   m_SizeDelta: {x: 552.1367, y: 80.3461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633875627
@@ -600,8 +601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.4474, y: -369.06976}
-  m_SizeDelta: {x: 2271.0547, y: 300.1395}
+  m_AnchoredPosition: {x: 579.51, y: -117.3865}
+  m_SizeDelta: {x: 1105.1, y: 803.5059}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &886637699
 MonoBehaviour:
@@ -836,7 +837,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueOn:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 369215514}
+        m_TargetAssemblyTypeName: PlayerFollow, Assembly-CSharp
+        m_MethodName: SetFlag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   DialogueOff:
     m_PersistentCalls:
       m_Calls:
@@ -855,6 +868,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1486070436}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: EndAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 369215514}
+        m_TargetAssemblyTypeName: PlayerFollow, Assembly-CSharp
+        m_MethodName: SetFlag
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2583,7 +2608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 880.36, y: 156.59}
+  m_AnchoredPosition: {x: 1583, y: 262.5}
   m_SizeDelta: {x: 525, y: 525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734890443
@@ -2703,8 +2728,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -322.9541}
-  m_SizeDelta: {x: 2340, y: 434.0918}
+  m_AnchoredPosition: {x: 585, y: 0}
+  m_SizeDelta: {x: 1170, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939420474
 MonoBehaviour:
