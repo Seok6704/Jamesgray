@@ -687,8 +687,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC74C\uC131 \uC778\uC2DD\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3a37d43b991cfd44e8eeeac28e8150d9, type: 2}
-  m_sharedMaterial: {fileID: -2226437168528454013, guid: 3a37d43b991cfd44e8eeeac28e8150d9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
+  m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1612,6 +1612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bdc183f5a409542ba033d64c609e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stt_Done:
+    m_PersistentCalls:
+      m_Calls: []
   DebugText: {fileID: 989007709}
   Enable_multi_speaker: 0
   user_id: 
