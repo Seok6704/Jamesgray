@@ -101,4 +101,12 @@ public class JSONManager
     {
         return dial.audioPath;
     }
+    public int GetContentLength(int id, int lineID)
+    {
+        return dial.NPC[FindIndexFromKey(id)].storyLine[lineID].content.Length;
+    }
+    public string GetContent(int id, int lineID, int i)     //한문장 반환
+    {
+        return dial.NPC[FindIndexFromKey(id)].storyLine[lineID].content[i];
+    }
 }
