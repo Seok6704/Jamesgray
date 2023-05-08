@@ -64,7 +64,7 @@ public class DialoguesManager : MonoBehaviour
         ResetVar();
     }
 
-    IEnumerator LoadTyping(int id, int lineID)      //기존의 함수는 한번에 한 문장만 로드하는 문제가 있어 이 함수에서 큐로 한번에 전부 로드
+    IEnumerator LoadTyping(int id, int lineID)      //기존 함수의 옵션 해석 부분을 제거
     {
         index = 0;
         while(index < dialogues.GetContentLength(id, lineID))
@@ -133,7 +133,7 @@ public class DialoguesManager : MonoBehaviour
         npcImage.sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
     }
     
-    public void ShowPrevious()  // 이벤트로 불러와지면 
+    public void ShowPrevious()  // 이벤트로 불러와지며 이전 대화를 보여준다.
     {
         index = index >= 1 ? index - 1 : 0; //혹시라도 음수로 가는 것을 방지
         ShowAgain();        //이전것을 다시 보여주기

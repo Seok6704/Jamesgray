@@ -212,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
-  m_UpscaleRT: 0
+  m_AssetsPPU: 32
+  m_RefResolutionX: 468
+  m_RefResolutionY: 216
+  m_UpscaleRT: 1
   m_PixelSnapping: 0
   m_CropFrameX: 0
   m_CropFrameY: 0
@@ -232,8 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cab56a269bbba44bad240fd1d7be50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera_Speed: 5
-  dialogue_mod: {x: 25, y: 0}
+  x: 3.6
+  y: 0
+  zoomSpeed: 0.503
+  zoomlv: 5
   player: {fileID: 1486070434}
 --- !u!1 &461043306
 GameObject:
