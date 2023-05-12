@@ -229,11 +229,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 369215509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cab56a269bbba44bad240fd1d7be50f, type: 3}
+  m_Script: {fileID: 11500000, guid: e04eb604aee661f4c8a7bf67e138f385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 3.6
+  x: 1.8
   y: 0
+  dialSpeed: 20
   player: {fileID: 1486070434}
 --- !u!1 &461043306
 GameObject:
@@ -841,7 +842,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 369215514}
-        m_TargetAssemblyTypeName: PlayerFollow, Assembly-CSharp
+        m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
         m_MethodName: SetFlag
         m_Mode: 1
         m_Arguments:
@@ -867,20 +868,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: EndAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 369215514}
-        m_TargetAssemblyTypeName: PlayerFollow, Assembly-CSharp
+        m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
         m_MethodName: SetFlag
         m_Mode: 1
         m_Arguments:
@@ -1610,7 +1599,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tileMap: {fileID: 2051956385}
-  speed: 0.01
+  speed: 0.008
 --- !u!114 &1486070444
 MonoBehaviour:
   m_ObjectHideFlags: 0
