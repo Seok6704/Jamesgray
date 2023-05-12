@@ -49,9 +49,9 @@ public class PlayerFollow : MonoBehaviour
             //zoom = Mathf.Lerp(zoom, zoomlv, zoomSpeed);
         }
 
-        Vector3 moveVector = new Vector3((dir.x + (x * mod)) * Time.deltaTime, (dir.y + (y * mod)) * Time.deltaTime, 0.0f);
+        Vector3 moveVector = new Vector3((dir.x + (x * mod)), (dir.y + (y * mod)), 0.0f);
 
-        this.transform.Translate(moveVector);
+        this.transform.Translate(moveVector * Time.deltaTime);
         //pixelCam.refResolutionX = pixelResolutionX - ((int)(19.5 * zoom));
         //pixelCam.refResolutionY = pixelResolutionY - ((int)(9 * zoom));
     }
