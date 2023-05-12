@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Panel_fadeout
+  - Map
+  - NPC
   layers:
   - Default
   - TransparentFX
