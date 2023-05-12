@@ -17,7 +17,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     Coroutine co;
     Animator animator;
-    GameObject scanObject;
+    GameObject scanObject, tempScanObj;
     bool isOnAction;
 
     private void Awake() 
@@ -29,6 +29,8 @@ public class PlayerController_v2 : MonoBehaviour
         dirVec = Vector3.down;  //기본적으로 아래를 보고있으므로...
 
         isOnAction = false;
+        tempScanObj = null;
+        scanObject = null;
     }
 
     private void Update() 
@@ -40,11 +42,11 @@ public class PlayerController_v2 : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));
         if(rayHit.collider != null)
         {
-            scanObject = rayHit.collider.gameObject;
+            tempScanObj = rayHit.collider.gameObject;
         }
         else 
         {
-            scanObject = null;
+            tempScanObj = null;
         }
 
 
@@ -52,8 +54,10 @@ public class PlayerController_v2 : MonoBehaviour
         {
             h = 0; 
             v = 0;
-            if(Input.GetKeyDown(KeyCode.E) && scanObject.CompareTag("NPC"))
+            if(Input.GetKeyDown(KeyCode.E) && tempScanObj.CompareTag("NPC"))
             {
+                co = StartCoroutine(WaitCoroutine());
+                scanObject = tempScanObj;
                 OnAction();
             }
             else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))    
@@ -171,7 +175,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     void OnAction()
     {
-        co = StartCoroutine(WaitCoroutine());
+        //co = StartCoroutine(WaitCoroutine());
         scanObject.GetComponent<NPCManager>().OnAction();   //모든 Object layer는 NPCManager 스크립트를 가지고 있어야 정상 작동... 
         onAction.Invoke();
         isOnAction = true;
@@ -179,8 +183,10 @@ public class PlayerController_v2 : MonoBehaviour
 
     public void EndAction()
     {
-        co = null;
         scanObject.GetComponent<NPCManager>().EndAction();
+        StopCoroutine(co);
+        co = null;
         isOnAction = false;
+        scanObject = null;
     }
 }
