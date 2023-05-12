@@ -9,7 +9,7 @@ public class PlayerController_v2 : MonoBehaviour
     public UnityEvent onAction;
     public Tilemap tileMap;    //타일맵
 
-    [Range(0.01f, 0.1f)]
+    [Range(0.001f, 0.01f)]
     public float speed;
 
     Vector3Int currentCell;
@@ -52,9 +52,9 @@ public class PlayerController_v2 : MonoBehaviour
 
         if(co == null)
         {
-            h = 0; 
-            v = 0;
-            if(Input.GetKeyDown(KeyCode.E) && tempScanObj.CompareTag("NPC"))
+            //h = 0; 이곳에 있으면 달리는 도중 Idle로 전환되는 문제 발견
+            //v = 0;
+            if(Input.GetKeyDown(KeyCode.E) && tempScanObj != null && tempScanObj.CompareTag("NPC"))
             {
                 co = StartCoroutine(WaitCoroutine());
                 scanObject = tempScanObj;
@@ -83,7 +83,12 @@ public class PlayerController_v2 : MonoBehaviour
                 dirVec = Vector3.right;
                 nextCell.x += 1;
                 co = StartCoroutine(MovePlayer(nextCell));
-            }   
+            }
+            else
+            {
+                h = 0;
+                v = 0;
+            }
         }
         if(isOnAction)
         {
@@ -144,6 +149,7 @@ public class PlayerController_v2 : MonoBehaviour
     bool checkKey()
     {
         Vector3 current = new Vector3(0,0,0);
+
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))    
         {
             current = Vector3.up;
@@ -165,6 +171,7 @@ public class PlayerController_v2 : MonoBehaviour
             return true;
         else
             return false;
+
     }
 
     IEnumerator WaitCoroutine() //종료되기를 기다리는 무한루프 코루틴
