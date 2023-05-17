@@ -10,14 +10,12 @@ using UnityEngine.Tilemaps;
 
 public class PositionManager : MonoBehaviour
 {
-    static Tilemap tilemap;
+    public static Tilemap tilemap;
     private void Awake() 
     {
         if(tilemap == null) tilemap = GameObject.FindWithTag("Map").GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
 
-        Vector3 temp = tilemap.CellToWorld(tilemap.WorldToCell(this.transform.position));    //위치 변경
-        temp.x += 0.5f;
-        temp.y += 0.5f;
+        Vector3 temp = tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position));    //위치 변경
 
         this.transform.position = temp;
     }

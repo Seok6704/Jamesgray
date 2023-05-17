@@ -114,7 +114,7 @@ public class PlayerController_v2 : MonoBehaviour
     IEnumerator MovePlayer(Vector3Int cellPos)
     {
         //Debug.DrawRay(transform.position, dirVec * 0.7f, new Color(1,1,1)); // 게임 뷰에서는 보이지 않지만 플레이 버튼 누르고 씬뷰로 전환하면 보임!     
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));   //진행 경로에 오브젝트가 존재하는지 체크
         
         if(rayHit.collider != null)
         {
@@ -125,20 +125,20 @@ public class PlayerController_v2 : MonoBehaviour
         
         while(true)
         {
-            if(transform.position == CelltoWorld(cellPos))
+            if(transform.position == tileMap.GetCellCenterWorld(cellPos))
             {
                 //if(!checkKey())
                     break;
 
             }
-            transform.position = Vector3.MoveTowards(transform.position, CelltoWorld(cellPos), speed);
+            transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
             yield return null;
         }
         currentCell = cellPos;
         co = null;
     }
 
-    Vector3 CelltoWorld(Vector3Int cellPos) //게임내 타일 중앙의 좌표값을 구해주는 함수
+    Vector3 CelltoWorld(Vector3Int cellPos) //게임내 타일 중앙의 좌표값을 구해주는 함수  이미 멤버 함수가 존재하여 더이상 필요없음
     {
         Vector3 worldPos = tileMap.CellToWorld(cellPos);
         worldPos.x += 0.5f;
