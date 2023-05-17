@@ -19,9 +19,12 @@ public class TESTDATA : MonoBehaviour
     private void Start() {
         //Debug.Log(head.next.next.data);
         PriorityQueue<int> Q = new PriorityQueue<int>();
-        Q.Enqueue(10,1);
-        Q.Enqueue(11,2);
-        Q.Enqueue(100,3);
+        Q.Enqueue(10,11);
+        Q.Enqueue(11,22);
+        Q.Enqueue(100,53);
+        Q.Enqueue(111,3);
+        Q.Dequeue();
+
 
         Q.Print();
     }
