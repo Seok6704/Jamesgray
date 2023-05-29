@@ -1628,7 +1628,7 @@ GameObject:
   - component: {fileID: 1504600534}
   m_Layer: 8
   m_Name: Border Line
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
