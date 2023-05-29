@@ -17,6 +17,7 @@ public class Main_Menu_Manager : MonoBehaviour
     //public Vector3 pos;
     [Header ("타이틀")]
     public GameObject title;
+    public GameObject subtitle;
     RectTransform rect;
     RectTransform canvas;
     Vector3 pos;
@@ -27,6 +28,8 @@ public class Main_Menu_Manager : MonoBehaviour
         pos = rect.position;
         
         title.GetComponent<Text_Fading>().SetTransparent(); //타이틀 투명화
+        subtitle.GetComponent<Text_Fading>().SetTransparent();
+
         GetComponent<Img_Fading>().SetTransparent();        //자기 자신과 자식 버튼들의 글자를 투명하게 변경, 버튼은 기본적으로 투명한것으로 가정
 
         for(int i = 0; i < transform.childCount; i++)
@@ -46,6 +49,7 @@ public class Main_Menu_Manager : MonoBehaviour
         //hide_Menu.Invoke();
         StartCoroutine(WaitHide());
         title.GetComponent<Text_Fading>().ShowDown();
+        subtitle.GetComponent<Text_Fading>().ShowDown();
         GetComponent<Img_Fading>().ShowDown();
 
         for(int i = 0; i < transform.childCount; i++) 
@@ -58,6 +62,7 @@ public class Main_Menu_Manager : MonoBehaviour
     {
         rect.position = canvas.position;
         title.GetComponent<Text_Fading>().ShowUp();
+        subtitle.GetComponent<Text_Fading>().ShowUp();
         GetComponent<Img_Fading>().ShowUp();
 
         for(int i = 0; i < transform.childCount; i++) 
