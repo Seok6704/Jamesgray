@@ -19,7 +19,7 @@ public class ShowPath : MonoBehaviour
         Vector3Int startPos = start.GetComponent<PositionManager>().GetCellPos();
         Vector3Int endPos = end.GetComponent<PositionManager>().GetCellPos();
 
-        PathFinding.AStar path = new PathFinding.AStar(ref PositionManager.tilemap, ref PositionManager.border, new Vector2Int(startPos.x, startPos.y), new Vector2Int(endPos.x, endPos.y));
+        PathFinding.AStar path = new PathFinding.AStar(ref map, ref border, new Vector2Int(startPos.x, startPos.y), new Vector2Int(endPos.x, endPos.y));
         int count = 0;
         while(path.Close.Count > 0)
         {

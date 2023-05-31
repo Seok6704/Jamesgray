@@ -10,8 +10,8 @@ using UnityEngine.Tilemaps;
 
 public class PositionManager : MonoBehaviour
 {
-    public static Tilemap tilemap;
-    public static Tilemap border;
+    public static Tilemap tilemap = null;
+    public static Tilemap border = null;
     private void Awake() 
     {
         if(tilemap == null) tilemap = GameObject.FindWithTag("Map").GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
@@ -24,6 +24,13 @@ public class PositionManager : MonoBehaviour
 
     public Vector3Int GetCellPos()
     {
+        if(tilemap == null) return default(Vector3Int);
+        
         return tilemap.WorldToCell(this.transform.position);
+    }
+
+    public static void ResetTilemap()  //Static 변수는 씬전환 후에도 남아있기 때문에 싱글톤 디자인 외에도 씬 전환시 초기화가 필요함.
+    {
+        tilemap = null; border = null;
     }
 }
