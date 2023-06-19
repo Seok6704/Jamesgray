@@ -14,10 +14,10 @@ public class PositionManager : MonoBehaviour
     public static Tilemap border = null;
     private void Awake() 
     {
-        if(tilemap == null) tilemap = GameObject.FindWithTag("Map").GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
-        if(border == null) border = GameObject.FindWithTag("Border").GetComponent<Tilemap>();
+        if(tilemap == null) tilemap = GameObject.FindWithTag("Map")?.GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
+        if(border == null) border = GameObject.FindWithTag("Border")?.GetComponent<Tilemap>();
 
-        Vector3 temp = tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position));    //위치 변경
+        Vector3 temp = tilemap ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
 
         this.transform.position = temp;
     }
