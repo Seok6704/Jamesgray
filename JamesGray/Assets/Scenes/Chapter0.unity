@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 86097057}
   - component: {fileID: 86097056}
   - component: {fileID: 86097058}
+  - component: {fileID: 86097059}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -273,6 +274,26 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   text: {fileID: 795113806}
+--- !u!95 &86097059
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86097054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cad159ed56d981948938d8c666b4c95d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &112667594
 GameObject:
   m_ObjectHideFlags: 0
