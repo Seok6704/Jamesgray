@@ -9,7 +9,7 @@ public class PlayerController_v2 : MonoBehaviour
     public UnityEvent onAction;
     public Tilemap tileMap;    //타일맵
 
-    [Range(0.001f, 0.1f)]
+    [Range(0.001f, 0.01f)]
     public float speed;
 
     Vector3Int currentCell;
@@ -24,7 +24,7 @@ public class PlayerController_v2 : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        currentCell = tileMap.WorldToCell(this.transform.position); 
+        currentCell = tileMap.WorldToCell(this.transform.position);
         co = null;
         dirVec = Vector3.down;  //기본적으로 아래를 보고있으므로...
 
