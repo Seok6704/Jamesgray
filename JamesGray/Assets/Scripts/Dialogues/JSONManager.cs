@@ -69,8 +69,8 @@ public class JSONManager
 
     public JSONManager(string sceneName)
     {
-        //TextAsset textAsset = Resources.Load<TextAsset>("Dialogues/" + sceneName);
-        string jsonText = File.ReadAllText("Assets/Data/Dialogues/" + sceneName + ".json");
+        string filePath = "Assets/Data/Dialogues/" + sceneName + ".json";
+        string jsonText = File.ReadAllText(filePath);
         dial = JsonUtility.FromJson<Dialogue>(jsonText);
 
         dial.SetDictionary();

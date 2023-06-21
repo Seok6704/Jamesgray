@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
 
-public class PlayerController_v2 : MonoBehaviour
+public class PlayerController_v3 : MonoBehaviour
 {
     public UnityEvent onAction;
     public Tilemap tileMap;    //타일맵
@@ -24,7 +24,7 @@ public class PlayerController_v2 : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        currentCell = tileMap.WorldToCell(this.transform.position); 
+        currentCell = tileMap.WorldToCell(this.transform.position); //얕은 복사, 클래스를 단순히 복사하면 참조만 함.
         co = null;
         dirVec = Vector3.down;  //기본적으로 아래를 보고있으므로...
 
@@ -32,6 +32,11 @@ public class PlayerController_v2 : MonoBehaviour
         tempScanObj = null;
         scanObject = null;
     }
+
+    /*private void FixedUpdate() 
+    {
+        currentCell = tileMap.WorldToCell(this.transform.position); //주기적으로 위치 업데이트
+    }*/
 
     private void Update() 
     {
@@ -128,14 +133,21 @@ public class PlayerController_v2 : MonoBehaviour
             if(transform.position == tileMap.GetCellCenterWorld(cellPos))
             {
                 //if(!checkKey())
-                    break;
-
+                break;
+                
             }
             transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
             yield return null;
         }
+        if(checkKey())
+        {
+            co = StartCoroutine(MovePlayer(new Vector3Int(cellPos.x + (int)dirVec.x, cellPos.y + (int)dirVec.y, cellPos.z)));
+        }
+        else
+        {
+            co = null;
+        }
         currentCell = cellPos;
-        co = null;
     }
 
     Vector3 CelltoWorld(Vector3Int cellPos) //게임내 타일 중앙의 좌표값을 구해주는 함수  이미 멤버 함수가 존재하여 더이상 필요없음
