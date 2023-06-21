@@ -7,11 +7,14 @@ using UnityEngine;
 */
 public class UI_Mover : MonoBehaviour
 {
+    public bool parentOnStart;  //시작시 캔버스 화면에 위치 (참일때)
     Vector3 pos;
-    // Start is called before the first frame update
+    
     void Start()
     {
         pos = transform.position;
+
+        if(parentOnStart) SetPos2Parent();  // 시작시 참이면 캔버스 중앙에 위치
     }
 
     public void SetPos2Parent(){
