@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerController_v3 : MonoBehaviour
 {
-    public UnityEvent onAction;
+    public UnityEvent onAction, endAction;
     public Tilemap tileMap;    //타일맵
 
     [Range(0.001f, 0.1f)]
@@ -18,7 +18,7 @@ public class PlayerController_v3 : MonoBehaviour
     Coroutine co;
     Animator animator;
     GameObject scanObject, tempScanObj;
-    bool isOnAction;
+    bool isOnAction, isOnFreeze;
 
     private void Awake() 
     {
@@ -28,7 +28,7 @@ public class PlayerController_v3 : MonoBehaviour
         co = null;
         dirVec = Vector3.down;  //기본적으로 아래를 보고있으므로...
 
-        isOnAction = false;
+        isOnAction = false; isOnFreeze = false;
         tempScanObj = null;
         scanObject = null;
     }
@@ -55,7 +55,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
 
 
-        if(co == null)
+        if(co == null && !isOnFreeze)
         {
             //h = 0; 이곳에 있으면 달리는 도중 Idle로 전환되는 문제 발견
             //v = 0;
@@ -160,6 +160,8 @@ public class PlayerController_v3 : MonoBehaviour
 
     bool checkKey()
     {
+        if(isOnFreeze || isOnAction) return false;
+
         Vector3 current = new Vector3(0,0,0);
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))    
@@ -207,5 +209,11 @@ public class PlayerController_v3 : MonoBehaviour
         co = null;
         isOnAction = false;
         scanObject = null;
+        endAction.Invoke();
+    }
+
+    public void ToggleFreeze()    //플레이어 멈추기 입력을 받기를 멈춘다.
+    {
+        isOnFreeze = !isOnFreeze;
     }
 }
