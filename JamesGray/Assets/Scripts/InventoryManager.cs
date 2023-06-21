@@ -8,10 +8,14 @@ public class InventoryManager : MonoBehaviour
     static Inventory inventory = null;
     public TMPro.TMP_Text text;
 
+    Animator animator;
+
     private void Awake() 
     {
         if(inventory == null)   //싱글톤
             inventory = new Inventory();
+        
+        animator = GetComponent<Animator>();
 
         ShowInventory();
     }
@@ -30,10 +34,14 @@ public class InventoryManager : MonoBehaviour
     {
         inventory.MoveLeftPage();
         ShowInventory();
+
+        animator.SetTrigger("LEFT");
     }
     public void GetRightPage()
     {
         inventory.MoveRightPage();
         ShowInventory();
+
+        animator.SetTrigger("RIGHT");
     }
 }
