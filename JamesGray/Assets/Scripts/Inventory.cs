@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Inventory
 {
-    byte index;
+    sbyte index;
     List<Page> pages;
 
     public Inventory()
@@ -15,7 +15,7 @@ public class Inventory
             추후에 json파일로 인벤토리 내역을 불러오는 로직 추가 예정
         */
         for(int i = 0; i < 5; i++)
-            pages.Add(new Page((byte)i));
+            pages.Add(new Page((sbyte)i));
     }
     public int GetPage()   //페이지 정보 불러오기
     {
@@ -51,8 +51,8 @@ public class Inventory
 
     class Page
     {
-        byte num;
-        public Page(byte num)
+        sbyte num;
+        public Page(sbyte num)
         {
             this.num = num;
         }
