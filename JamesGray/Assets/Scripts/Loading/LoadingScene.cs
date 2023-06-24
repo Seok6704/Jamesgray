@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 public class LoadingScene : MonoBehaviour
 {
-    static string nextScene;
+    public static string nextScene;
+    public static Scene preScene;  //Additive로 호출했을때, 이전 씬을 기억
 
     public UnityEvent loadingComplete;
 
@@ -24,6 +25,12 @@ public class LoadingScene : MonoBehaviour
     {
         nextScene = sceneName;
         SceneManager.LoadScene("LoadingScene");
+    }
+    public static void LoadAdditive(string sceneName)
+    {
+        nextScene = sceneName;
+        preScene = SceneManager.GetActiveScene();   //현재 엑티브인 씬 기억
+        SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
     }
 
     IEnumerator WaitTouch()     //입력 대기
