@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 ///////////////
-/*      ////!!!!!!!!!!! json 으로 변경하므로 삭제될 예정
+/*      ////!!!!!!!!!!! json 으로 변경하므로 삭제될 예정, 이제 안씀
 
         ---------------Dialog 관리 스크립트-----------------
 
