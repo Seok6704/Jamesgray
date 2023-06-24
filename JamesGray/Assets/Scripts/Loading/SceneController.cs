@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
     SceneController 스크립트는 LoadingScene 스크립트를 불러와서 로딩 씬으로 전환 후 다음 씬으로 넘어가는 동작을 할 수 있도록 해주는 스크립트입니다.
@@ -16,6 +17,8 @@ using UnityEngine;
 */
 public class SceneController : MonoBehaviour
 {   
+    public UnityEvent End;  //Additive 씬이 종료되었을때 이벤트, 다이얼로그에서 기존에 있던 다이얼로그를 지우기 위해 사용
+
     //이벤트 시스템과 리스너는 한 씬에 두개 있으면 오류가 발생하므로 비활성화 해야하므로 additive로 씬을 호출할경우 비활성화해야함
     public GameObject audioListner;
     public GameObject eventSys;
@@ -35,6 +38,7 @@ public class SceneController : MonoBehaviour
     public void AdditiveEnded()
     {
         SetEnable(true);
+        End.Invoke();
     }
 
     IEnumerator Wait(string nextSceneName, float waitTime)
