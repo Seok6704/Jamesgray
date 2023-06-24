@@ -10,7 +10,8 @@ public class DialoguesManager : MonoBehaviour
 {
     public UnityEvent DialogueOn, DialogueOff;
     JSONManager dialogues;
-
+    [Header("Scene 매니저")]
+    public GameObject sceneManager;
     [Header("GameObject which has TMPro")]
     public TMP_Text tmp_NpcName;
     public TMP_Text tmp_Dialogue;
@@ -20,16 +21,23 @@ public class DialoguesManager : MonoBehaviour
 
     [Header("Audio Sorce")] //대화 음성 출력 오브젝트
     public AudioSource audioSrc;
+
+    [Header("선택지 버튼")]
+    public GameObject[] buttons;    //다이얼로그 창에서 사용될 선택지 버튼
+    [Header("옵션 버튼")]
+    public GameObject[] options;    //다이얼로그 창에서 다시듣기, 이전 등 버튼
     string spritePath;
     string audioPath;
+    string nextSceneName;
     int index; // 다이얼로그 인덱스
 
     bool flag, again;
 
-    private void Awake() 
+    private void Start() 
     {
+        SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
+        
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
-
         flag = false;
         again = false;
     }
@@ -46,6 +54,8 @@ public class DialoguesManager : MonoBehaviour
 
         audioPath = dialogues.GetAudioPath();
         audioPath += id.ToString() + '/' + lineID.ToString() + '/';
+
+        nextSceneName = "";
 
         StartCoroutine(LoadTyping(id, lineID));
     }
@@ -64,19 +74,35 @@ public class DialoguesManager : MonoBehaviour
         ResetVar();
     }
 
-    IEnumerator LoadTyping(int id, int lineID)      //기존 함수의 옵션 해석 부분을 제거
+    /*
+        반복문을 통해 대화문의 처음부터 끝까지 출력하도록 하는 함수.
+    */
+    IEnumerator LoadTyping(int id, int lineID) 
     {
+        bool isChoice = false;
         index = 0;
         while(index < dialogues.GetContentLength(id, lineID))
         {
+            string singleLine = dialogues.GetContent(id, lineID, index);
+
             tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
             tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
+
+            
+            if(singleLine[0] == '[')    //문장의 시작이 "[" 일 경우, 씬을 로드한다. []안에는 다음 씬 이름이 들어와야한다.
+            {
+                PlayAudio(id, lineID, index);
+                SetChoice(singleLine);
+                isChoice = true;
+                break;
+            }
+            
 
             /*
                 출력 시작 부 - 1
             */
             PlayAudio(id, lineID, index);   //음성 출력
-            tmp_Dialogue.GetComponent<TextOutputManager>().Typing(dialogues.GetContent(id, lineID, index));
+            tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
             flag = false;
             again = false;
 
@@ -95,10 +121,11 @@ public class DialoguesManager : MonoBehaviour
                 yield return null;
             }
         }
-        StartCoroutine(WaitKey());    
+        if(!isChoice)
+            StartCoroutine(WaitKey());    
     }   
 
-    public void SetFlag()       //이벤트로 불러와질 함수    flag는 다이얼로그 텍스트의 문자 출력을 동기화하기 위해 선언되었습니다.
+    public void SetFlag()       //이벤트로 불러와질 함수    flag는 다이얼로그 텍스트의 문자 출력을 동기화하기 위해 선언되었습니다.  
     {
         flag = true;
     }
@@ -111,16 +138,29 @@ public class DialoguesManager : MonoBehaviour
         }
 
         AudioClip clip = Resources.Load("Sounds/NPC/" + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString()) as AudioClip;
-        audioSrc.PlayOneShot(clip);
+
+        if(clip != null)
+            audioSrc.PlayOneShot(clip);
     }
 
     void ResetVar()     //초기화 함수. 혹시나 남아있을 큐를 비우고, flag를 원위치하도록 합니다.
     {   
+        int i;
         if(audioSrc.isPlaying)
         {
             audioSrc.Stop();
         }
         flag = false;
+
+        for(i = 0; i < options.Length; i++)    //옵션 버튼 활성화
+        {
+            options[i].SetActive(true);    
+        }
+
+        for(i = 0; i < buttons.Length; i++)     //선택지 비활성화
+        {
+            buttons[i].SetActive(false);
+        }
     }
 
     void SetImage(string emotion) //emotion을 통해 스프라이트 변경하는 함수
@@ -131,6 +171,32 @@ public class DialoguesManager : MonoBehaviour
 
         Rect rect = new Rect(0, 0, texture.width, texture.height);
         npcImage.sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
+    }
+
+    void SetChoice(string singleLine)   //일단은 예/아니오 만 출력하게... 나중에 선택지 내용도 바꿀수있도록 수정 예정
+    {
+        int i = 1; //반복문에 사용될 인덱스
+        char c = singleLine[i];
+
+        while(c != ']') //[] 안에 들어있는 문장 추출
+        {
+            nextSceneName += c;
+            c = singleLine[++i];
+        }
+        singleLine = singleLine.Substring(i + 1);   //씬 이름 제거
+
+        tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
+        flag = false;
+
+        for(i = 0; i < options.Length; i++) //일단은 오류를 막기위해 옵션 버튼 비활성화
+        {
+            options[i].SetActive(false);    
+        }
+
+        for(i = 0; i < buttons.Length; i++) //선택지 활성화
+        {
+            buttons[i].SetActive(true);
+        }
     }
     
     public void ShowPrevious()  // 이벤트로 불러와지며 이전 대화를 보여준다.
@@ -143,6 +209,15 @@ public class DialoguesManager : MonoBehaviour
         again = true;
     }
 
+    public void Positive()  //버튼이 긍정적일때
+    {
+        sceneManager.GetComponent<SceneController>().LoadNextScene(nextSceneName, 0.1f, true);
+    }
+    public void Negative()  //버튼이 부정적일때 대화 종료
+    {
+        DialogueOff.Invoke();
+        ResetVar();
+    }
 }
 
 /*      지우기 아까워서 저장 삭제 해도 무방
