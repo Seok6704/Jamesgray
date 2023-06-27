@@ -949,9 +949,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1674333194}
-        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
-        m_MethodName: SetPos2Parent
+      - m_Target: {fileID: 704025167}
+        m_TargetAssemblyTypeName: InteractSelect, Assembly-CSharp
+        m_MethodName: UpdateNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1345,6 +1345,7 @@ GameObject:
   - component: {fileID: 704025165}
   - component: {fileID: 704025164}
   - component: {fileID: 704025163}
+  - component: {fileID: 704025167}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1438,6 +1439,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &704025167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704025162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d136678cc3a041444afaf2c59cfe322f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.9535253, g: 1, b: 0, a: 0}
+  outlinePadding: 0.5
+  buttons: []
+  canvas: {fileID: 704025165}
 --- !u!1 &762129167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3960,7 +3977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59282b9895e4947bf82f4480b5f345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentOnStart: 1
+  parentOnStart: 0
 --- !u!114 &1674333195
 MonoBehaviour:
   m_ObjectHideFlags: 0
