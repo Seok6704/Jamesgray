@@ -31,7 +31,7 @@ public class DialoguesManager : MonoBehaviour
     string nextSceneName;
     int index; // 다이얼로그 인덱스
 
-    bool flag, again;
+    bool flag, again, next;
 
     private void Start() 
     {
@@ -40,6 +40,7 @@ public class DialoguesManager : MonoBehaviour
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
         flag = false;
         again = false;
+        next = false;
     }
 
 
@@ -65,7 +66,7 @@ public class DialoguesManager : MonoBehaviour
     {     //마지막 문장을 사라지지 않게 대기하게 해주는 코루틴 함수
         while(true) 
         {
-            if(Input.GetKeyDown(KeyCode.Space)) break;
+            if(Input.GetKeyDown(KeyCode.Space) || next) break;
             yield return null;
         }
         //gameObject.SetActive(false);
@@ -113,9 +114,10 @@ public class DialoguesManager : MonoBehaviour
             //yield return new WaitUntil( () => flag);        //참이 될때까지 대기
             while(!again)     //터치시까지 대기 또는 다시 재생 변수가 활성화 될때까지 대기
             {
-                if(Input.GetKeyDown(KeyCode.Space) )
+                if(Input.GetKeyDown(KeyCode.Space) || next)
                 {
                     index++;
+                    next = false;
                     break;
                 }
                 yield return null;
@@ -151,6 +153,7 @@ public class DialoguesManager : MonoBehaviour
             audioSrc.Stop();
         }
         flag = false;
+        next = false;
 
         for(i = 0; i < options.Length; i++)    //옵션 버튼 활성화
         {
@@ -199,6 +202,7 @@ public class DialoguesManager : MonoBehaviour
         }
     }
     
+    /*버튼 관련 함수*/////////////////////////////////////
     public void ShowPrevious()  // 이벤트로 불러와지며 이전 대화를 보여준다.
     {
         index = index >= 1 ? index - 1 : 0; //혹시라도 음수로 가는 것을 방지
@@ -208,7 +212,11 @@ public class DialoguesManager : MonoBehaviour
     {
         again = true;
     }
-
+    public void ShowNext()  //다음 대화문 보여주기
+    {
+        next = true;
+    }
+    ///////////////////선택지//////////////////////////////
     public void Positive()  //버튼이 긍정적일때
     {
         sceneManager.GetComponent<SceneController>().LoadNextScene(nextSceneName, 0.1f, true);
