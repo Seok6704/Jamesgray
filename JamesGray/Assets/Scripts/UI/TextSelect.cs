@@ -61,7 +61,11 @@ public class TextSelect : MonoBehaviour
         {
             ResetOutline();
             SelectDOWN();
-        }    
+        }
+        else if(Input.GetKeyDown(KeyCode.Space))
+        {
+            options[index].transform.parent.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+        }
     }
 
     void SetOutline()
