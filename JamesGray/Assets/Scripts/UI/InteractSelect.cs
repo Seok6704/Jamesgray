@@ -15,6 +15,8 @@ using UnityEngine.UI;
 
     아직 검증된 동작은 아니지만, 실시간으로 노드간 연결을 업데이트 하고 싶다면 Update() 함수 내부에 UpdateNode() 함수를 실행합니다.
     다만, 제대로 동작할지는 모르겠습니다. 시간 복잡도가 N^2 의 형태로 간선을 연결하기때문에, 상당히 느리지만, 버튼의 수가 그렇게 많지 않기때문에 큰 부담은 없을것이라 생각됩니다.
+
+    주의사항, 만약 캔버스 화면이 업데이트되어 버튼들의 위치가 변경된다면, Update해야 정상적으로 동작합니다.
 */
 
 public class InteractSelect : MonoBehaviour
@@ -72,6 +74,10 @@ public class InteractSelect : MonoBehaviour
             ResetOutline();
             currentObj = currentObj.GetNearby(3);
             SetOutline();
+        }
+        else if(Input.GetKeyDown(KeyCode.Space))
+        {
+            currentObj.me.GetComponent<Button>().onClick.Invoke();
         }
     }
 
