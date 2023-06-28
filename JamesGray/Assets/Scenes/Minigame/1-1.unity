@@ -1415,7 +1415,6 @@ RectTransform:
   - {fileID: 1269154408}
   - {fileID: 1588183591}
   - {fileID: 1196277725}
-  - {fileID: 1423586023}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1471,7 +1470,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 892678245}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2115,6 +2114,7 @@ RectTransform:
   - {fileID: 886637698}
   - {fileID: 1519579976}
   - {fileID: 1367611264}
+  - {fileID: 1423586023}
   - {fileID: 735905287}
   m_Father: {fileID: 704025166}
   m_RootOrder: 0
@@ -2205,18 +2205,6 @@ MonoBehaviour:
   DialogueOff:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 892678249}
-        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
-        m_MethodName: Set2ReturnPos
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 369215514}
         m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
         m_MethodName: SetFlag
@@ -3553,12 +3541,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1887880483}
-  m_Father: {fileID: 704025166}
-  m_RootOrder: 5
+  m_Father: {fileID: 892678245}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5434, y: 325.7234}
+  m_AnchoredPosition: {x: 1040, y: 325.7234}
   m_SizeDelta: {x: 184.06, y: 45.4468}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1423586024
