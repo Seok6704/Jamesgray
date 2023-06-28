@@ -23,6 +23,10 @@ using UnityEngine.UI;
     주의사항, 만약 캔버스 화면이 업데이트되어 버튼들의 위치가 변경된다면, Update해야 정상적으로 동작합니다.
 */
 
+/// <summary>
+/// 캔버스 뷰에서 상호작용 가능한 버튼들을 방향키로 선택 및 하이라이트
+/// </summary>
+
 public class InteractSelect : MonoBehaviour
 {
     public Color color; //하이라이트로 사용할 색상

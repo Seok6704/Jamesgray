@@ -41,7 +41,9 @@ public class JSONManager
                 index.Add(NPC[i].ID, i);
             }
         }
-
+        /// <summary>
+        /// 디버그 용 함수입니다. 사용하지말아주세요.
+        /// </summary>
         public void printContent(int index) //Debug 용도
         {
             Debug.Log(NPC[index].ID);
