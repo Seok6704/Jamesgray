@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 347452650}
   - component: {fileID: 347452649}
   m_Layer: 8
-  m_Name: MinigameNPC
+  m_Name: MinigameNPC(1_1)
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2712,7 +2712,7 @@ GameObject:
   - component: {fileID: 1315426868}
   - component: {fileID: 1315426867}
   m_Layer: 8
-  m_Name: MinigameNPC (1)
+  m_Name: MinigameNPC (1_2)
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
