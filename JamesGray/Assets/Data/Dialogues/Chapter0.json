@@ -14,10 +14,9 @@
                     "lineID" : 0,
                     "content" :
                     [
-                        "[POP]안녕!",
-                        "[UNPOP]이걸 보고 있다면[POP] Json 불러오기에 성공한거야![UNPOP]",
-                        "DEFAULT TEST",
-                        "[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP"
+                        "안녕!",
+                        "이걸 보고 있다면[POP] Json 불러오기에 성공한거야![UNPOP]",
+                        "POP"
                     ]
                 }
             ]
