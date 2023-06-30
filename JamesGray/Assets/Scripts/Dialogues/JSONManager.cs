@@ -76,7 +76,6 @@ public class JSONManager
         dial = JsonUtility.FromJson<Dialogue>(jsonText);
 
         dial.SetDictionary();
-
     }
 
     int FindIndexFromKey(int id)     //id 값을 통해 인덱스 값을 찾아내는 함수
