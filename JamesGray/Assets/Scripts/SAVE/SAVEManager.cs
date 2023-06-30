@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 
 // 현재 진행사항을 저장하기 위한 클래스
 // 일단 동적으로 씬에 배치되는 NPC는 없다고 가정하고 ID값으로 정렬하여 검사 없이 1대 1로 데이터를 넣도록 개발 예정, 추후 수정될 수 있음.
@@ -10,6 +11,8 @@ using UnityEngine;
 /// </summary>
 public class SAVEManager : MonoBehaviour
 {
+    public SceneController SceneController;  // 씬 이동을 위해 씬 컨트롤러를 가진 오브젝트 받기
+    public UnityEvent NoFile;
     [SerializeField]
     string savefilename = "SAVE01";
     //string saveVer = "0.0"; //세이브 데이터의 버전
@@ -17,15 +20,27 @@ public class SAVEManager : MonoBehaviour
     [SerializeField]
     GameObject player;
     [SerializeField]
-    List<GameObject> NPCs;
+    static bool isLoad = false;
+    //List<GameObject> NPCs;
+    static SAVES saves;
+
+    private void Start() 
+    {
+        if(isLoad)
+        {
+            SetNPCs();
+            isLoad = false;
+        }    
+    }
 
     public void SAVE()
     {
-        NPCs = FindByComponent<NPCManager>(FindObjectsOfType<GameObject>());
+        List<GameObject> NPCs = FindByComponent<NPCManager>(FindObjectsOfType<GameObject>());
 
         player = GameObject.FindWithTag("Player");  //플레이어 검색
 
-        SAVES saves = new SAVES();
+        saves = new SAVES();
+        saves.chapter = player.GetComponent<PlayerStatus>().GetChapter();
         saves.player = new PlayerSave(player.transform.position);
         
         saves.npcs = new List<NPCSave>();
@@ -36,7 +51,7 @@ public class SAVEManager : MonoBehaviour
             saves.npcs.Add(new NPCSave(temp.ID, NPCs[i].transform.position, temp.i_Story));
         }
 
-        saves.npcs.Sort();      //정렬된 상태로 파싱하기
+        saves.SortByID();      //정렬된 상태로 파싱하기
 
         string path = Application.persistentDataPath + "/saves/";
         string filePath = path + savefilename + ".json";
@@ -48,7 +63,8 @@ public class SAVEManager : MonoBehaviour
         }
         if(!File.Exists(filePath))
         {
-            File.Create(filePath);
+            FileStream temp = File.Create(filePath);
+            temp.Close();
         }
 
         jsonData = JsonUtility.ToJson(saves);
@@ -61,15 +77,27 @@ public class SAVEManager : MonoBehaviour
         string path = Application.persistentDataPath + "/saves/";
         string filePath = path + savefilename + ".json";
 
-        if(!File.Exists(filePath)) return;
+        if(!File.Exists(filePath))
+        {
+            NoFile.Invoke();
+            return;
+        }
 
         string jsonData = File.ReadAllText(filePath);
-        SAVES saves = JsonUtility.FromJson<SAVES>(jsonData);
+        saves = JsonUtility.FromJson<SAVES>(jsonData);
 
-        NPCs = FindByComponent<NPCManager>(FindObjectsOfType<GameObject>());
+        isLoad = true;
 
+        SceneController.LoadNextScene(saves.chapter);
+    }
+    /// <summary>
+    /// 세이브 파일 로드 이후 NPC 설정을 적용하는 함수
+    /// </summary>
+    public void SetNPCs()
+    {
+        List<GameObject> NPCs = FindByComponent<NPCManager>(FindObjectsOfType<GameObject>());
         SortByID(ref NPCs); //정렬하기
-
+        
         ///플레이어 및 npc 데이터 적용 부분
 
         player.GetComponent<PositionManager>().SetPos(saves.player.GetPos());
@@ -123,6 +151,7 @@ public class SAVEManager : MonoBehaviour
     [System.Serializable]
     class SAVES
     {
+        public string chapter;
         public PlayerSave player;
         public List<NPCSave> npcs;
 
@@ -152,7 +181,7 @@ public class SAVEManager : MonoBehaviour
     [System.Serializable] 
     class PlayerSave
     {
-        float x, y, z; //vector3 pos
+        public float x, y, z; //vector3 pos
 
         public PlayerSave(Vector3 pos)
         {
@@ -168,7 +197,7 @@ public class SAVEManager : MonoBehaviour
     class NPCSave
     {
         public int id;
-        float x, y, z;
+        public float x, y, z;
         public int storyLine;
 
         public NPCSave(int id, Vector3 pos, int storyLine)
