@@ -98,7 +98,7 @@ public class VoiceManager : MonoBehaviour
                 Debug.LogError("Nothing recorded");
                 return;
             }
-            SavWav.Save(Application.persistentDataPath+"/test.wav", recording);
+            SavWav.Save(Application.persistentDataPath+"/voice.wav", recording);
             //byte[] byteData = getByteFromAudioClip(recording);
             //StartCoroutine(PostVoice(byteData));
         }
