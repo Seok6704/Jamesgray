@@ -34,7 +34,7 @@ public class PositionManager : MonoBehaviour
     /// </summary>
     public void SetPos(Vector3 pos)
     {
-        transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position));
+        transform.position = tilemap.GetCellCenterWorld(tilemap.WorldToCell(pos));
     }
 
     public static void ResetTilemap()  //Static 변수는 씬전환 후에도 남아있기 때문에 싱글톤 디자인 외에도 씬 전환시 초기화가 필요함.
