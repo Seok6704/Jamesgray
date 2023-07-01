@@ -16,7 +16,8 @@ public class DialoguesManager : MonoBehaviour
     [Header("GameObject which has TMPro")]
     public TMP_Text tmp_NpcName;
     public TMP_Text tmp_Dialogue;
-
+    [Header("VideoManager")]
+    public UnityEngine.Video.VideoPlayer video;
     /*[Header("NPC Image")]
     public Image npcImage;*/
 
@@ -34,10 +35,14 @@ public class DialoguesManager : MonoBehaviour
 
     bool flag, again, next;
 
+    VideoManager videoManager;
+
     private void Start() 
     {
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
         
+        videoManager = new VideoManager(video); //비디오 플레이 설정
+
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
         flag = false;
         again = false;
@@ -94,6 +99,7 @@ public class DialoguesManager : MonoBehaviour
             if(singleLine[0] == '[')    //문장의 시작이 "[" 일 경우, 씬을 로드한다. []안에는 다음 씬 이름이 들어와야한다.
             {
                 PlayAudio(id, lineID, index);
+                //PlayVideo(id, lineID, index);
                 SetChoice(singleLine);
                 isChoice = true;
                 break;
@@ -104,6 +110,7 @@ public class DialoguesManager : MonoBehaviour
                 출력 시작 부 - 1
             */
             PlayAudio(id, lineID, index);   //음성 출력
+            //PlayVideo(id, lineID, index);
             tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
             flag = false;
             again = false;
@@ -145,7 +152,15 @@ public class DialoguesManager : MonoBehaviour
         if(clip != null)
             audioSrc.PlayOneShot(clip);
         
-        
+    }
+
+    void PlayVideo(int id, int lineID, int index)
+    {
+        if(videoManager.GetStatus())
+        {
+            videoManager.StopVideo();
+        }
+        videoManager.PlayVideo(id, lineID, index);
     }
 
     IEnumerator GetAudioClip(int id, int lineID, int index)
@@ -171,6 +186,10 @@ public class DialoguesManager : MonoBehaviour
         if(audioSrc.isPlaying)
         {
             audioSrc.Stop();
+        }
+        if(videoManager.GetStatus())
+        {
+            videoManager.StopVideo();
         }
         flag = false;
         next = false;
