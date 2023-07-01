@@ -2677,6 +2677,7 @@ MonoBehaviour:
   sceneManager: {fileID: 1999456656}
   tmp_NpcName: {fileID: 633875627}
   tmp_Dialogue: {fileID: 886637699}
+  video: {fileID: 1325332675}
   audioSrc: {fileID: 1965333341}
   buttons:
   - {fileID: 1766237912}
@@ -3982,7 +3983,7 @@ VideoPlayer:
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
   m_TargetAudioSources:
-  - {fileID: 0}
+  - {fileID: 1965333341}
   m_DirectAudioVolumes:
   - 1
   m_Url: 
