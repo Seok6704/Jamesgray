@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using TMPro;
 
 public class DialoguesManager : MonoBehaviour
@@ -15,9 +16,10 @@ public class DialoguesManager : MonoBehaviour
     [Header("GameObject which has TMPro")]
     public TMP_Text tmp_NpcName;
     public TMP_Text tmp_Dialogue;
-
-    [Header("NPC Image")]
-    public Image npcImage;
+    [Header("VideoManager")]
+    public UnityEngine.Video.VideoPlayer video;
+    /*[Header("NPC Image")]
+    public Image npcImage;*/
 
     [Header("Audio Sorce")] //대화 음성 출력 오브젝트
     public AudioSource audioSrc;
@@ -26,17 +28,21 @@ public class DialoguesManager : MonoBehaviour
     public GameObject[] buttons;    //다이얼로그 창에서 사용될 선택지 버튼
     [Header("옵션 버튼")]
     public GameObject[] options;    //다이얼로그 창에서 다시듣기, 이전 등 버튼
-    string spritePath;
+    //string spritePath;
     string audioPath;
     string nextSceneName;
     int index; // 다이얼로그 인덱스
 
     bool flag, again, next;
 
+    VideoManager videoManager;
+
     private void Start() 
     {
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
         
+        videoManager = new VideoManager(video); //비디오 플레이 설정
+
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
         flag = false;
         again = false;
@@ -50,8 +56,8 @@ public class DialoguesManager : MonoBehaviour
         tmp_NpcName.text = dialogues.GetName(id);
         //content = dialogues.GetContent(id, lineID);
 
-        spritePath = dialogues.GetSpritePath();
-        spritePath += id.ToString() + '/';
+        //spritePath = dialogues.GetSpritePath();
+        //spritePath += id.ToString() + '/';
 
         audioPath = dialogues.GetAudioPath();
         audioPath += id.ToString() + '/' + lineID.ToString() + '/';
@@ -93,6 +99,7 @@ public class DialoguesManager : MonoBehaviour
             if(singleLine[0] == '[')    //문장의 시작이 "[" 일 경우, 씬을 로드한다. []안에는 다음 씬 이름이 들어와야한다.
             {
                 PlayAudio(id, lineID, index);
+                //PlayVideo(id, lineID, index);
                 SetChoice(singleLine);
                 isChoice = true;
                 break;
@@ -103,6 +110,7 @@ public class DialoguesManager : MonoBehaviour
                 출력 시작 부 - 1
             */
             PlayAudio(id, lineID, index);   //음성 출력
+            //PlayVideo(id, lineID, index);
             tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
             flag = false;
             again = false;
@@ -143,6 +151,33 @@ public class DialoguesManager : MonoBehaviour
 
         if(clip != null)
             audioSrc.PlayOneShot(clip);
+        
+    }
+
+    void PlayVideo(int id, int lineID, int index)
+    {
+        if(videoManager.GetStatus())
+        {
+            videoManager.StopVideo();
+        }
+        videoManager.PlayVideo(id, lineID, index);
+    }
+
+    IEnumerator GetAudioClip(int id, int lineID, int index)
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file:///" + Application.dataPath + "/Sounds/NPC/" + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".wav", AudioType.WAV))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                AudioClip myClip = DownloadHandlerAudioClip.GetContent(www);
+            }
+        }
     }
 
     void ResetVar()     //초기화 함수. 혹시나 남아있을 큐를 비우고, flag를 원위치하도록 합니다.
@@ -151,6 +186,10 @@ public class DialoguesManager : MonoBehaviour
         if(audioSrc.isPlaying)
         {
             audioSrc.Stop();
+        }
+        if(videoManager.GetStatus())
+        {
+            videoManager.StopVideo();
         }
         flag = false;
         next = false;
@@ -166,7 +205,7 @@ public class DialoguesManager : MonoBehaviour
         }
     }
 
-    void SetImage(string emotion) //emotion을 통해 스프라이트 변경하는 함수
+   /*void SetImage(string emotion) //emotion을 통해 스프라이트 변경하는 함수
     {
         byte[] byteTexture = System.IO.File.ReadAllBytes(spritePath + emotion + ".png");
         Texture2D texture = new Texture2D(0,0);
@@ -174,7 +213,7 @@ public class DialoguesManager : MonoBehaviour
 
         Rect rect = new Rect(0, 0, texture.width, texture.height);
         npcImage.sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
-    }
+    }*/
 
     void SetChoice(string singleLine)   //일단은 예/아니오 만 출력하게... 나중에 선택지 내용도 바꿀수있도록 수정 예정
     {
