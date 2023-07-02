@@ -119,7 +119,7 @@ public class ChoiceGame : MonoBehaviour
         
         GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
 
-        for(int i = 0; i < objects.Length; i++)
+        for(int i = 0; i < objects.Length; i++) //scene 매니저 찾기
         {
             if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
             {
