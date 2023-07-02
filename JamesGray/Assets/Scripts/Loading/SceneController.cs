@@ -48,6 +48,14 @@ public class SceneController : MonoBehaviour
         End.Invoke();
     }
 
+    /// <summary>
+    /// 버튼으로 호출하기 쉽게 파라미터가 1개 뿐인 씬 호출 함수, additively
+    /// </summary>
+    public void SimpleLoadScene(string nextSceneName)
+    {
+        StartCoroutine(AdditivelyLoad(nextSceneName, 0f));
+    }
+
     IEnumerator Wait(string nextSceneName, float waitTime)
     {
         /*for(int i = 0; i < 1000; i++)      
