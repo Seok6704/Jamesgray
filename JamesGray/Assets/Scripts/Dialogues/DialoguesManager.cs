@@ -187,7 +187,7 @@ public class DialoguesManager : MonoBehaviour
         {
             audioSrc.Stop();
         }
-        if(videoManager.GetStatus())
+        if(videoManager.GetStatus() && false) //임시로 비활성화
         {
             videoManager.StopVideo();
         }

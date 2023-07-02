@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class LoadingScene : MonoBehaviour
 {
     public static string nextScene;
-    public static Scene preScene;  //Additive로 호출했을때, 이전 씬을 기억
+    public static Scene preScene;  //Additive로 호출했을때, 이전 씬을 기억, null 값을 가지기 위해
 
     public UnityEvent loadingComplete;
 
