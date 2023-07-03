@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 using TMPro;
+using DataStructure;
 
 public class DialoguesManager : MonoBehaviour
 {
@@ -24,120 +24,206 @@ public class DialoguesManager : MonoBehaviour
     [Header("Audio Sorce")] //대화 음성 출력 오브젝트
     public AudioSource audioSrc;
 
-    [Header("선택지 버튼")]
-    public GameObject[] buttons;    //다이얼로그 창에서 사용될 선택지 버튼
-    [Header("옵션 버튼")]
-    public GameObject[] options;    //다이얼로그 창에서 다시듣기, 이전 등 버튼
-    //string spritePath;
-    string audioPath;
-    string nextSceneName;
-    int index; // 다이얼로그 인덱스
+    public Button choiceTemplete;
+    public GameObject choiceGrid;
 
-    bool flag, again, next;
+    DEQ<DialogueNode> nextQ; Stack<DialogueNode> previousStack; //각각 이후 대화문, 이전 대화문
+    DialogueNode buffer;  //버퍼, 위 큐 사이에 중간 역할 즉 현재 출력하고 있는 것을 의미
+    bool isPrintDone;   //출력이 끝났는지 체크하는 변수
 
     VideoManager videoManager;
+    int currentID, currentLineID;
 
-    private void Start() 
+    void Start()
     {
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
-        
-        videoManager = new VideoManager(video); //비디오 플레이 설정
 
+        videoManager = new VideoManager(video);
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
-        flag = false;
-        again = false;
-        next = false;
+
+        previousStack = new Stack<DialogueNode>();
+        nextQ = new DEQ<DialogueNode>();
+        buffer = null;
+
+        isPrintDone = false;
+
+        currentID = -1; currentLineID = -1;
     }
-
-
-    public void SetDialogue(int id, int lineID)     //이 클래스의 진입 부분...
+    /// <summary>
+    /// 다이얼로그가 켜질때, 초기화 함수, 큐에 데이터를 넣는다.
+    /// </summary>
+    public void SetDialogue(int id, int lineID)
     {
+        string[] contents;
+        if(dialogues.GetStoryLineLength(id) > lineID)   //lineID가 범위를 벗어나지 않는지 검사 만약 벗어났다면 사전에 지정된 디폴트 대사를 호출
+        {
+            contents = dialogues.GetContents(id, lineID);
+        }
+        else
+        {
+            contents = new string[] {dialogues.GetDefaultLine(id)};
+        }
+
+        if(contents.Length == 0) return;
+
+        currentID = id; currentLineID = lineID;
+
         DialogueOn.Invoke();
+        ResetVariable();
         tmp_NpcName.text = dialogues.GetName(id);
-        //content = dialogues.GetContent(id, lineID);
 
-        //spritePath = dialogues.GetSpritePath();
-        //spritePath += id.ToString() + '/';
+        for(int i = 0; i < contents.Length; i++)
+        {
+            nextQ.RearEnqueue(new DialogueNode(contents[i], id, lineID, i));
+        }
 
-        audioPath = dialogues.GetAudioPath();
-        audioPath += id.ToString() + '/' + lineID.ToString() + '/';
-
-        nextSceneName = "";
-
-        StartCoroutine(LoadTyping(id, lineID));
+        buffer = nextQ.FrontDequeue();
+        ShowDialogue();
+    }
+    /// <summary>
+    /// 현재 버퍼에 있는 것을 출력 및 영상 재생
+    /// </summary>
+    void ShowDialogue()
+    {
+        if(buffer == null)   //더이상 출력할 것이 없다면 종료
+        {
+            EndDialogue();
+            return;
+        }
+        isPrintDone = false;
+        PlayAudio(buffer.id, buffer.lineID, buffer.index);
+        //PlayVideo(buffer.id, buffer.lineID, buffer.index);
+        PrintDialogue();
     }
 
-
-    IEnumerator WaitKey()                       // 이 클래스의 마지막 부분...
-    {     //마지막 문장을 사라지지 않게 대기하게 해주는 코루틴 함수
-        while(true) 
+    void PrintDialogue()
+    {
+        ClearDialogue();
+        tmp_Dialogue.GetComponent<TextOutputManager>().Typing(CheckContent(buffer));
+    }
+    /// <summary>
+    /// 다음 문장을 버퍼에 넣는다
+    /// </summary>
+    void SetBuffer2Next()
+    {
+        if(nextQ.GetCount() == 0) 
         {
-            if(Input.GetKeyDown(KeyCode.Space) || next) break;
-            yield return null;
+            buffer = null;
+            return;
         }
-        //gameObject.SetActive(false);
-        //LoadScene(i_dialogNum);
+
+        previousStack.Push(buffer);
+        buffer = nextQ.FrontDequeue();
+    }
+    /// <summary>
+    /// 이전 문장을 버퍼에 넣는다
+    /// </summary>
+    void SetBuffer2Pre()
+    {
+        if(previousStack.Count == 0) return;
+
+        nextQ.FrontEnqueue(buffer);
+        buffer = previousStack.Pop();
+    }
+
+    /// <summary>
+    /// 다이얼로그에 출력되어 있는 이전 데이터를 제거하는 함수
+    /// </summary>
+    void ClearDialogue()
+    {
+        DestroyChoice();
+        tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
+        tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
+    }
+    /// <summary>
+    /// 초기화 함수
+    /// </summary>
+    void ResetVariable()
+    {
+        buffer = null;
+        previousStack.Clear();
+        nextQ.Clear();
+
+        isPrintDone = false;
+
+        currentID = -1; currentLineID = -1;
+
+        DestroyChoice();
+    }
+
+    void EndDialogue()
+    {
         DialogueOff.Invoke();
-        ResetVar();
+        if(audioSrc.isPlaying) audioSrc.Stop();
+        if(videoManager.GetStatus()) videoManager.StopVideo();
+        ResetVariable();
     }
 
     /*
-        반복문을 통해 대화문의 처음부터 끝까지 출력하도록 하는 함수.
+    명령문 구조 : "[명령종류] [출력할대사] ..."
+    - 예시 -
+                "[CHOICE] [선택지 출력예시, 1 번 - 미니게임 1-1 실행, 2 번 - 종료, 3 번 - 코덱스] [1.네] [MINIGAME] [1-1] [2.아니오] [END] [ ] [3.궁금한거물어보기] [CODEX] [0]"
+
+                3번째 []부터는 3개의 []가 하나의 선택지로 취급, [][][] 가 몇개 있냐에 따라 선택지 갯수가 달라진다.
+                [출력할 대사] [명령문] [데이터] 형식
+                MINIGAME 다음에는 해당 미니게임 씬 이름이 필요
+                END 다음에는 데이터 불필요 
+                CODEX 다음에는 출력하고자 하는 대화문의 내용의 codexIndex가 필요 (codex는 명령문에 의해 codex 데이터를 받아올수있지만, 영상 및 음성 파일은 다른 스토리라인과 겹칠수있으므로 겹치지 않도록 1000 + codex의 값을 하는 폴더에 위치해주세요.)
+
+                그 외 명령문은 추가 예정
     */
-    IEnumerator LoadTyping(int id, int lineID) 
+
+    /// <summary>
+    /// 선택지 여부 검사 및 문자열과 명령문을 분리하는 함수
+    /// </summary>
+    string CheckContent(DialogueNode node)   //검사의 편리성을 위해 가장 처음 나오는 문자가 [ 라면 명령문이 포함된 문장으로 인식하고 그 외는 일반 문장으로 스킵하도록 함.
     {
-        bool isChoice = false;
-        index = 0;
-        while(index < dialogues.GetContentLength(id, lineID))
+        if(node.line[0] != '[') return node.line;   //명령문이 아니라면 전체 대사 리턴  
+        int i;
+        List<string> command = new List<string>();
+        string temp = "";
+        bool check = false;
+        for(i = 0; i < node.line.Length; i++)
         {
-            string singleLine = dialogues.GetContent(id, lineID, index);
-
-            tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
-            tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
-
-            
-            if(singleLine[0] == '[')    //문장의 시작이 "[" 일 경우, 씬을 로드한다. []안에는 다음 씬 이름이 들어와야한다.
+            if(node.line[i] == ']') 
             {
-                PlayAudio(id, lineID, index);
-                //PlayVideo(id, lineID, index);
-                SetChoice(singleLine);
-                isChoice = true;
-                break;
+                command.Add(temp);
+                temp = "";
+                check = false;
             }
-            
-
-            /*
-                출력 시작 부 - 1
-            */
-            PlayAudio(id, lineID, index);   //음성 출력
-            //PlayVideo(id, lineID, index);
-            tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
-            flag = false;
-            again = false;
-
-            yield return new WaitForSeconds(0.3f); // 이전에 이미 눌렀던 스페이스바가 그대로 유지되는 것을 막기위해 대기
-            /*
-                대기 부 - 2
-            */
-            //yield return new WaitUntil( () => flag);        //참이 될때까지 대기
-            while(!again)     //터치시까지 대기 또는 다시 재생 변수가 활성화 될때까지 대기
-            {
-                if(Input.GetKeyDown(KeyCode.Space) || next)
-                {
-                    index++;
-                    next = false;
-                    break;
-                }
-                yield return null;
-            }
+            if(check) temp += node.line[i];
+            if(node.line[i] == '[') check = true;
         }
-        if(!isChoice)
-            StartCoroutine(WaitKey());    
-    }   
+    
+        temp = command[1]; //1번 인덱스의 내용은 지워질것이기 때문에 temp에 임시 저장하여 반환
 
-    public void SetFlag()       //이벤트로 불러와질 함수    flag는 다이얼로그 텍스트의 문자 출력을 동기화하기 위해 선언되었습니다.  
+        if(command[0] == "CHOICE")  //선택지 명령문일 경우
+        {
+            command.RemoveRange(0,2);   //명령문과 대사 제거
+            SetChoice(command);
+        }
+
+        return temp;
+    }
+
+    void SetChoice(List<string> list)
+    {   
+        for(int i = 0; i < list.Count; i += 3)
+        {
+            GameObject btn = Instantiate(choiceTemplete).gameObject;
+            btn.transform.SetParent(choiceGrid.transform);
+            btn.transform.GetChild(0).GetComponent<TMP_Text>().text = list[i];   //선택지 내용
+            btn.GetComponent<ButtonData>().SetData(list[i + 1], list[i + 2]);
+            //btn.GetComponent<Button>().onClick.AddListener(() => { ButtonData temp = GetComponent<ButtonData>(); GameObject.FindWithTag("Dialogue").GetComponent<DialoguesManager>().GetFromButton(temp.command, temp.data);});
+        }
+    }
+
+    void DestroyChoice()
     {
-        flag = true;
+        for(int i = 0; i < choiceGrid.transform.childCount; i++)
+        {
+            Destroy(choiceGrid.transform.GetChild(i).gameObject);
+        }
     }
 
     void PlayAudio(int id, int lineID, int index)
@@ -145,6 +231,11 @@ public class DialoguesManager : MonoBehaviour
         if(audioSrc.isPlaying)
         {
             audioSrc.Stop();
+        }
+        string path = Application.dataPath + "/Resources/Sounds/NPC/" + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString();
+        if(!System.IO.File.Exists(path + ".mp3") && !System.IO.File.Exists(path + ".wav"))
+        {
+            return;
         }
 
         AudioClip clip = Resources.Load("Sounds/NPC/" + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString()) as AudioClip;
@@ -162,203 +253,71 @@ public class DialoguesManager : MonoBehaviour
         }
         videoManager.PlayVideo(id, lineID, index);
     }
-
-    IEnumerator GetAudioClip(int id, int lineID, int index)
+    void LoadScene(string sceneName)
     {
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file:///" + Application.dataPath + "/Sounds/NPC/" + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".wav", AudioType.WAV))
-        {
-            yield return www.SendWebRequest();
+        sceneManager.GetComponent<SceneController>().LoadNextScene(sceneName, 0.1f, true);
+    }
+    void SetCodex(int codex)
+    {
+        string[] codexContents = dialogues.GetCodexLine(currentID, codex);
+        Stack<DialogueNode> temp = new Stack<DialogueNode>();
 
-            if (www.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                AudioClip myClip = DownloadHandlerAudioClip.GetContent(www);
-            }
+        for(int i = 0; i < codexContents.Length; i++)
+        {
+            DialogueNode newNode = new DialogueNode(codexContents[i], currentID, 1000 + codex, i);
+            temp.Push(newNode);
+        }
+
+        while(temp.Count > 0)
+        {
+            nextQ.FrontEnqueue(temp.Pop());
         }
     }
 
-    void ResetVar()     //초기화 함수. 혹시나 남아있을 큐를 비우고, flag를 원위치하도록 합니다.
-    {   
-        int i;
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        if(videoManager.GetStatus() && false) //임시로 비활성화
-        {
-            videoManager.StopVideo();
-        }
-        flag = false;
-        next = false;
+    public void ShowAgain()
+    {
+        ShowDialogue();
+    }
+    public void ShowPrevious()
+    {
+        SetBuffer2Pre();
+        ShowDialogue();
+    }
+    public void ShowNext()
+    {
+        SetBuffer2Next();
+        ShowDialogue();
+    }
 
-        for(i = 0; i < options.Length; i++)    //옵션 버튼 활성화
+    public void SetPrintDone()
+    {
+        isPrintDone = true;
+    }
+    public void GetFromButton(string command, string data)
+    {
+        if(command == "END")
         {
-            options[i].SetActive(true);    
+            EndDialogue();
         }
-
-        for(i = 0; i < buttons.Length; i++)     //선택지 비활성화
+        else if(command == "MINIGAME")
         {
-            buttons[i].SetActive(false);
+            LoadScene(data);
+        }
+        else if(command == "CODEX")
+        {
+            SetCodex(int.Parse(data));
         }
     }
 
-   /*void SetImage(string emotion) //emotion을 통해 스프라이트 변경하는 함수
+    class DialogueNode
     {
-        byte[] byteTexture = System.IO.File.ReadAllBytes(spritePath + emotion + ".png");
-        Texture2D texture = new Texture2D(0,0);
-        texture.LoadImage(byteTexture);
+        public string line;
+        public int id, lineID, index;
 
-        Rect rect = new Rect(0, 0, texture.width, texture.height);
-        npcImage.sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
-    }*/
-
-    void SetChoice(string singleLine)   //일단은 예/아니오 만 출력하게... 나중에 선택지 내용도 바꿀수있도록 수정 예정
-    {
-        int i = 1; //반복문에 사용될 인덱스
-        char c = singleLine[i];
-
-        while(c != ']') //[] 안에 들어있는 문장 추출
+        public DialogueNode(string line, int id, int lineID, int index)
         {
-            nextSceneName += c;
-            c = singleLine[++i];
+            this.line = line;
+            this.id = id; this.lineID = lineID; this.index = index;
         }
-        singleLine = singleLine.Substring(i + 1);   //씬 이름 제거
-
-        tmp_Dialogue.GetComponent<TextOutputManager>().Typing(singleLine);
-        flag = false;
-
-        for(i = 0; i < options.Length; i++) //일단은 오류를 막기위해 옵션 버튼 비활성화
-        {
-            options[i].SetActive(false);    
-        }
-
-        for(i = 0; i < buttons.Length; i++) //선택지 활성화
-        {
-            buttons[i].SetActive(true);
-        }
-    }
-    
-    /*버튼 관련 함수*/////////////////////////////////////
-    public void ShowPrevious()  // 이벤트로 불러와지며 이전 대화를 보여준다.
-    {
-        index = index >= 1 ? index - 1 : 0; //혹시라도 음수로 가는 것을 방지
-        ShowAgain();        //이전것을 다시 보여주기
-    }
-    public void ShowAgain() //다시 보여주기
-    {
-        again = true;
-    }
-    public void ShowNext()  //다음 대화문 보여주기
-    {
-        next = true;
-    }
-    ///////////////////선택지//////////////////////////////
-    public void Positive()  //버튼이 긍정적일때
-    {
-        sceneManager.GetComponent<SceneController>().LoadNextScene(nextSceneName, 0.1f, true);
-    }
-    public void Negative()  //버튼이 부정적일때 대화 종료
-    {
-        DialogueOff.Invoke();
-        ResetVar();
     }
 }
-
-/*      지우기 아까워서 저장 삭제 해도 무방
-    IEnumerator LoadTyping_de(int id, int lineID) 
-    {   //한글자씩 출력하게 해주는 함수
-        int index = 0;
-        string wholeSentence = "";
-        string sentence = "";
-        string emotion = "";
-        char c;
-
-        while(index < content.Length)
-        {
-            if(Input.GetKeyDown(KeyCode.Space) || index == 0) 
-            {
-                tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
-                tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
-                content[index] += " ";                                          // 공백 추가
-                wholeSentence = "";
-
-                if(content[index][0] != '[') emotionQ.Enqueue("DEFAULT");
-
-                PlayAudio(id, lineID, index);   //음성 출력
-                //StartCoroutine(TestUnityWebRequest(id, lineID, index));
-                
-                for(int i = 0; i < content[index].Length;)
-                {
-                    c = content[index][i];
-                    if(c == '[') 
-                    {
-                        if(sentence != "")
-                        {
-                            sentenceQ.Enqueue(sentence);
-                            wholeSentence += sentence;
-                            sentence = "";
-                        }
-                        while(true)
-                        {
-                            c = content[index][++i];
-                            if(c == ']') 
-                            {
-                                emotionQ.Enqueue(emotion);
-                                emotion = "";
-                                ++i;
-                                break;
-                            }
-                            emotion += c;
-                        }
-                    }
-                    else
-                    {
-                        sentence += c;
-                        ++i;
-                    }
-                }
-                if(sentence != "") 
-                {   
-                    sentenceQ.Enqueue(sentence);
-                    wholeSentence += sentence;
-                    sentence = "";
-                }
-                if(emotion != "") 
-                {
-                    emotionQ.Enqueue(emotion);
-                    emotion = "";
-                }
-                //if(emotionQ.Count == 0) emotionQ.Enqueue("DEFAULT");    //만약 지정된 감정이 없다면 기본 스프라이트로 설정
-                
-                flag = true;
-
-                while(true)
-                {
-                    if(sentenceQ.Count == 0) //출력할 문장이 더이상 없다면 탈출
-                    {
-                        break;
-                    }
-
-                    if(flag)
-                    {
-                        flag = false;
-                        tmp_Dialogue.GetComponent<TextOutputManager>().Typing((string)sentenceQ.Dequeue());
-                        if(emotionQ.Count != 0) SetImage((string)emotionQ.Dequeue());
-                    }
-
-                    yield return new WaitForFixedUpdate();   //좋은지는 모르겠음   
-                }
-                emotionQ.Clear();
-                sentenceQ.Clear();
-                flag = false;
-
-                ++index;
-                yield return new WaitForSeconds(0.3f); 
-            }
-            yield return null;
-        }
-        StartCoroutine(WaitKey());        
-    } */
