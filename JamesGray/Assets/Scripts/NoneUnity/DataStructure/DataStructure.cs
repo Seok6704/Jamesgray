@@ -270,4 +270,46 @@ namespace DataStructure
     {
         public T data {get; set;}
     }
+
+    /// <summary>
+    /// Double Ended Queue를 연결리스트를 이용해 간단히 구현
+    /// </summary>
+    public class DEQ<T>
+    {
+        LinkedList<T> deq;
+
+        public DEQ()
+        {
+            deq = new LinkedList<T>();
+        }
+        public int GetCount()
+        {
+            return deq.Count;
+        }
+
+        public void RearEnqueue(T item)
+        {
+            deq.AddLast(item);
+        }
+        public void FrontEnqueue(T item)
+        {
+            deq.AddFirst(item);
+        }
+        public T FrontDequeue()
+        {
+            LinkedListNode<T> node = deq.First;
+            deq.RemoveFirst();
+            return node.Value;
+        }
+        public T RearDequeue()
+        {
+            LinkedListNode<T> node = deq.Last;
+            deq.RemoveLast();
+            return node.Value;
+        }
+        public void Clear()
+        {
+            deq.Clear();
+        }
+    }
 }
