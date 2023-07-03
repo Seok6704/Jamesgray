@@ -59,7 +59,9 @@ public class JSONManager
     {
         public int ID;
         public string NPCName;
+        public string[] defaultLine;    //할말없을때 NPC가 할 말들
         public StoryLineClass[] storyLine;
+        public CodexClass[] codex;
     }
 
     [System.Serializable]
@@ -69,9 +71,17 @@ public class JSONManager
         public string[] content;
     }
 
+    [System.Serializable]
+    class CodexClass
+    {
+        public int num;
+        public string[] codexes;
+    }
+
     public JSONManager(string sceneName)
     {
-        string filePath = "Assets/Data/Dialogues/" + sceneName + ".json";
+        string filePath = Application.dataPath + "/Data/Dialogues/" + sceneName + ".json";
+        if(!File.Exists(filePath)) return;
         string jsonText = File.ReadAllText(filePath);
         dial = JsonUtility.FromJson<Dialogue>(jsonText);
 
@@ -106,8 +116,33 @@ public class JSONManager
     {
         return dial.NPC[FindIndexFromKey(id)].storyLine[lineID].content.Length;
     }
+    public int GetStoryLineLength(int id)
+    {
+        return dial.NPC[FindIndexFromKey(id)].storyLine.Length;
+    }
+
+    public int GetDefaultLength(int id)
+    {
+        return dial.NPC[FindIndexFromKey(id)].defaultLine.Length;
+    }
     public string GetContent(int id, int lineID, int i)     //한문장 반환
     {
         return dial.NPC[FindIndexFromKey(id)].storyLine[lineID].content[i];
+    }
+    public string[] GetContents(int id, int lineID)
+    {
+        return dial.NPC[FindIndexFromKey(id)].storyLine[lineID].content;
+    }
+
+    public string GetDefaultLine(int id)
+    {
+        string[] temp = dial.NPC[FindIndexFromKey(id)].defaultLine;
+        int max = temp.Length;
+        return temp[Random.Range(0, max)];
+
+    }
+    public string[] GetCodexLine(int id, int codexIndex)
+    {
+        return dial.NPC[FindIndexFromKey(id)].codex[codexIndex].codexes;
     }
 }
