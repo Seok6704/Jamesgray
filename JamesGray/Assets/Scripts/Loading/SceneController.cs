@@ -17,11 +17,14 @@ using UnityEngine.Events;
 */
 public class SceneController : MonoBehaviour
 {   
-    public UnityEvent End;  //Additive 씬이 종료되었을때 이벤트, 다이얼로그에서 기존에 있던 다이얼로그를 지우기 위해 사용
+    public delegate void OnMiniGameEnd(bool isSuccessful);
+    OnMiniGameEnd onMGE;
+    //public UnityEvent End;  //Additive 씬이 종료되었을때 이벤트, 다이얼로그에서 기존에 있던 다이얼로그를 지우기 위해 사용
 
     //이벤트 시스템과 리스너는 한 씬에 두개 있으면 오류가 발생하므로 비활성화 해야하므로 additive로 씬을 호출할경우 비활성화해야함
     public GameObject audioListner;
     public GameObject eventSys;
+    public DialoguesManager dial;
 
     public void LoadNextScene(string nextSceneName, float waitTime = 1f, bool isAdditive = false)
     {
@@ -29,6 +32,10 @@ public class SceneController : MonoBehaviour
             StartCoroutine(Wait(nextSceneName, waitTime));
         else
             StartCoroutine(AdditivelyLoad(nextSceneName, waitTime));
+    }
+    private void Start() 
+    {
+        onMGE = dial.OnMiniGameEnd; //델리게이트 체인 등록
     }
     /// <summary>
     /// 메인 메뉴 불러오는 함수
@@ -42,10 +49,11 @@ public class SceneController : MonoBehaviour
         StartCoroutine(Wait("Chapter0", 1f));
     }
 
-    public void AdditiveEnded()
+    public void AdditiveEnded(bool result)
     {
         SetEnable(true);
-        End.Invoke();
+        onMGE(result);
+        //End.Invoke();
     }
 
     /// <summary>
