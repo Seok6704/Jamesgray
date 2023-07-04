@@ -32,7 +32,7 @@ public class CrossGame : MonoBehaviour
             if(pos.x >= 2140) // 도착 지점 도달 시
             { 
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 6);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 2);
             }
 
             if( (time > 5 && time < 8) || (time > 13 && time < 15) ||  (time > 24 && time < 26) || (time > 30 && time < 31) || (time > 39 && time < 41) || (time > 49 && time < 51)) // 음악이 멈추는 시간
@@ -44,7 +44,7 @@ public class CrossGame : MonoBehaviour
             if ( time > 60) // 타임 오버
             {
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 3);
             }
 
             if(Move && pos.x <= 2150 && !M_Stop) // 버튼이 클릭되고 있고, Walker가 도착점에 도착하지 않았을 경우, 위치 이동.
@@ -58,7 +58,7 @@ public class CrossGame : MonoBehaviour
                 transform.Translate(new Vector3(0.2f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 5);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 1);
             }
         }
         

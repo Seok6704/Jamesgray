@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ChoiceGame : MonoBehaviour
 {
-    public int Correct;
-    public int Fail; // 실패 횟수 기록 변수
+    int Correct;
+    int Fail; // 실패 횟수 기록 변수
+    public AudioSource audioSrc;
     public GameObject Dialog;
 
     void Start()
     {
-        Correct = GameObject.Find("Start_Button").GetComponent<NPCManager>().i_Story; //Correct 변수에 Start_Button 오브젝트의 NPCManager 스크립트 안에 i_Stroy 변수 값 저장
+        Correct = Random.Range(0,5);
         Fail = 0;
     }
 
@@ -19,16 +21,16 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 4)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 6);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 5);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -39,16 +41,16 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 3)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 6);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 5);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -58,16 +60,16 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 2)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 6);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 5);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -77,16 +79,16 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 1)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 6);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 5);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -96,18 +98,67 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 0)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 6);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 5);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 7);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }
+        }
+    }
+
+    public void Btn_Quest_Click()
+    {
+        if(Correct == 0)
+        {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Knock") as AudioClip;
+            audioSrc.PlayOneShot(clip);
+        }
+        if(Correct == 1)
+        {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Alaram") as AudioClip;
+            audioSrc.PlayOneShot(clip);
+        }
+        if(Correct == 2)
+        {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Ambulance") as AudioClip;
+            audioSrc.PlayOneShot(clip);
+        }
+        if(Correct == 3)
+        {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Subway") as AudioClip;
+            audioSrc.PlayOneShot(clip);
+        }
+        if(Correct == 4)
+        {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Car") as AudioClip;
+            audioSrc.PlayOneShot(clip);
         }
     }
 
