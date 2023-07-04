@@ -28,7 +28,7 @@ public class NPCManager : MonoBehaviour
     {
         if(!isAlready)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(ID, i_Story);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(ID, i_Story, this);
             isAlready = true;
         }
         //b_visited = true;
