@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame/1-S-1.unity
     guid: de2f0f63c22da57438e9337fd0e9bd86
+  - enabled: 1
+    path: Assets/Scenes/Minigame/P-2.unity
+    guid: eb3fc61c75d43b7488b80738a2bb3ba0
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1aa231acc8db6b647b274cb97e197c39, type: 2}
