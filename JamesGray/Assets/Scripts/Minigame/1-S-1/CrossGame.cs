@@ -15,12 +15,16 @@ public class CrossGame : MonoBehaviour
     bool M_Stop;
     Vector3 pos;
 
+    bool isClear; //성공여부
+
     void Awake()
     {
         anim = GameObject.Find("Walker").GetComponent<Animator>();    
         flag = false;
         Move = false;
         M_Stop = false;
+
+        isClear = false;
     }
 
     void Update()
@@ -30,7 +34,8 @@ public class CrossGame : MonoBehaviour
             time += Time.deltaTime;
             pos = this.transform.position; // 현재 Walker 위치 담는 변수
             if(pos.x >= 2140) // 도착 지점 도달 시
-            { 
+            {
+                isClear = true;
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 2);
             }
@@ -98,7 +103,7 @@ public class CrossGame : MonoBehaviour
         {
             if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
             {
-                objects[i].GetComponent<SceneController>().AdditiveEnded();
+                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
                 break;
             }
         }
