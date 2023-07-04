@@ -12,12 +12,15 @@ public class WalkingGame : MonoBehaviour
     public AudioSource audioSrc;
     public Animator anim;
 
+    bool isClear; //성공여부
     void Awake()
     {
         Correct = Random.Range(0,4);
         Fail = 0;
         Round = 0;
         anim = GameObject.Find("James").GetComponent<Animator>();
+
+        isClear = false;
     }
 
     public void Btn_R_S_Click()
@@ -78,6 +81,7 @@ public class WalkingGame : MonoBehaviour
             if(Round == 3)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -103,6 +107,7 @@ public class WalkingGame : MonoBehaviour
             if(Round == 3)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -128,6 +133,7 @@ public class WalkingGame : MonoBehaviour
             if(Round == 3)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -153,6 +159,7 @@ public class WalkingGame : MonoBehaviour
             if(Round == 3)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -200,7 +207,7 @@ public class WalkingGame : MonoBehaviour
         {
             if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
             {
-                objects[i].GetComponent<SceneController>().AdditiveEnded();
+                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
                 break;
             }
         }

@@ -10,11 +10,13 @@ public class ChoiceGame : MonoBehaviour
     int Fail; // 실패 횟수 기록 변수
     public AudioSource audioSrc;
     public GameObject Dialog;
-
+    bool isClear; //성공여부
     void Start()
     {
         Correct = Random.Range(0,5);
         Fail = 0;
+
+        isClear = false; //성공여부
     }
 
     public void Choice_Car()
@@ -22,6 +24,8 @@ public class ChoiceGame : MonoBehaviour
         if(Correct == 4)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            isClear = true;
+            
             Invoke("SceneChanger", 5f);
         }
         else
@@ -42,6 +46,7 @@ public class ChoiceGame : MonoBehaviour
         if(Correct == 3)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
@@ -61,6 +66,7 @@ public class ChoiceGame : MonoBehaviour
         if(Correct == 2)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
@@ -80,6 +86,7 @@ public class ChoiceGame : MonoBehaviour
         if(Correct == 1)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
@@ -99,7 +106,7 @@ public class ChoiceGame : MonoBehaviour
         if(Correct == 0)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
-            Invoke("SceneChanger", 5f);
+            isClear = true;
         }
         else
         {
@@ -174,7 +181,7 @@ public class ChoiceGame : MonoBehaviour
         {
             if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
             {
-                objects[i].GetComponent<SceneController>().AdditiveEnded();
+                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
                 break;
             }
         }
