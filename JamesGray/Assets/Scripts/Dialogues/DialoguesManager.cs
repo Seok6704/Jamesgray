@@ -18,6 +18,8 @@ public class DialoguesManager : MonoBehaviour
     public UnityEvent DialogueOn, DialogueOff;  //다이얼로그 on/off 이벤트
     JSONManager dialogues;          //현재 챕터 전체 대화문을 담고있는 객체
 
+    public PlayerStatus playerStatus;   //플레이어 인벤토리 및 기타 관리하는 스크립트
+
     [Header("Scene 매니저")]
     public GameObject sceneManager;
 
@@ -171,7 +173,8 @@ public class DialoguesManager : MonoBehaviour
 
                 "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
 
-                "[CHAPTER] [다음 지역으로 이동합니다.] [<이동할 챕터 씬 이름>]"
+                "[CHAPTER] [0.1] [<이동할 챕터 씬 이름>]"
+                다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다. 두번째 []에는 대기 시간을 넣어야함.
     */
 
     /// <summary>
@@ -196,8 +199,6 @@ public class DialoguesManager : MonoBehaviour
             if(buffer.line[i] == '[') check = true;
         }
 
-        ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
-
         temp = command[1]; //1번 인덱스의 내용은 지워질것이기 때문에 temp에 임시 저장하여 반환
 
         if(command[0] == "CHOICE")  //선택지 명령문일 경우
@@ -212,7 +213,19 @@ public class DialoguesManager : MonoBehaviour
         else if(command[0] == "CLOSE")
         {
             EndDialogue();
+            return "";
         }
+        else if(command[0] == "GET")
+        {
+            playerStatus.AddItem(int.Parse(command[2]));
+        }
+        else if(command[0] == "CHAPTER")
+        {
+            LoadScene(command[2], float.Parse(command[1]), false);
+        }
+
+        ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
+        buffer = null;
 
         return temp;
     }
@@ -394,7 +407,9 @@ public class DialoguesManager : MonoBehaviour
             return;
         }
 
-        previousStack.Push(buffer);
+        if(buffer != null)
+            previousStack.Push(buffer);
+
         buffer = nextQ.FrontDequeue();
     }
     /// <summary>
@@ -404,7 +419,9 @@ public class DialoguesManager : MonoBehaviour
     {
         if(previousStack.Count == 0) return;
 
-        nextQ.FrontEnqueue(buffer);
+        if(buffer != null)
+            nextQ.FrontEnqueue(buffer);
+
         buffer = previousStack.Pop();
     }
 
@@ -445,9 +462,9 @@ public class DialoguesManager : MonoBehaviour
     //  씬 관련 함수
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    void LoadScene(string sceneName)
+    void LoadScene(string sceneName, float waitTime = 0.1f, bool isAdditive = true)
     {
-        sceneManager.GetComponent<SceneController>().LoadNextScene(sceneName, 0.1f, true);
+        sceneManager.GetComponent<SceneController>().LoadNextScene(sceneName, waitTime, isAdditive);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
