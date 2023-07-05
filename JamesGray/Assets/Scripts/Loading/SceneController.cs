@@ -35,7 +35,11 @@ public class SceneController : MonoBehaviour
     }
     private void Start() 
     {
-        onMGE = dial.OnMiniGameEnd; //델리게이트 체인 등록
+        //델리게이트 체인 등록
+        if(dial != null)
+        {
+           onMGE = dial.OnMiniGameEnd;
+        }
     }
     /// <summary>
     /// 메인 메뉴 불러오는 함수
