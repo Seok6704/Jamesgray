@@ -200,8 +200,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774 \uB984"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
+  m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5276,6 +5276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentOnStart: 0
+  showPosition: {fileID: 0}
 --- !u!114 &1592744176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5356,13 +5357,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerStatus: {fileID: 0}
   sceneManager: {fileID: 0}
   tmp_NpcName: {fileID: 152908247}
   tmp_Dialogue: {fileID: 1669651575}
-  npcImage: {fileID: 1755607664}
+  video: {fileID: 0}
   audioSrc: {fileID: 1911089680}
-  buttons: []
-  options: []
+  choiceTemplete: {fileID: 0}
+  choiceGrid: {fileID: 0}
 --- !u!1 &1669651572
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,8 +5454,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB300\uD654 \uB0B4\uC6A9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
+  m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
