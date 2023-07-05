@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerStatus : MonoBehaviour
 {
     public string chapter {get; set;}
+
+    List<int> inventoryList;
     private void Start() 
     {
         chapter = SceneManager.GetActiveScene().name;
@@ -13,5 +15,10 @@ public class PlayerStatus : MonoBehaviour
     public string GetChapter()
     {
         return chapter;
+    }
+
+    public void AddItem(int itemID)
+    {
+        inventoryList.Add(itemID);
     }
 }
