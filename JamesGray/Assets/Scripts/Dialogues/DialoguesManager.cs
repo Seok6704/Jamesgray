@@ -7,35 +7,42 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using DataStructure;
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //  다이얼로그 시스템
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    // JSON 파일 관련 작성법은 Wiki 참조
+
 public class DialoguesManager : MonoBehaviour
 {
-    public UnityEvent DialogueOn, DialogueOff;
-    JSONManager dialogues;
+    public UnityEvent DialogueOn, DialogueOff;  //다이얼로그 on/off 이벤트
+    JSONManager dialogues;          //현재 챕터 전체 대화문을 담고있는 객체
+
     [Header("Scene 매니저")]
     public GameObject sceneManager;
-    [Header("GameObject which has TMPro")]
+
+    [Header("GameObject which has TMPro")]  //대화문을 보여줄 TMPro 및 NPC 이름 출력 TMPro
     public TMP_Text tmp_NpcName;
     public TMP_Text tmp_Dialogue;
+
     [Header("VideoManager")]
     public UnityEngine.Video.VideoPlayer video;
-    /*[Header("NPC Image")]
-    public Image npcImage;*/
 
     [Header("Audio Sorce")] //대화 음성 출력 오브젝트
     public AudioSource audioSrc;
 
-    public Button choiceTemplete;
-    public GameObject choiceGrid;
+    public Button choiceTemplete;   //선택지 템플릿, Prefab으로 만들어야하나 일단 이걸로
+    public GameObject choiceGrid;   //선택지가 모이게 될 그리드 그룹 레이아웃 
 
     DEQ<DialogueNode> nextQ; Stack<DialogueNode> previousStack; //각각 이후 대화문, 이전 대화문
     DialogueNode buffer;  //버퍼, 위 큐 사이에 중간 역할 즉 현재 출력하고 있는 것을 의미
-    bool isPrintDone;   //출력이 끝났는지 체크하는 변수
+    bool isPrintDone;   //출력이 끝났는지 체크하는 변수 Sync용 변수
 
-    VideoManager videoManager;
-    int currentID, currentLineID;
-    NPCManager currentNPC;
+    VideoManager videoManager;  //비디오를 출력하기 위한 객체
+    int currentID, currentLineID;   //현재 대화 ID
+    NPCManager currentNPC;  //현재 대화하고 있는 NPC
 
-    List<string> DataA, DataB;
+    List<string> DataA, DataB;  //선택지 데이터를 저장하는 리스트
     sbyte btnNum; //클릭된 버튼 기억하기
 
     void Start()
@@ -43,7 +50,7 @@ public class DialoguesManager : MonoBehaviour
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
 
         videoManager = new VideoManager(video);
-        dialogues = new JSONManager(SceneManager.GetActiveScene().name);
+        dialogues = new JSONManager(SceneManager.GetActiveScene().name);    //대화문 로드
 
         previousStack = new Stack<DialogueNode>();
         nextQ = new DEQ<DialogueNode>();
@@ -59,6 +66,12 @@ public class DialoguesManager : MonoBehaviour
 
         btnNum = -1;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 다이얼로그 시작 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+
     /// <summary>
     /// 다이얼로그가 켜질때, 초기화 함수, 큐에 데이터를 넣는다. NPC가 불러올때는 NPCManager 객체를 넣어야함
     /// </summary>
@@ -105,16 +118,12 @@ public class DialoguesManager : MonoBehaviour
         buffer = nextQ.FrontDequeue();
         ShowDialogue();
     }
-    /// <summary>
-    /// npc의 스토리라인 변수를 변경하는 함수
-    /// </summary>
-    void SetNPCData(int num)
-    {
-        if(currentNPC == null)
-            return;
-        
-        currentNPC.i_Story = num;
-    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 버퍼에 있는 대화문 출력 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+
     /// <summary>
     /// 현재 버퍼에 있는 것을 출력 및 영상 재생
     /// </summary>
@@ -136,70 +145,11 @@ public class DialoguesManager : MonoBehaviour
         ClearDialogue();
         tmp_Dialogue.GetComponent<TextOutputManager>().Typing(CheckContent()); //현재 버퍼에 있는 것을 출력
     }
-    /// <summary>
-    /// 다음 문장을 버퍼에 넣는다
-    /// </summary>
-    void SetBuffer2Next()
-    {
-        if(nextQ.GetCount() == 0) 
-        {
-            buffer = null;
-            return;
-        }
 
-        previousStack.Push(buffer);
-        buffer = nextQ.FrontDequeue();
-    }
-    /// <summary>
-    /// 이전 문장을 버퍼에 넣는다
-    /// </summary>
-    void SetBuffer2Pre()
-    {
-        if(previousStack.Count == 0) return;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //  선택지 관련 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
 
-        nextQ.FrontEnqueue(buffer);
-        buffer = previousStack.Pop();
-    }
-
-    /// <summary>
-    /// 다이얼로그에 출력되어 있는 이전 데이터를 제거하는 함수
-    /// </summary>
-    void ClearDialogue()
-    {
-        DestroyChoice();
-        tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
-        tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
-    }
-    /// <summary>
-    /// 초기화 함수
-    /// </summary>
-    void ResetVariable()
-    {
-        buffer = null;
-        previousStack.Clear();
-        nextQ.Clear();
-
-        isPrintDone = false;
-
-        currentID = -1; currentLineID = -1;
-        currentNPC = null;
-
-        btnNum = -1;
-
-        DestroyChoice();
-    }
-    void ClearPre()//대화문을 뒤로 옮기는것이 문제가 될수도있다면 호출하여 원인을 제거
-    {
-        previousStack.Clear();
-    }
-
-    void EndDialogue()
-    {
-        DialogueOff.Invoke();
-        if(audioSrc.isPlaying) audioSrc.Stop();
-        if(videoManager.GetStatus()) videoManager.StopVideo();
-        ResetVariable();
-    }
 
     /*
     명령문 구조 : "[명령종류] [출력할대사] ..."
@@ -218,6 +168,10 @@ public class DialoguesManager : MonoBehaviour
 
                 "[CLOSE] []"
                 두개의 [] 로 이루어져있으며, 만나자마자 다이얼로그를 종료한다. 두번째는 빈칸이다.
+
+                "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
+
+                "[CHAPTER] [다음 지역으로 이동합니다.] [<이동할 챕터 씬 이름>]"
     */
 
     /// <summary>
@@ -286,6 +240,74 @@ public class DialoguesManager : MonoBehaviour
         DataB.Clear();
     }
 
+    /// <summary>
+    /// 기존 대화문에 codex에 있는 대화문을 추가한다.
+    /// </summary>
+    void SetCodex(int codex)
+    {
+        string[] codexContents = dialogues.GetCodexLine(currentID, codex);
+        Stack<DialogueNode> temp = new Stack<DialogueNode>();
+
+        for(int i = 0; i < codexContents.Length; i++)
+        {
+            DialogueNode newNode = new DialogueNode(codexContents[i], currentID, 1000 + codex, i);
+            temp.Push(newNode);
+        }
+
+        while(temp.Count > 0)
+        {
+            nextQ.FrontEnqueue(temp.Pop());
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //  초기화 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    /// <summary>
+    /// 다이얼로그에 출력되어 있는 이전 데이터를 제거하는 함수
+    /// </summary>
+    void ClearDialogue()
+    {
+        DestroyChoice();
+        tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
+        tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
+    }
+    /// <summary>
+    /// 초기화 함수
+    /// </summary>
+    void ResetVariable()
+    {
+        buffer = null;
+        previousStack.Clear();
+        nextQ.Clear();
+
+        isPrintDone = false;
+
+        currentID = -1; currentLineID = -1;
+        currentNPC = null;
+
+        btnNum = -1;
+
+        DestroyChoice();
+    }
+    void ClearPre()//대화문을 뒤로 옮기는것이 문제가 될수도있다면 호출하여 원인을 제거
+    {
+        previousStack.Clear();
+    }
+
+    void EndDialogue()
+    {
+        DialogueOff.Invoke();
+        if(audioSrc.isPlaying) audioSrc.Stop();
+        if(videoManager.GetStatus()) videoManager.StopVideo();
+        ResetVariable();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 영상 및 음성 출력 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     void PlayAudio(int id, int lineID, int index)
     {
         if(audioSrc.isPlaying)
@@ -313,29 +335,10 @@ public class DialoguesManager : MonoBehaviour
         }
         videoManager.PlayVideo(id, lineID, index);
     }
-    void LoadScene(string sceneName)
-    {
-        sceneManager.GetComponent<SceneController>().LoadNextScene(sceneName, 0.1f, true);
-    }
-    /// <summary>
-    /// 기존 대화문에 codex에 있는 대화문을 추가한다.
-    /// </summary>
-    void SetCodex(int codex)
-    {
-        string[] codexContents = dialogues.GetCodexLine(currentID, codex);
-        Stack<DialogueNode> temp = new Stack<DialogueNode>();
 
-        for(int i = 0; i < codexContents.Length; i++)
-        {
-            DialogueNode newNode = new DialogueNode(codexContents[i], currentID, 1000 + codex, i);
-            temp.Push(newNode);
-        }
-
-        while(temp.Count > 0)
-        {
-            nextQ.FrontEnqueue(temp.Pop());
-        }
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 버튼 상호 작용 관련 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public void ShowAgain()
     {
@@ -375,6 +378,39 @@ public class DialoguesManager : MonoBehaviour
             SetCodex(int.Parse(data));
         }
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 대화문 버퍼 이동 관련 함수, 버튼 함수들로 부터 불려진다.
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    /// <summary>
+    /// 다음 문장을 버퍼에 넣는다
+    /// </summary>
+    void SetBuffer2Next()
+    {
+        if(nextQ.GetCount() == 0) 
+        {
+            buffer = null;
+            return;
+        }
+
+        previousStack.Push(buffer);
+        buffer = nextQ.FrontDequeue();
+    }
+    /// <summary>
+    /// 이전 문장을 버퍼에 넣는다
+    /// </summary>
+    void SetBuffer2Pre()
+    {
+        if(previousStack.Count == 0) return;
+
+        nextQ.FrontEnqueue(buffer);
+        buffer = previousStack.Pop();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 미니게임 종료시 결과를 받아오는 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public void OnMiniGameEnd(bool isSuccessful)
     {
@@ -388,6 +424,35 @@ public class DialoguesManager : MonoBehaviour
             SetNewDialogue(currentID, int.Parse(DataB[btnNum]));
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // NPC관련 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /// <summary>
+    /// npc의 스토리라인 변수를 변경하는 함수
+    /// </summary>
+    void SetNPCData(int num)
+    {
+        if(currentNPC == null)
+            return;
+        
+        currentNPC.i_Story = num;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //  씬 관련 함수
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    void LoadScene(string sceneName)
+    {
+        sceneManager.GetComponent<SceneController>().LoadNextScene(sceneName, 0.1f, true);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // 대화 이벤트의 한 문장마다의 데이터를 담는 노드 클래스
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     class DialogueNode
     {
