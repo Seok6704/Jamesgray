@@ -2358,6 +2358,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerStatus: {fileID: 0}
   sceneManager: {fileID: 0}
   tmp_NpcName: {fileID: 633875627}
   tmp_Dialogue: {fileID: 886637699}

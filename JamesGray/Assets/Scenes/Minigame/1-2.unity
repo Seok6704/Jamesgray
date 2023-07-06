@@ -2755,6 +2755,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerStatus: {fileID: 0}
   sceneManager: {fileID: 0}
   tmp_NpcName: {fileID: 633875627}
   tmp_Dialogue: {fileID: 886637699}
@@ -4086,9 +4087,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565267b86e1517c45b60d35151ec1336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Correct: 0
-  Fail: 0
-  Round: 0
   Dialog: {fileID: 892678244}
   audioSrc: {fileID: 827624926}
   anim: {fileID: 0}
