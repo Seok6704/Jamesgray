@@ -17,6 +17,7 @@ public class ChoiceGame : MonoBehaviour
         Fail = 0;
 
         isClear = false; //성공여부
+        Debug.Log(Correct);
     }
 
     public void Choice_Car()
@@ -25,7 +26,6 @@ public class ChoiceGame : MonoBehaviour
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             isClear = true;
-            
             Invoke("SceneChanger", 5f);
         }
         else
@@ -107,6 +107,7 @@ public class ChoiceGame : MonoBehaviour
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
             isClear = true;
+            Invoke("SceneChanger", 5f);
         }
         else
         {
@@ -137,7 +138,7 @@ public class ChoiceGame : MonoBehaviour
             {
                audioSrc.Stop();
             }
-            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Alaram") as AudioClip;
+            AudioClip clip = Resources.Load("Sounds/Minigame/1-1/Alarm") as AudioClip;
             audioSrc.PlayOneShot(clip);
         }
         if(Correct == 2)
