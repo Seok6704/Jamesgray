@@ -10,13 +10,13 @@ public class Trickery : MonoBehaviour
     public Animator anim_C2; //컵 2 애니메이션
     public Animator anim_C3; //컵 3 애니메이션
     public AudioSource audioSrc;
-    public bool isClear; // 클리어 확인 변수
     GameObject Cat, Btn_S_1, Btn_S_2, Btn_S_3; // 고양이, 소리듣기 1, 2, 3 버튼 변수
     int ram; // 랜덤 변수
     int round = 0; // 라운드 체크
     int Score = 0; // 맞춘 횟수
     int fail = 0; // 틀린 횟수
     bool flag = false; // if문 반복 방지용 플래그
+    bool isClear; // 승리 변수
     int[] pos = new int[] { 1645, 1170, 695 }; // 고양이 위치 변수 각각 컵3 컵2 컵1 위치값
     Vector3 C1_pos, C2_pos, C3_pos; // 컵 위치 변수
 
@@ -50,6 +50,8 @@ public class Trickery : MonoBehaviour
             }
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Win") as AudioClip;
             audioSrc.PlayOneShot(clip);
+            isClear = true;
+            Invoke("SceneChanger", 5f);
         }
         if (fail > 1 && flag == false)
         {
@@ -62,6 +64,8 @@ public class Trickery : MonoBehaviour
             }
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Lose") as AudioClip;
             audioSrc.PlayOneShot(clip);
+            isClear = false;
+            Invoke("SceneChanger", 5f);
         }
         if(pos[ram] == 1645 && round >= 1 && flag == true)
         {
