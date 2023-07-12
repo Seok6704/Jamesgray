@@ -8,6 +8,7 @@ public class VirtualKeyPad : MonoBehaviour
     public bool DOWN {get; private set;} = false;
     public bool RIGHT {get; private set;} = false;
     public bool LEFT {get; private set;} = false;
+    public bool ACTION {get; private set;} = false;
 
     void Awake()
     {
@@ -49,5 +50,15 @@ public class VirtualKeyPad : MonoBehaviour
     public void LEFTReleased()
     {
         LEFT = false;
+    }
+
+    public void ACTIONPressed()
+    {
+        ACTION = true;
+    }
+
+    public void ACTIONReleased()
+    {
+        ACTION = false;
     }
 }

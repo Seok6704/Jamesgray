@@ -12,7 +12,7 @@ public class PlayerController_v3 : MonoBehaviour
     [Range(0.001f, 0.1f)]
     public float speed;
 
-    //public VirtualKeyPad keyPad;
+    public VirtualKeyPad keyPad;    //가상 키패드
 
     Vector3Int currentCell;
     Vector3 dirVec;
@@ -61,31 +61,31 @@ public class PlayerController_v3 : MonoBehaviour
         {
             //h = 0; 이곳에 있으면 달리는 도중 Idle로 전환되는 문제 발견
             //v = 0;
-            if(Input.GetKeyDown(KeyCode.E) && tempScanObj != null && tempScanObj.CompareTag("NPC"))
+            if((Input.GetKeyDown(KeyCode.E) || keyPad.ACTION) && tempScanObj != null && tempScanObj.CompareTag("NPC"))
             {
                 co = StartCoroutine(WaitCoroutine());
                 scanObject = tempScanObj;
                 OnAction();
             }
-            else if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))    
+            else if((Input.GetKey(KeyCode.W) || keyPad.UP) || Input.GetKey(KeyCode.UpArrow))    
             {
                 dirVec = Vector3.up;
                 nextCell.y += 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             }
-            else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            else if((Input.GetKey(KeyCode.S) || keyPad.DOWN) || Input.GetKey(KeyCode.DownArrow))
             {
                 dirVec = Vector3.down;
                 nextCell.y -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            else if((Input.GetKey(KeyCode.A) || keyPad.LEFT) || Input.GetKey(KeyCode.LeftArrow))
             {
                 dirVec = Vector3.left;
                 nextCell.x -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            else if((Input.GetKey(KeyCode.D) || keyPad.RIGHT) || Input.GetKey(KeyCode.RightArrow))
             {
                 dirVec = Vector3.right;
                 nextCell.x += 1;
