@@ -162,7 +162,7 @@ public class VoiceManager : MonoBehaviour
         url = "https://openapi.vito.ai/v1/transcribe";
 
         string json = JsonUtility.ToJson(config.config);
-        byte[] wavBytes = File.ReadAllBytes(Application.persistentDataPath + "/test.wav");
+        byte[] wavBytes = File.ReadAllBytes(Application.persistentDataPath + "/voice.wav");
 
         //json = "--asdandkawdnakjsdnakwda\r\n" + "Content-Disposition: form-data; name=\"config\"\r\n" + "Content-Type: application/json\r\n" + json + "--asdandkawdnakjsdnakwda";
         //json = "\"congif\":{" + json + "}";
