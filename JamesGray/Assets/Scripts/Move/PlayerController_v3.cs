@@ -12,6 +12,8 @@ public class PlayerController_v3 : MonoBehaviour
     [Range(0.001f, 0.1f)]
     public float speed;
 
+    //public VirtualKeyPad keyPad;
+
     Vector3Int currentCell;
     Vector3 dirVec;
 
