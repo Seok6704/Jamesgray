@@ -2717,23 +2717,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 4394
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1461
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2746,6 +2746,10 @@ PrefabInstance:
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981359381497572256, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
+      propertyPath: parentOnStart
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
@@ -2763,6 +2767,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 541efc7bb72d9764591a2b9bdec26774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &346288219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6981359381497572256, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
+  m_PrefabInstance: {fileID: 346288216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59282b9895e4947bf82f4480b5f345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &354621988
@@ -5549,6 +5564,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 346288219}
+        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
+        m_MethodName: Set2ReturnPos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   DialogueOff:
     m_PersistentCalls:
       m_Calls:
@@ -5567,6 +5594,18 @@ MonoBehaviour:
       - m_Target: {fileID: 892678249}
         m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
         m_MethodName: Set2ReturnPos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 346288219}
+        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
+        m_MethodName: SetPos2Parent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5815,6 +5854,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1674333194}
+        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
+        m_MethodName: Set2ReturnPos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 346288219}
         m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
         m_MethodName: Set2ReturnPos
         m_Mode: 1
@@ -7449,9 +7500,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController_v3, Assembly-CSharp
-        m_MethodName: ToggleFreeze
+      - m_Target: {fileID: 346288219}
+        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
+        m_MethodName: SetPos2Parent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
