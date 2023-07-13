@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
-
+    <!!!> 주의, 다른 스크립트로 대체 예정
     !!! 사용법 -> Gitlab/Wiki 에 사용법을 적어놓았습니다. !!!
 
 
