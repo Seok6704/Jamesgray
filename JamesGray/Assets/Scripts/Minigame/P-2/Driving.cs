@@ -157,6 +157,6 @@ public class Driving : MonoBehaviour
 
     void scene_change()
     {
-        SceneManager.LoadScene("Chapter0");
+        SceneManager.LoadScene("Chapter1");
     }
 }
