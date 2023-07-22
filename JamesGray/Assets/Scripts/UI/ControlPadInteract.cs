@@ -43,27 +43,27 @@ public class ControlPadInteract : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            ResetOutline();
+            currentObj.ResetOutline();   
             currentObj = currentObj.GetNearby(0);
-            SetOutline();
+            currentObj.SetOutline(color, outlinePadding);
         }
         else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            ResetOutline();
+            currentObj.ResetOutline();  
             currentObj = currentObj.GetNearby(1);
-            SetOutline();
+            currentObj.SetOutline(color, outlinePadding);
         }
         else if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            ResetOutline();
+            currentObj.ResetOutline();  
             currentObj = currentObj.GetNearby(2);
-            SetOutline();
+            currentObj.SetOutline(color, outlinePadding);
         }
         else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            ResetOutline();
+            currentObj.ResetOutline();  
             currentObj = currentObj.GetNearby(3);
-            SetOutline();
+            currentObj.SetOutline(color, outlinePadding);
         }
         else if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -169,8 +169,10 @@ public class ControlPadInteract : MonoBehaviour
             {
                 if(j != i)      //자기 자신은 스킵
                 {
-                    int nDir = GetDirByFour(nodeList[j].me.transform.position - nodeList[i].me.transform.position);
-                    int distance = GetDistance(nodeList[i].me.transform.position, nodeList[j].me.transform.position);
+                    Vector3 tempA = nodeList[j].me.transform.position; Vector3 tempB = nodeList[i].me.transform.position;
+
+                    int nDir = GetDirByFour(tempA - tempB);
+                    int distance = GetDistance(tempB, tempA);
                     if(nodeList[i].distance[nDir] > distance)
                     {
                         nodeList[i].SetNearby(nodeList[j], nDir, distance);
@@ -236,6 +238,7 @@ public class ControlPadInteract : MonoBehaviour
             return true;
 
         else return false;
+
     }
 
     /// <summary>
@@ -329,6 +332,50 @@ public class ControlPadInteract : MonoBehaviour
         public void SetRIGHT(ButtonNode node, int distance)
         {
             SetNearby(node, 3, distance);
+        }
+
+        public void SetOutline(Color color, float outlinePadding)
+        {
+            if(me.transform.childCount != 0)
+            {
+                TMPro.TMP_Text text = null;
+                me.transform.GetChild(0).TryGetComponent<TMPro.TMP_Text>(out text);
+                if(text)
+                {
+                    text.gameObject.SetActive(false);
+                    text.outlineColor = color;
+                    text.outlineWidth = outlinePadding;
+                    text.gameObject.SetActive(true);
+                }
+            }
+            Outline outline = null;
+            me.TryGetComponent<Outline>(out outline);
+            if(outline)
+            {
+                outline.effectColor = color;
+                outline.effectDistance = new Vector2(outlinePadding * 10, outlinePadding * 10);
+            }
+        }
+        public void ResetOutline()
+        {
+            if(me.transform.childCount != 0)
+            {
+                TMPro.TMP_Text text = null;
+                me.transform.GetChild(0).TryGetComponent<TMPro.TMP_Text>(out text);
+                if(text != null)
+                {
+                    text.gameObject.SetActive(false);
+                    text.outlineWidth = 0.001f;
+                    text.outlineWidth = 0f;
+                    text.gameObject.SetActive(true);
+                }
+            }
+            Outline outline = null;
+            me.TryGetComponent<Outline>(out outline);
+            if(outline != null)
+            {
+                outline.effectDistance = new Vector2(0f, 0f);
+            }
         }
     }
 }
