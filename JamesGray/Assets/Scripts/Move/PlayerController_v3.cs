@@ -22,6 +22,8 @@ public class PlayerController_v3 : MonoBehaviour
     GameObject scanObject, tempScanObj;
     bool isOnAction, isOnFreeze;
 
+    //RaycastHit2D rayHit;
+
     private void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -125,7 +127,7 @@ public class PlayerController_v3 : MonoBehaviour
         
         if(rayHit.collider != null)
         {
-            Debug.Log(rayHit.collider.name + " is Blocking.");
+            //Debug.Log(rayHit.collider.name + " is Blocking.");
             co = null;
             yield break; 
         }
