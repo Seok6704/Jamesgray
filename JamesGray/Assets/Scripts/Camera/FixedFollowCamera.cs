@@ -41,7 +41,7 @@ public class FixedFollowCamera : MonoBehaviour
 
     IEnumerator MoveDialogue()
     {
-        Vector3 dest = transform.position + dialVec;
+        Vector3 dest = player.transform.position + dialVec;
         while(true)
         {
             if(dialogueOn)
