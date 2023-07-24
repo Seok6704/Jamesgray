@@ -85,7 +85,6 @@ public class FixedFollowCamera : MonoBehaviour
 
         maxSize.x = bound.xMax - width; maxSize.y = bound.yMax - height;
         minSize.x = bound.xMin + width; minSize.y = bound.yMin + height;
-
-        Debug.Log(maxSize + "   "  + minSize);
+        //Debug.Log(maxSize + "   "  + minSize);
     }
 }
