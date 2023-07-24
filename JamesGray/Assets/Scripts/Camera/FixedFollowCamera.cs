@@ -16,26 +16,33 @@ public class FixedFollowCamera : MonoBehaviour
     [Range(1, 25f)]
     public float dialSpeed;
 
+    public UnityEngine.Tilemaps.Tilemap border;
+
     bool dialogueOn = false;
     public GameObject player;
     Vector3 dialVec, playerPos;
     Coroutine co;
 
+    Vector2 maxSize, minSize; //맵의 최소, 최대 좌표
+
     private void Awake() 
     {
         playerPos = player.transform.position;
         dialVec = new Vector3(x, y, -10f);
-        co = null;    
+        co = null;   
+        SetMapSize();
     }
 
     private void Update() 
     {
+        Vector3 pos;
         playerPos = player.transform.position;
         playerPos.z = -10;
 
         if(co == null)
         {
-            transform.position = playerPos;
+            pos = new Vector3(Mathf.Clamp(playerPos.x, minSize.x, maxSize.x), Mathf.Clamp(playerPos.y, minSize.y, maxSize.y), playerPos.z);
+            transform.position = pos;
         }
     }
 
@@ -65,5 +72,20 @@ public class FixedFollowCamera : MonoBehaviour
         if(co != null) StopCoroutine(co);
 
         co = StartCoroutine(MoveDialogue());
+    }
+
+    void SetMapSize()
+    {
+        Vector2 bias = new Vector2(-3.5f, -1);
+        float height = Camera.main.orthographicSize;            //orthographicSize * 2 = Height // 우리가 필요한 것은 중간값이므로 * 2생략
+        float width = height * Screen.width / Screen.height;    //Height * aspect = Width //위에서 Height에 / 2를 하였으므로 너비의 중간값을 구할수있다.
+        height += bias.y; width += bias.x;
+
+        BoundsInt bound = border.cellBounds;
+
+        maxSize.x = bound.xMax - width; maxSize.y = bound.yMax - height;
+        minSize.x = bound.xMin + width; minSize.y = bound.yMin + height;
+
+        Debug.Log(maxSize + "   "  + minSize);
     }
 }
