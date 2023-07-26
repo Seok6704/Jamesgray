@@ -1368,6 +1368,7 @@ MonoBehaviour:
   x: 1.8
   y: 0
   dialSpeed: 20
+  border: {fileID: 1504600538}
   player: {fileID: 1486070434}
 --- !u!1 &461043306
 GameObject:
@@ -2042,6 +2043,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 1325332673}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &679719434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2722,6 +2729,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &892678250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4479,6 +4492,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1447745177
 GameObject:
   m_ObjectHideFlags: 0
@@ -6464,6 +6483,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1588183593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6557,6 +6582,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 1
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1674333195
 MonoBehaviour:
   m_ObjectHideFlags: 0

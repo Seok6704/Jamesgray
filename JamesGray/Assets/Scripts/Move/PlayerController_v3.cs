@@ -9,7 +9,7 @@ public class PlayerController_v3 : MonoBehaviour
     public UnityEvent onAction, endAction;
     public Tilemap tileMap;    //타일맵
 
-    [Range(0.001f, 0.1f)]
+    [Range(0.001f, 10f)]
     public float speed;
 
     public VirtualKeyPad keyPad;    //가상 키패드
@@ -22,6 +22,7 @@ public class PlayerController_v3 : MonoBehaviour
     GameObject scanObject, tempScanObj;
     bool isOnAction, isOnFreeze;
 
+    Rigidbody2D rigid;
     //RaycastHit2D rayHit;
 
     private void Awake() 
@@ -35,6 +36,8 @@ public class PlayerController_v3 : MonoBehaviour
         isOnAction = false; isOnFreeze = false;
         tempScanObj = null;
         scanObject = null;
+
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     /*private void FixedUpdate() 
@@ -141,6 +144,8 @@ public class PlayerController_v3 : MonoBehaviour
                 
             }
             transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
+            //Vector3 towardsPos = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
+            //rigid.MovePosition(towardsPos);
             yield return null;
         }
         if(checkKey())
