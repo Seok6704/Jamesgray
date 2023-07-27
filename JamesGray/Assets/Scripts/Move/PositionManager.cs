@@ -14,8 +14,8 @@ public class PositionManager : MonoBehaviour
     public static Tilemap border = null;
     private void Awake() 
     {
-        if(tilemap == null) tilemap = GameObject.FindWithTag("Map")?.GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
-        if(border == null) border = GameObject.FindWithTag("Border")?.GetComponent<Tilemap>();
+        if(ReferenceEquals(tilemap, null)) tilemap = GameObject.FindWithTag("Map")?.GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
+        if(ReferenceEquals(border, null)) border = GameObject.FindWithTag("Border")?.GetComponent<Tilemap>();
 
         Vector3 temp = tilemap ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
 
@@ -24,7 +24,7 @@ public class PositionManager : MonoBehaviour
 
     public Vector3Int GetCellPos()
     {
-        if(tilemap == null) return default(Vector3Int);
+        if(ReferenceEquals(tilemap, null)) return default(Vector3Int);
         
         return tilemap.WorldToCell(this.transform.position);
     }
