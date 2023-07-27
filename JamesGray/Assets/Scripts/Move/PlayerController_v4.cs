@@ -110,7 +110,7 @@ public class PlayerController_v4 : MonoBehaviour
                 }
             }
         }
-        
+
         animator.SetInteger("Horizontal", (int)dirVec.x);
         animator.SetInteger("Vertical", (int)dirVec.y);
         if(animator.GetBool("isWalk") != isWalk || dirVec != preDir)
