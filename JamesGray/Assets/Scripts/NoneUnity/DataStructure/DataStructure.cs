@@ -11,6 +11,55 @@ using UnityEngine;
 
 namespace DataStructure
 {
+    public class HEAP<T>
+    {
+        public int Count
+        {
+            get 
+            {
+                return tree.Count - 1;
+            }
+            private set {}
+        }
+        int last;
+
+        List<T> tree;
+        MODE order;
+
+        public HEAP(MODE mode = MODE.ASC)
+        {
+            order = mode;
+            InitHeap();
+        }
+
+        void InitHeap()
+        {
+            tree = new List<T>();
+            tree.Add(default(T)); // 배열형식이므로 편의를 위해 0번째 인덱스는 의미없는 값으로 채움
+            last = 1;
+        }
+
+        void Add(T data)
+        {
+            int index = last;
+            tree.Add(data); //트리의 마지막 노드에 값을 삽입
+
+            while(index > 1)
+            {
+                //if(order == MODE.ASC ? tree[index] < tree[index / 2] : )
+            }
+            
+        }
+
+        public enum MODE
+        {
+            ASC,    //오름차순
+            DEC     //내림차순
+
+        }
+        
+    }
+
     /*
         우선순위 큐
 
