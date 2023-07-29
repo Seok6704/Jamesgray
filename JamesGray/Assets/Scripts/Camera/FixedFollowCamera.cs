@@ -39,7 +39,7 @@ public class FixedFollowCamera : MonoBehaviour
         playerPos = player.transform.position;
         playerPos.z = -10;
 
-        if(co == null)
+        if(ReferenceEquals(co, null))
         {
             pos = new Vector3(Mathf.Clamp(playerPos.x, minSize.x, maxSize.x), Mathf.Clamp(playerPos.y, minSize.y, maxSize.y), playerPos.z);
             transform.position = pos;
@@ -59,19 +59,21 @@ public class FixedFollowCamera : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, playerPos, Time.deltaTime * dialSpeed);
             }
-            if(transform.position == player.transform.position) break;
+            if(transform.position.x == player.transform.position.x && transform.position.y == player.transform.position.y) break;
 
             yield return null;
         }
+
         co = null;
     }
 
     public void SetFlag()   //이벤트로 호출되면 플레그를 반전, 다이얼로그에서 호출
     {
         dialogueOn = !dialogueOn;
-        if(co != null) StopCoroutine(co);
-
-        co = StartCoroutine(MoveDialogue());
+        if(ReferenceEquals(co, null)) 
+        {   
+            co = StartCoroutine(MoveDialogue());   
+        }
     }
 
     void SetMapSize()
