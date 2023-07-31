@@ -4908,7 +4908,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   tileMap: {fileID: 2051956385}
-  speed: 5
+  speed: 0.2
   keyPad: {fileID: 1285439362}
 --- !u!1 &1504600532
 GameObject:
