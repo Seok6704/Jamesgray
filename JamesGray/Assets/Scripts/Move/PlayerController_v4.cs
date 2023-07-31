@@ -124,7 +124,8 @@ public class PlayerController_v4 : MonoBehaviour
     {
         if(isWalk)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);    //기기마다 차이가 있다고 해서 델타타임을 곱해주라는 말이 있음
+            //transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);    //기기마다 차이가 있다고 해서 델타타임을 곱해주라는 말이 있음
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed); //deltaTime 없이하기
 
             if(transform.position == targetPos)
             {
