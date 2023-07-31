@@ -67,6 +67,7 @@ public class CrossGame : MonoBehaviour
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 1);
+                Invoke("SceneChanger", 5f);
             }
         }
         
