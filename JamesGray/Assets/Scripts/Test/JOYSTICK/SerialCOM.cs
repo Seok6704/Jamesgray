@@ -20,17 +20,19 @@ public class SerialCOM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //string[] COMS = SerialPort.GetPortNames();
+        string[] COMS = SerialPort.GetPortNames();
 
-        //for(int i = 0; i < COMS.Length; i++)
-        //{
-         //   Debug.Log(COMS[i]);
-        //}
+        for(int i = 0; i < COMS.Length; i++)
+        {
+            Debug.Log(COMS[i]);
+        }
+        
         sp = new SerialPort("COM" + COMNum, baudrate);
 
-        sp.Open();
         sp.ReadTimeout = 100;   //무한루프 방지
         sp.WriteTimeout = 100;
+
+        sp.Open();
         //Debug.Log(sp.IsOpen);
     }
 
