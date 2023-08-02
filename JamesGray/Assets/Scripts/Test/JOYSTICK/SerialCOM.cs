@@ -18,6 +18,7 @@ public class SerialCOM : MonoBehaviour
     public int baudrate = 9600;
     public int COMNum;
     SerialPort sp;
+    int waitFrame = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class SerialCOM : MonoBehaviour
         sp.ReadTimeout = 100;   //무한루프 방지
         sp.WriteTimeout = 100;
 
-
+        Debug.Log(baudrate);
 
         sp.Open();
         //Debug.Log(sp.IsOpen);
@@ -43,9 +44,11 @@ public class SerialCOM : MonoBehaviour
 
     private void Update() 
     {
-        if(sp.IsOpen)
+        waitFrame--;
+        if(waitFrame == 0 && sp.IsOpen)
         {
-            Debug.Log(sp.ReadExisting());
+            waitFrame = 50;
+            Debug.Log("( Data : " + sp.ReadExisting() + "  )");
         }    
     }
 
