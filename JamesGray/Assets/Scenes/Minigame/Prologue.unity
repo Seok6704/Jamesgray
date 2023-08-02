@@ -2925,7 +2925,6 @@ GameObject:
   m_Component:
   - component: {fileID: 369215512}
   - component: {fileID: 369215511}
-  - component: {fileID: 369215514}
   - component: {fileID: 369215515}
   - component: {fileID: 369215516}
   m_Layer: 0
@@ -2993,22 +2992,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &369215514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369215509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04eb604aee661f4c8a7bf67e138f385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 1.8
-  y: 0
-  dialSpeed: 20
-  player: {fileID: 369215509}
 --- !u!81 &369215515
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4618,8 +4601,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -11, y: -16, z: 0}
-  m_Size: {x: 17, y: 22, z: 1}
+  m_Origin: {x: -11, y: -10, z: 0}
+  m_Size: {x: 17, y: 11, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -5070,6 +5053,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 525171620}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &855316494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5537,6 +5526,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &892678250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,7 +5547,7 @@ MonoBehaviour:
   DialogueOn:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 369215514}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
         m_MethodName: SetFlag
         m_Mode: 1
@@ -5579,7 +5574,7 @@ MonoBehaviour:
   DialogueOff:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 369215514}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
         m_MethodName: SetFlag
         m_Mode: 1
@@ -6706,6 +6701,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1269154410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7262,6 +7263,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1588183593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7355,6 +7362,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentOnStart: 0
   showPosition: {fileID: 0}
+  set2Parent:
+    m_PersistentCalls:
+      m_Calls: []
+  set2Return:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1674333195
 MonoBehaviour:
   m_ObjectHideFlags: 0

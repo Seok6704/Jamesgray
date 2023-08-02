@@ -15,9 +15,7 @@ public class ChoiceGame : MonoBehaviour
     {
         Correct = Random.Range(0,5);
         Fail = 0;
-
         isClear = false; //성공여부
-        Debug.Log(Correct);
     }
 
     public void Choice_Car()
