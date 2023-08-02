@@ -45,7 +45,7 @@ public class SerialCOM : MonoBehaviour
     {
         if(sp.IsOpen)
         {
-            Debug.Log(sp.ReadLine());
+            Debug.Log(sp.ReadExisting());
         }    
     }
 
