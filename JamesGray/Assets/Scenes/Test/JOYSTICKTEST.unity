@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baudrate: 9600
-  COMNum: 6
+  COMNum: 7
 --- !u!1 &1658234721
 GameObject:
   m_ObjectHideFlags: 0
