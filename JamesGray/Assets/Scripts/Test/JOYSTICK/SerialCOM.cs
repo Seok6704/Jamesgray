@@ -7,7 +7,8 @@ using System.Threading;
 //https://velog.io/@anthem53/Unity-Serial-%ED%86%B5%EC%8B%A0-%EB%A9%94%EB%AA%A8 참고
 //https://parksh3641.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-C-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4-%ED%86%B5%EC%8B%A0-%EA%B0%84%EB%8B%A8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 //https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=chodadoo&logNo=220960049198
-
+//https://you-rang.tistory.com/214
+//https://www.google.com/search?q=%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%EC%97%90%EC%84%9C+%EC%9C%A0%EB%8B%88%ED%8B%B0&sourceid=chrome&ie=UTF-8
 /*
     chatgpt 한테 물어본결과
     블루투스는 시리얼 통신이 맞지만, 안드로이드에서는 COM이 할당되지 않는다고 함. 기기 명이나 MAC을 확인하라고함. SPP도 참고해보라함.
@@ -22,7 +23,7 @@ public class SerialCOM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string[] COMS = SerialPort.GetPortNames();
+     /*   string[] COMS = SerialPort.GetPortNames();
 
         for(int i = 0; i < COMS.Length; i++)
         {
@@ -39,17 +40,78 @@ public class SerialCOM : MonoBehaviour
         Debug.Log(baudrate);
 
         sp.Open();
-        //Debug.Log(sp.IsOpen);
+        //Debug.Log(sp.IsOpen);*/
+        sp = new SerialPort("COM" + COMNum, baudrate, Parity.None, 8, StopBits.One);
+
+        sp.Open();
+        sp.ReadTimeout = 5;
+
+        Debug.Log("COM : " + COMNum + "   ,   BaudRate : " + baudrate);
     }
 
-    private void Update() 
+    private void Update2() 
     {
-        waitFrame--;
+        /*waitFrame--;
         if(waitFrame == 0 && sp.IsOpen)
         {
             waitFrame = 50;
-            Debug.Log("( Data : " + sp.ReadExisting() + "  )");
-        }    
+            Debug.Log("( Data : " + sp.ReadByte() + "  )");
+        } */   
+
+        if(sp.IsOpen)
+        {
+            try
+            {
+                //Debug.Log(sp.ReadByte());
+                Debug.Log(sp.ReadExisting());
+                
+            }
+            catch (System.TimeoutException e)
+            {
+                Debug.Log(e);
+                throw;
+            }
+        }
+        else if(!sp.IsOpen)
+        {
+            Debug.Log("Connecting...");
+        }
+    }
+
+    public char GetInput()
+    {
+        char input = 'n';
+        string streamInput = "";
+        if(sp.IsOpen)
+        {
+            try
+            {
+                //Debug.Log(sp.ReadByte());
+                //Debug.Log(sp.ReadExisting());
+                streamInput = sp.ReadExisting();
+                
+            }
+            catch (System.TimeoutException e)
+            {
+                Debug.Log(e);
+                throw;
+            }
+        }
+        else if(!sp.IsOpen)
+        {
+            Debug.Log("Connecting...");
+        }
+
+        if(streamInput.Length > 1)
+        {
+            input = streamInput[streamInput.Length - 1];    //가장 최신 입력을 가져오기
+        }
+        else if(streamInput.Length == 1)
+        {
+            input = streamInput[0];
+        }
+
+        return input;
     }
 
     private void OnDestroy() {
