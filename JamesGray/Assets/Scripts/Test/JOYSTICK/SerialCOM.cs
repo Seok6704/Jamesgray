@@ -79,8 +79,7 @@ public class SerialCOM : MonoBehaviour
         }
         else if(!sp.IsOpen)
         {
-            Debug.Log("Connecting...");
-            SetSerial();
+            Debug.Log("Connecting...!");
         }
     }
 
@@ -106,6 +105,7 @@ public class SerialCOM : MonoBehaviour
         else if(!sp.IsOpen)
         {
             Debug.Log("Connecting...");
+            SetSerial();
         }
 
         if(streamInput.Length > 1)
