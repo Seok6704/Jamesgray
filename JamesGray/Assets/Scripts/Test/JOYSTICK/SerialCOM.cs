@@ -41,6 +41,11 @@ public class SerialCOM : MonoBehaviour
 
         sp.Open();
         //Debug.Log(sp.IsOpen);*/
+        SetSerial();
+    }
+
+    void SetSerial()
+    {
         sp = new SerialPort("COM" + COMNum, baudrate, Parity.None, 8, StopBits.One);
 
         sp.Open();
@@ -75,6 +80,7 @@ public class SerialCOM : MonoBehaviour
         else if(!sp.IsOpen)
         {
             Debug.Log("Connecting...");
+            SetSerial();
         }
     }
 
