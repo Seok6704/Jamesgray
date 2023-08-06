@@ -197,18 +197,21 @@ public class WalkingGame : MonoBehaviour
 
     void SceneChanger() //씬 전환 함수
     {
-        //SceneManager.LoadScene("Chapter0");
-        SceneManager.UnloadSceneAsync(gameObject.scene);    //현재 씬 종료
-        SceneManager.SetActiveScene(LoadingScene.preScene); //기억하고 있던 이전 씬을 액티브로 전환
-        
-        GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
-
-        for(int i = 0; i < objects.Length; i++)
+        if(isClear) SceneManager.LoadScene("Chapter2");
+        else
         {
-            if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
+            SceneManager.UnloadSceneAsync(gameObject.scene);    //현재 씬 종료
+            SceneManager.SetActiveScene(LoadingScene.preScene); //기억하고 있던 이전 씬을 액티브로 전환
+        
+            GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+            for(int i = 0; i < objects.Length; i++)
             {
-                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
-                break;
+                if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
+                {
+                    objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
+                    break;
+                }
             }
         }
     }
