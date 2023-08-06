@@ -17,7 +17,7 @@ public class PositionManager : MonoBehaviour
         if(ReferenceEquals(tilemap, null)) tilemap = GameObject.FindWithTag("Map")?.GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
         if(ReferenceEquals(border, null)) border = GameObject.FindWithTag("Border")?.GetComponent<Tilemap>();
 
-        Vector3 temp = tilemap ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
+        Vector3 temp = !ReferenceEquals(tilemap, null) ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
 
         this.transform.position = temp;
     }
@@ -40,5 +40,10 @@ public class PositionManager : MonoBehaviour
     public static void ResetTilemap()  //Static 변수는 씬전환 후에도 남아있기 때문에 싱글톤 디자인 외에도 씬 전환시 초기화가 필요함.
     {
         tilemap = null; border = null;
+    }
+
+    void OnDestroy()    //씬 종료시 변수 초기화
+    {
+        ResetTilemap();
     }
 }
