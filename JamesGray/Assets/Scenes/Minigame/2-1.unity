@@ -1338,7 +1338,7 @@ GameObject:
   - component: {fileID: 517923144}
   - component: {fileID: 517923147}
   m_Layer: 5
-  m_Name: Elevator0
+  m_Name: Ele0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4307,7 +4307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5884,7 +5884,7 @@ GameObject:
   - component: {fileID: 1866670410}
   - component: {fileID: 1866670413}
   m_Layer: 5
-  m_Name: Elevator2
+  m_Name: Ele2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6679,7 +6679,7 @@ GameObject:
   - component: {fileID: 2046651802}
   - component: {fileID: 2046651805}
   m_Layer: 5
-  m_Name: Elevator1
+  m_Name: Ele1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

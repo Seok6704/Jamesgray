@@ -38,5 +38,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter2.unity
     guid: 33d320e5802c1d04b841916b219dccfb
+  - enabled: 1
+    path: Assets/Scenes/Chapter2-5.unity
+    guid: adee55aa7f4a57344b73bc258eeef3f5
+  - enabled: 1
+    path: Assets/Scenes/Chapter2-B1.unity
+    guid: b90446ad64b4d8042887a44dcc694553
+  - enabled: 1
+    path: Assets/Scenes/Minigame/2-1.unity
+    guid: fe4c78a91be3c784b8240bddf8c20178
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1aa231acc8db6b647b274cb97e197c39, type: 2}
