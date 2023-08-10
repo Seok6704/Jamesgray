@@ -50,7 +50,7 @@ public class SceneController : MonoBehaviour
     }
     public void WaitToLoad()        //챕터 0만 불러오는 함수이므로 다른 함수를 사용하도록 하자
     {
-        StartCoroutine(Wait("Chapter0", 1f));
+        StartCoroutine(Wait("Prologue", 1f));
     }
 
     public void AdditiveEnded(bool result)
