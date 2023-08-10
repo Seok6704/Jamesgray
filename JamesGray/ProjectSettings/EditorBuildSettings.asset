@@ -53,6 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame/P-1.unity
     guid: 037bb8aa836befa4288f8ec76e9beacf
+  - enabled: 1
+    path: Assets/Scenes/Minigame/Prologue.unity
+    guid: ba101039c2a55ed46af245a3909ad76c
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 414dffcd8273d9d4a959b2cd56b6975a, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 72e61b65354e06f469d8538be6ee976d, type: 2}
