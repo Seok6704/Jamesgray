@@ -52,7 +52,7 @@ public class PlayerController_v3 : MonoBehaviour
 
         //Debug.DrawRay(transform.position, dirVec * 0.7f, new Color(0,1,0)); // 게임 뷰에서는 보이지 않지만 플레이 버튼 누르고 씬뷰로 전환하면 보임!
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));
-        if(rayHit.collider != null)
+        if(!ReferenceEquals(rayHit.collider, null))
         {
             tempScanObj = rayHit.collider.gameObject;
         }
@@ -72,25 +72,25 @@ public class PlayerController_v3 : MonoBehaviour
                 scanObject = tempScanObj;
                 OnAction();
             }
-            else if((Input.GetKey(KeyCode.W) || keyPad.UP) || Input.GetKey(KeyCode.UpArrow))    
+            else if(Input.GetKey(KeyCode.W) || keyPad.UP || Input.GetKey(KeyCode.UpArrow))    
             {
                 dirVec = Vector3.up;
                 nextCell.y += 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             }
-            else if((Input.GetKey(KeyCode.S) || keyPad.DOWN) || Input.GetKey(KeyCode.DownArrow))
+            else if(Input.GetKey(KeyCode.S) || keyPad.DOWN || Input.GetKey(KeyCode.DownArrow))
             {
                 dirVec = Vector3.down;
                 nextCell.y -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if((Input.GetKey(KeyCode.A) || keyPad.LEFT) || Input.GetKey(KeyCode.LeftArrow))
+            else if(Input.GetKey(KeyCode.A) || keyPad.LEFT || Input.GetKey(KeyCode.LeftArrow))
             {
                 dirVec = Vector3.left;
                 nextCell.x -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if((Input.GetKey(KeyCode.D) || keyPad.RIGHT) || Input.GetKey(KeyCode.RightArrow))
+            else if(Input.GetKey(KeyCode.D) || keyPad.RIGHT || Input.GetKey(KeyCode.RightArrow))
             {
                 dirVec = Vector3.right;
                 nextCell.x += 1;
@@ -128,7 +128,7 @@ public class PlayerController_v3 : MonoBehaviour
         //Debug.DrawRay(transform.position, dirVec * 0.7f, new Color(1,1,1)); // 게임 뷰에서는 보이지 않지만 플레이 버튼 누르고 씬뷰로 전환하면 보임!     
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));   //진행 경로에 오브젝트가 존재하는지 체크
         
-        if(rayHit.collider != null)
+        if(!ReferenceEquals(rayHit.collider, null))
         {
             //Debug.Log(rayHit.collider.name + " is Blocking.");
             co = null;
@@ -213,7 +213,7 @@ public class PlayerController_v3 : MonoBehaviour
 
     public void EndAction()
     {
-        if(scanObject == null) return; // 프롤로그 씬 NullReferenceReception에 대응하기 위해 추가된 문장. 23.08.09 추후 문제 발생 시, 해당 부분을 삭제하면 스크립트 동작 자체가 이전과 동일해집니다.
+        if(ReferenceEquals(scanObject, null)) return; // 프롤로그 씬 NullReferenceReception에 대응하기 위해 추가된 문장. 23.08.09 추후 문제 발생 시, 해당 부분을 삭제하면 스크립트 동작 자체가 이전과 동일해집니다.
         scanObject.GetComponent<NPCManager>().EndAction(); 
         StopCoroutine(co);
         co = null;
