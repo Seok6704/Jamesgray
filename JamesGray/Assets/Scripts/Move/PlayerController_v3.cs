@@ -213,7 +213,8 @@ public class PlayerController_v3 : MonoBehaviour
 
     public void EndAction()
     {
-        scanObject.GetComponent<NPCManager>().EndAction();
+        if(scanObject == null) return; // 프롤로그 씬 NullReferenceReception에 대응하기 위해 추가된 문장. 23.08.09 추후 문제 발생 시, 해당 부분을 삭제하면 스크립트 동작 자체가 이전과 동일해집니다.
+        scanObject.GetComponent<NPCManager>().EndAction(); 
         StopCoroutine(co);
         co = null;
         isOnAction = false;
