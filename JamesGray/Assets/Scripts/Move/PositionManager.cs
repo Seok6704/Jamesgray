@@ -12,14 +12,19 @@ public class PositionManager : MonoBehaviour
 {
     public static Tilemap tilemap = null;
     public static Tilemap border = null;
+
+    public Vector3 startPos;
     private void Awake() 
     {
         if(ReferenceEquals(tilemap, null)) tilemap = GameObject.FindWithTag("Map")?.GetComponent<Tilemap>();    //tag가 map으로 지정된 오브젝트에서 타일맵 컴포넌트 불러오기
         if(ReferenceEquals(border, null)) border = GameObject.FindWithTag("Border")?.GetComponent<Tilemap>();
 
-        Vector3 temp = !ReferenceEquals(tilemap, null) ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
+        startPos = !ReferenceEquals(tilemap, null) ? tilemap.GetCellCenterWorld(tilemap.WorldToCell(this.transform.position)) : new Vector3(0f,0f,0f); //위치 변경
+    }
 
-        this.transform.position = temp;
+    private void Start() 
+    {
+            transform.position = startPos;
     }
 
     public Vector3Int GetCellPos()
