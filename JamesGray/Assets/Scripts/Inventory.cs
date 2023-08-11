@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using System.IO;
+using UnityEngine;
 
 public class Inventory
 {
     sbyte index;
     List<Page> pages;
+    string savefilename = "INV01";
 
     public Inventory()
     {
-        pages = new List<Page>();
+        pages = LoadInventory();
         index = 0;
-        /*
-            추후에 json파일로 인벤토리 내역을 불러오는 로직 추가 예정
-        */
-        for(int i = 0; i < 5; i++)
-            pages.Add(new Page((sbyte)i));
+
     }
-    public int GetPage()   //페이지 정보 불러오기
+    public int GetPageNum()   //페이지 정보 불러오기
     {
         return pages[index].GetNum();
     }
 
+    public Page GetPage()
+    {
+        return pages[index];
+    }
+
     public void MoveLeftPage()   //왼쪽 페이지로 이동
     {
-        if(index == 0)
+        if(IsLeftEnd())
             return;
 
         index -= 1;
@@ -32,7 +36,7 @@ public class Inventory
 
     public void MoveRightPage()  //오른쪽 페이지로 이동
     {
-        if(index == pages.Count - 1 || pages.Count == 0)
+        if(IsRightEnd())
             return;
 
         index += 1;
@@ -49,17 +53,89 @@ public class Inventory
         return false;
     }
 
-    class Page
+    void SaveInventory()
     {
-        sbyte num;
+        string path = Application.persistentDataPath + "/saves/";
+        string filePath = path + savefilename + ".json";
+        string jsonData;
+
+        if(!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        if(!File.Exists(filePath))
+        {
+            FileStream temp = File.Create(filePath);
+            temp.Close();
+        }
+
+        jsonData = JsonUtility.ToJson(pages);
+
+        File.WriteAllText(filePath, jsonData);  //저장하기 덮어쓰기
+    }
+
+    List<Page> LoadInventory()
+    {
+        string path = Application.persistentDataPath + "/saves/";
+        string filePath = path + savefilename + ".json";
+
+        if(!File.Exists(filePath))
+        {
+            return MakeDefaultPages();
+        }
+
+        string jsonData = File.ReadAllText(filePath);
+
+        return JsonUtility.FromJson<List<Page>>(jsonData);
+    }
+
+    List<Page> MakeDefaultPages()
+    {   
+        //일단 필요하다고 생각되는 페이지 : 1. 목표, 2. 아이템, 3. 일지
+        List<Page> newPages = new List<Page>();
+        for(int i = 0; i < 3; i++)  //디폴트로 3페이지 생성하기
+        {
+            newPages.Add(new Page((sbyte)i) {pageContext = (CONTEXT.OBJECTIVE + i).ToString()});
+            
+        }
+
+        return newPages;
+    }
+
+    private void OnDestroy() 
+    {
+        SaveInventory();    
+    }
+
+    [System.Serializable]
+    public class Page
+    {
+        public sbyte num;
+        public string pageContext;
+        public List<Content> contents;
+        
         public Page(sbyte num)
         {
             this.num = num;
+            contents = new List<Content>();
         }
 
         public int GetNum()
         {
             return num;
         }
+    } 
+    [System.Serializable]
+    public class Content
+    {
+        public string spritePath;   //보여줄 스프라이트 경로
+        public string content;      //인벤토리에서 설명으로 사용될 내용
+    }
+
+    public enum CONTEXT
+    {
+        OBJECTIVE,
+        ITEM,
+        JOURNAL
     }
 }
