@@ -20,7 +20,8 @@ public class SerialCOM : MonoBehaviour
     public int COMNum;
     SerialPort sp;
     int waitFrame = 50;
-    // Start is called before the first frame update
+    char latest;
+
     void Start()
     {
         string[] COMS = SerialPort.GetPortNames();
@@ -47,6 +48,7 @@ public class SerialCOM : MonoBehaviour
 
         sp.Open();
         //Debug.Log(sp.IsOpen);*/
+        latest = 'n';
         SetSerial();
     }
 
@@ -62,38 +64,9 @@ public class SerialCOM : MonoBehaviour
         Debug.Log("COM : " + COMNum + "   ,   BaudRate : " + baudrate);
     }
 
-    private void Update2() 
-    {
-        /*waitFrame--;
-        if(waitFrame == 0 && sp.IsOpen)
-        {
-            waitFrame = 50;
-            Debug.Log("( Data : " + sp.ReadByte() + "  )");
-        } */   
-
-        if(sp.IsOpen)
-        {
-            try
-            {
-                //Debug.Log(sp.ReadByte());
-                Debug.Log(sp.ReadExisting());
-                
-            }
-            catch (System.TimeoutException e)
-            {
-                Debug.Log(e);
-                throw;
-            }
-        }
-        else if(!sp.IsOpen)
-        {
-            Debug.Log("Connecting...!");
-        }
-    }
-
     public char GetInput()
     {
-        char input = 'n';
+        char input;
         string streamInput = "";
         if(sp.IsOpen)
         {
@@ -102,10 +75,9 @@ public class SerialCOM : MonoBehaviour
                 //Debug.Log(sp.ReadByte());
                 //Debug.Log(sp.ReadExisting());
                 streamInput = sp.ReadExisting();
-                Debug.Log(streamInput);
-                
+                //Debug.Log(streamInput);
             }
-            catch (System.TimeoutException e)
+            catch (System.TimeoutException e)   //ReadExisting이기 때문에 타임아웃 예외가 발생하지 않음...
             {
                 Debug.Log(e);
                 throw;
@@ -125,7 +97,12 @@ public class SerialCOM : MonoBehaviour
         {
             input = streamInput[0];
         }
+        else
+        {
+            input = latest;
+        }
 
+        latest = input;
         return input;
     }
 
@@ -133,5 +110,6 @@ public class SerialCOM : MonoBehaviour
         if(sp.IsOpen)
             sp.Close();
         Thread.Sleep(250);
+        sp = null;
     }
 }
