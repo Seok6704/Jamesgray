@@ -168,12 +168,13 @@ public class DialoguesManager : MonoBehaviour
                 3개의 [] 로 이루어져있으며, 마지막 [] 에는 변경할 NPC의 storyline값이 들어와야한다.
                 그 외 명령문은 추가 예정
 
+
                 "[CLOSE] []"
                 두개의 [] 로 이루어져있으며, 만나자마자 다이얼로그를 종료한다. 두번째는 빈칸이다.
 
                 "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
 
-                "[CHAPTER] [0.1] [<이동할 챕터 씬 이름>]"
+                "[CHAPTER] [출력할 문장]] [<이동할 챕터 씬 이름>]"
                 다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다. 두번째 []에는 대기 시간을 넣어야함.
     */
 
@@ -221,7 +222,8 @@ public class DialoguesManager : MonoBehaviour
         }
         else if(command[0] == "CHAPTER")
         {
-            LoadScene(command[2], float.Parse(command[1]), false);
+            //LoadScene(command[2], float.Parse(command[1]), false);
+            LoadScene(command[2], 0f, false);   //바로 씬전환
         }
 
         ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
@@ -389,6 +391,10 @@ public class DialoguesManager : MonoBehaviour
         else if(command == "CODEX") //일단 쓰지말것, 디버깅이 아직 안되어있는 상태
         {
             SetCodex(int.Parse(data));
+        }
+        else if(command == "CHAPTER")
+        {
+            LoadScene(data, 0.1f ,false);
         }
     }
     
