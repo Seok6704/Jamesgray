@@ -1,0 +1,110 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 907,
+            "NPCName" : "제임스",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "여기가 아까 관리자분이 말한 곳인가...?",
+                        "벽 너머에서 무슨 소리가 들리는거 같은데....",
+                        "한번 문 가까이 가서 소리를 들어보는게 좋겠군."                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 107,
+            "NPCName" : "엘리베이터",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[CHOICE] [엘리베이터를 이용하시겠습니까?] [1. 네] [CHAPTER] [Chapter2] [1] [2] [2. 아니오] [END] [] [] []"                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 908,
+            "NPCName" : "문",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "문 너머에서 소리가 들려온다.",
+                        "[CHOICE] [소리를 들어보시겠습니까?] [1. 네] [MINIGAME] [2-2] [1] [2] [2. 아니오] [END] [] [] []"                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}

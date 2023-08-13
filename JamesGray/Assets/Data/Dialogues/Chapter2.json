@@ -6,7 +6,7 @@
     [
         {
             "ID" : 107,
-            "NPCName" : "Elveator",
+            "NPCName" : "엘리베이터",
             
             "defaultLine" :
             [
@@ -20,7 +20,7 @@
             
                     "content" :
                     [
-                        "[CHOICE] [위층으로 이동하시겠습니까?] [1. 네] [MINIGAME] [2-1] [1] [2] [2. 아니오] [END] [] [] []"                      
+                        "[CHOICE] [엘리베이터를 이용하시겠습니까?] [1. 네] [MINIGAME] [2-1] [1] [2] [2. 아니오] [END] [] [] []"                      
                     ]
                 },
                 {

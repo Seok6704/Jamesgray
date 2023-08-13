@@ -14,7 +14,6 @@ public class Elevator : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Call Script!");
         ele0 = GameObject.Find("Ele0").GetComponent<Animator>();
         ele1 = GameObject.Find("Ele1").GetComponent<Animator>();
         ele2 = GameObject.Find("Ele2").GetComponent<Animator>();
@@ -35,6 +34,7 @@ public class Elevator : MonoBehaviour
         }
         else if(ran == 1)
         {
+            isClear = true;
             FifthFloorMoveSound();
             Invoke("SceneChange", 3f);
         }
@@ -58,6 +58,7 @@ public class Elevator : MonoBehaviour
         }
         else if(ran ==0)
         {
+            isClear = true;
             FifthFloorMoveSound();
             Invoke("SceneChange", 3f);
         }
@@ -86,6 +87,7 @@ public class Elevator : MonoBehaviour
         }
         else
         {
+            isClear = true;
             FifthFloorMoveSound();
             Invoke("SceneChange", 3f);
         }
@@ -203,6 +205,14 @@ public class Elevator : MonoBehaviour
         }
         AudioClip clip = Resources.Load("Sounds/Minigame/2-1/B1Move") as AudioClip;
         audioSrc.PlayOneShot(clip);
+    }
+
+    public void BtnStartClick()
+    {
+        if(audioSrc.isPlaying)
+        {
+            audioSrc.Stop();
+        }
     }
 
     void SceneChanger() //씬 전환 함수
