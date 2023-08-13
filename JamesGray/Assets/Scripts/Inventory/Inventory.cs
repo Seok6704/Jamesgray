@@ -4,6 +4,9 @@ using UnityEngine.Events;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// 인벤토리 데이터를 가지는 클래스, 인벤토리 내용을 저장, 불러오기 및 데이터 관리를 한다. 
+/// </summary>
 public class Inventory
 {
     sbyte index;
@@ -93,10 +96,9 @@ public class Inventory
     {   
         //일단 필요하다고 생각되는 페이지 : 1. 목표, 2. 아이템, 3. 일지
         List<Page> newPages = new List<Page>();
-        for(int i = 0; i < 3; i++)  //디폴트로 3페이지 생성하기
+        for(int i = 0; i < 2; i++)  //디폴트로 3페이지 생성하기
         {
             newPages.Add(new Page((sbyte)i) {pageContext = (CONTEXT.OBJECTIVE + i).ToString()});
-            
         }
 
         return newPages;
@@ -112,12 +114,14 @@ public class Inventory
     {
         public sbyte num;
         public string pageContext;
-        public List<Content> contents;
+        public List<Content> lContents;
+        public List<Content> rContents;
         
         public Page(sbyte num)
         {
             this.num = num;
-            contents = new List<Content>();
+            lContents = new List<Content>();
+            rContents = new List<Content>();
         }
 
         public int GetNum()
@@ -135,7 +139,6 @@ public class Inventory
     public enum CONTEXT
     {
         OBJECTIVE,
-        ITEM,
         JOURNAL
     }
 }

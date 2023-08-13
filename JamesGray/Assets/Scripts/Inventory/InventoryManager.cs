@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+/// <summary>
+/// 인벤토리 표시를 관리하는 클래스, 인벤토리 데이터 생성을 명령하고, 페이지 넘기기 데이터 추가 명령 등 인벤토리 표시 및 관리를 담당
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
     public UnityEngine.Events.UnityEvent LeftEnd, RightEnd, EnableAll;
     static Inventory inventory = null;
+    public List<PageManager> Pages; 
     public TMPro.TMP_Text text;
 
     Animator animator;
