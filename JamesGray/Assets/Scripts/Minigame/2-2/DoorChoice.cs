@@ -190,9 +190,17 @@ public class DoorChoice : MonoBehaviour
         Debug.Log("NO!!!!!!!");
     }
 
+    public void BtnStartClick()
+    {
+         if(audioSrc.isPlaying)
+        {
+            audioSrc.Stop();
+        }
+    }
+
     void SceneChange()
     {
-        if(isClear) SceneManager.LoadScene("Chapter2-5");
+        if(isClear) SceneManager.LoadScene("Chapter2-Rose");
         else
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(907, 0);

@@ -2223,6 +2223,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  Pages: []
   text: {fileID: 795113806}
 --- !u!95 &86097059
 Animator:
@@ -3371,8 +3372,9 @@ GameObject:
   - component: {fileID: 587647062}
   - component: {fileID: 587647070}
   - component: {fileID: 587647071}
+  - component: {fileID: 587647072}
   m_Layer: 0
-  m_Name: Rose
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3479,6 +3481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01600c13cddc4147828392dcbcc2b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!61 &587647066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3625,6 +3628,18 @@ MonoBehaviour:
   i_Story: 0
   b_visited: 0
   isAlready: 0
+--- !u!114 &587647072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587647061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602aec35a36e5f7488018b7f5b7ccb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &633875625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5316,6 +5331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01600c13cddc4147828392dcbcc2b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!212 &868771552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5783,6 +5799,18 @@ MonoBehaviour:
       - m_Target: {fileID: 587647070}
         m_TargetAssemblyTypeName: Prologue, Assembly-CSharp
         m_MethodName: OnFadeOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 587647072}
+        m_TargetAssemblyTypeName: RoseAlone, Assembly-CSharp
+        m_MethodName: OffJamesDialouge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

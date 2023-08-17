@@ -226,4 +226,10 @@ public class PlayerController_v3 : MonoBehaviour
     {
         isOnFreeze = !isOnFreeze;
     }
+
+    public void ChangeisOn() // isOnFreeze, isOnAction 값을 조정하기 위한 함수(이석현 작성)
+    {
+        isOnFreeze = !isOnFreeze;
+        isOnAction = !isOnAction;
+    }
 }

@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
 
     void Start()
     {
-        prologue = GameObject.Find("Rose").GetComponent<Prologue>();
+        prologue = GameObject.Find("Player").GetComponent<Prologue>();
     }
 
     public void BtnYesClick()

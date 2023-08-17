@@ -11,26 +11,14 @@ public class Prologue : MonoBehaviour
     GameObject Dialog;
     GameObject fadePanel;
     Vector3 pos;
-    bool flag = true;
     public bool isClear = false;
     bool fade;
 
     void Start()
     {
-        kid = GameObject.Find("Rose");
+        kid = GameObject.Find("Player");
         Dialog = GameObject.Find("Panel_Dialog");
         fadePanel = GameObject.Find("Panel_Minigame");
-    }
-
-    void Update()
-    {
-        pos = kid.transform.position;
-        if( pos.y >= -2.5 && flag ) 
-        {
-            kid.GetComponent<NPCManager>().OnAction();
-            Dialog.GetComponent<UI_Mover>().SetPos2Parent();
-            flag = false;
-        }
     }
 
     public void OnDialogue()
