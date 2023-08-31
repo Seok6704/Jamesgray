@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.IO;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Tools
     /// </summary>
     public class AssetBundleManager
     {
-        AssetBundle assetBundle;
+        public AssetBundle assetBundle;
 
         public AssetBundleManager(string bundleName)    //객체 생성시 번들이름으로 된 에셋번들 불러오기
         {
@@ -22,9 +23,13 @@ namespace Tools
                 return;
             }
         }
-        public GameObject LoadAsset(string assetName)   //불러오고 싶은 파일을 게임 오브젝트로 불러옴 
+        public GameObject LoadGameObjectAsset(string assetName)   //불러오고 싶은 파일을 게임 오브젝트로 불러옴 
         {
             return assetBundle.LoadAsset<GameObject>(assetName);
+        }
+        public Sprite LoadImageAsset(string assetName)
+        {
+            return assetBundle.LoadAsset<Sprite>(assetName);
         }
     }
 }
