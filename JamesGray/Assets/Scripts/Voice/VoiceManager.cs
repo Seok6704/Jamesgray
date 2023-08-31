@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class VoiceManager : MonoBehaviour
 {
+    public string Text
+    {
+        get {
+            return result.results.utterances[0].msg;
+        }
+    }
     public UnityEngine.Events.UnityEvent stt_Done;
     public TMPro.TMP_Text DebugText;    //디버그용 텍스트
 
-    AudioSource audioSrc;           //디버그를 위해 음성을 출력할 오디오소스
+    public AudioSource audioSrc;           //디버그를 위해 음성을 출력할 오디오소스
     string microphoneID = null;     
     AudioClip recording = null;     //녹음 데이터가 저장될 임시 변수
     int recordingLengthSec = 15;    
@@ -43,7 +49,7 @@ public class VoiceManager : MonoBehaviour
 
     private void Start() 
     {
-        audioSrc = GetComponent<AudioSource>();
+        //audioSrc = GetComponent<AudioSource>();
 
         microphoneID = Microphone.devices[0];
         config = setConfig();
@@ -149,7 +155,7 @@ public class VoiceManager : MonoBehaviour
         return bytes;
     }
 
-    public void CallPost_De()
+    public void CallPost()
     {
         byte[] temp = System.Text.Encoding.UTF8.GetBytes("test");
         StartCoroutine(PostVoice(temp));
@@ -198,7 +204,7 @@ public class VoiceManager : MonoBehaviour
         www.Dispose();  //통신 종료, 안하면 메모리 누수 발생
     }
 
-    public void Debug_GetText()
+    public void CallGetText()
     {
         StartCoroutine(GetText());
     }
@@ -253,6 +259,8 @@ public class VoiceManager : MonoBehaviour
 
     public void PlayRecord()
     {
+        if(ReferenceEquals(audioSrc, null)) return;
+
         audioSrc.PlayOneShot(recording);
     }
     

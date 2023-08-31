@@ -1616,6 +1616,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   DebugText: {fileID: 989007709}
+  audioSrc: {fileID: 0}
   Enable_multi_speaker: 0
   user_id: 
   partner_id: 
@@ -1726,7 +1727,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1839232998}
         m_TargetAssemblyTypeName: VoiceManager, Assembly-CSharp
-        m_MethodName: CallPost_De
+        m_MethodName: CallPost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
