@@ -132,7 +132,7 @@ public class Inventory
     [System.Serializable]
     public class Content
     {
-        public string spritePath;   //보여줄 스프라이트 경로
+        public string sprite;       //보여줄 스프라이트 경로
         public string content;      //인벤토리에서 설명으로 사용될 내용
     }
 
