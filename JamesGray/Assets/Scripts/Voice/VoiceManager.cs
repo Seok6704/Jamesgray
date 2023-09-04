@@ -6,13 +6,42 @@ using UnityEngine;
 
 public class VoiceManager : MonoBehaviour
 {
-    public string Text
+    static VoiceManager instance = null;   //싱글톤 디자인
+    public string Text  //변환된 텍스트
     {
         get {
+            isDone = false;
             return result.results.utterances[0].msg;
         }
     }
-    public UnityEngine.Events.UnityEvent stt_Done;
+
+    public bool isExpired       //인증정보 만료 되었는지 체크
+    {
+        get {
+            return auth.isExpired();
+        }
+    }
+
+    float waitTime = 5f;
+    public float Time   //get 동작의 시간 설정
+    {
+        get { return waitTime; }
+        set {
+            if(value <= 0.0f || value > 10f)
+            {
+                waitTime = 5f;
+            }
+            else
+            {
+                waitTime = value;
+            }
+        }
+    }
+
+    public bool isDone; //변환 완료 표시
+
+
+    public UnityEngine.Events.UnityEvent STTDone;
     public TMPro.TMP_Text DebugText;    //디버그용 텍스트
 
     public AudioSource audioSrc;           //디버그를 위해 음성을 출력할 오디오소스
@@ -47,8 +76,21 @@ public class VoiceManager : MonoBehaviour
     public int min;
     public int max;
 
+    public static VoiceManager getInstance()
+    {
+        return instance;
+    }
+
     private void Start() 
     {
+        if(ReferenceEquals(instance, null))
+        {
+            instance = this;
+            return;
+        }
+
+        isDone = false;
+
         //audioSrc = GetComponent<AudioSource>();
 
         microphoneID = Microphone.devices[0];
@@ -67,6 +109,11 @@ public class VoiceManager : MonoBehaviour
         {
             StartCoroutine(InitAuthenticate());
         }
+    }
+
+    private void OnDestroy() 
+    {
+        instance = null;    
     }
     JsonClass setConfig() //config 객체 초기화
     {
@@ -163,6 +210,8 @@ public class VoiceManager : MonoBehaviour
 
     IEnumerator PostVoice(byte[] data)      //음성 데이터 전송
     {
+        isDone = false; //Post 시작시 변환은 완료되지 않은 상태로 표기
+
         yield return StartCoroutine(checkExpired());    //만약 인증 정보가 만료되었다면 코루틴이기때문에 기다려야 오류가 없음
 
         url = "https://openapi.vito.ai/v1/transcribe";
@@ -235,7 +284,7 @@ public class VoiceManager : MonoBehaviour
 
         if(result.status == "transcribing")     //변환 중
         {
-            yield return new WaitForSeconds(5f);    //5초 정도 기다리기
+            yield return new WaitForSeconds(waitTime);    //5초 정도 기다리기
             StartCoroutine(GetText());
         }
         else if(result.status == "completed")
@@ -246,9 +295,9 @@ public class VoiceManager : MonoBehaviour
             {
                 DebugText.GetComponent<TextOutputManager>().ClearText();
                 DebugText.GetComponent<TextOutputManager>().Typing(result.results.utterances[0].msg);
-
-                stt_Done.Invoke();
             }
+            isDone = true;
+            STTDone.Invoke();
         }
         else   
         {
