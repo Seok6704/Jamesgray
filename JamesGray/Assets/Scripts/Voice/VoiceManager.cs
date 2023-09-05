@@ -6,7 +6,16 @@ using UnityEngine;
 
 public class VoiceManager : MonoBehaviour
 {
+    /////////////////////////////////////////////////*********///////////////////////////////////////////////////
+    /////////////////////////////////////////////////인터페이스///////////////////////////////////////////////////
+    /////////////////////////////////복잡한 STT 클래스를 접근할 수 있도록 interface////////////////////////////////
+    
+    public UnityEngine.Events.UnityEvent STTDone;   //데이터 수신 이벤트 발생
     static VoiceManager instance = null;   //싱글톤 디자인
+
+    /// <summary>
+    /// 음성 파일을 STT 서버로 전송하였다면, 가장 최근 변환 데이터 읽는다.
+    /// </summary>
     public string Text  //변환된 텍스트
     {
         get {
@@ -15,6 +24,9 @@ public class VoiceManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// STT 서버와의 통신을 위한 인증 토큰이 만료되었는지 체크한다. True = 만료됨.
+    /// </summary>
     public bool isExpired       //인증정보 만료 되었는지 체크
     {
         get {
@@ -22,7 +34,9 @@ public class VoiceManager : MonoBehaviour
         }
     }
 
-    float waitTime = 5f;
+    /// <summary>
+    /// Get 통신의 주기를 설정한다. Must be (0 <= Time < 10)
+    /// </summary>
     public float Time   //get 동작의 시간 설정
     {
         get { return waitTime; }
@@ -37,26 +51,65 @@ public class VoiceManager : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// 변환된 데이터가 수신되었는지 여부, 만약 Text를 통해 데이터를 읽었다면 False로 변경된다.
+    /// </summary>
     public bool isDone; //변환 완료 표시
 
+    /// <summary>
+    /// 녹음될 AudioClip의 길이를 설정. 짧든 길든 설정된 값으로 오디오를 저장한다. Default = 8 (단위: 초/sec)
+    /// </summary>
+    public int Length
+    {
+        get { return recordingLengthSec; }
+        set { recordingLengthSec = value; }
+    }
 
-    public UnityEngine.Events.UnityEvent STTDone;
+    /// <summary>
+    /// 샘플링 레이트를 설정, 높을수록 품질이 좋고 용량이 커진다. Default = 22050 hz
+    /// </summary>
+    public int SampleRate
+    {
+        get { return recordingHz; }
+        set { recordingHz = value; }
+    }
+
+    /// <summary>
+    /// 녹음 반복 여부, Length만큼 녹음했을때 멈추지 않고 다시 녹음할지 여부. Default = false
+    /// </summary>
+    public bool Loop
+    {
+        get { return recordingLoop; }
+        set { recordingLoop = value; }
+    }
+    
+    /////////////////////////////////////////////////*************///////////////////////////////////////////////////
+    /////////////////////////////////////////////////STT 관련 설정///////////////////////////////////////////////////
     public TMPro.TMP_Text DebugText;    //디버그용 텍스트
 
-    public AudioSource audioSrc;           //디버그를 위해 음성을 출력할 오디오소스
-    string microphoneID = null;     
+    public AudioSource audioSrc;        //디버그를 위해 음성을 출력할 오디오소스
+    string microphoneID = null;     //녹음할때 사용할 마이크 ID
     AudioClip recording = null;     //녹음 데이터가 저장될 임시 변수
-    int recordingLengthSec = 15;    
-    int recordingHz = 22050;
+    int recordingLengthSec = 8;    //녹음 AudioClip 길이
+    int recordingHz = 22050;        //Sample Rate, 오디오 품질을 결정
+    bool recordingLoop = false;
     
-    string url = "";
-    string authJsonPath;
+    string url = "";                //자주사용되는 빈 URL... 미리 선언된 전역변수
+    string APIURL = "https://openapi.vito.ai/v1/"; //자주 사용되는 VITO API URL 
+    string authJsonPath;    //인증 정보가 저장되는 경로. 런타임 중에 설정
+
+    float waitTime = 5f;
 
     authenticateDataClass auth; //API 인증 키와 만료 시간(6시간) 데이터 저장 객체
     STTResponseClass result;    //STT 결과 값
     JsonClass config;           //STT 설정 json
     transcribeClass transcribeID;  //transcribe id;
+
+
+    /////////////////////////////////////////////////********************///////////////////////////////////////////////////
+    /////////////////////////////////////////////////Inspector 관련 변수들///////////////////////////////////////////////////
+    ///
+    ///////////////////////STT 서버로 음성파일이 전송될때, 함께 전송되어 변환 결과를 원하는 형식으로 설정/////////////////////////
 
     [Header("STT 설정")]    //vito 개발자 가이드 참조,
 
@@ -75,8 +128,13 @@ public class VoiceManager : MonoBehaviour
     [Tooltip("문단 나누기")]
     public int min;
     public int max;
+    /////////////////////////////////////////////////********************///////////////////////////////////////////////////
 
-    public static VoiceManager getInstance()
+    /// <summary>
+    /// 싱글톤 객체를 가져온다.
+    /// </summary>
+    /// <returns>VoiceManager 객체를 반환한다.</returns>
+    public static VoiceManager getInstance()    //싱글톤 객체 가져오기
     {
         return instance;
     }
@@ -88,7 +146,6 @@ public class VoiceManager : MonoBehaviour
             instance = this;
             return;
         }
-
         isDone = false;
 
         //audioSrc = GetComponent<AudioSource>();
@@ -115,6 +172,11 @@ public class VoiceManager : MonoBehaviour
     {
         instance = null;    
     }
+
+    /// <summary>
+    /// 인스펙터에서 설정된 STT 설정들을 서버로 전송하기 위해 클래스로 변환한다.
+    /// </summary>
+    /// <returns>JsonClass 형식의 객체를 반환한다.</returns>
     JsonClass setConfig() //config 객체 초기화
     {
         JsonClass temp = new JsonClass();
@@ -133,12 +195,18 @@ public class VoiceManager : MonoBehaviour
         return temp;
     }
 
+    /// <summary>
+    /// 녹음을 시작한다.
+    /// </summary>
     public void startRecording()
     {
         Debug.Log("Record Start");
-        recording = Microphone.Start(microphoneID, false, recordingLengthSec, recordingHz);
+        recording = Microphone.Start(microphoneID, recordingLoop, recordingLengthSec, recordingHz);
     }
 
+    /// <summary>
+    /// 녹음을 멈추고 .wav 형식의 파일로 저장한다.
+    /// </summary>
     public void stopRecording()
     {
         if(Microphone.IsRecording(microphoneID))
@@ -157,10 +225,14 @@ public class VoiceManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// API 서버와 통신을 통해 인증 토큰을 발급받는 코루틴.
+    /// </summary>
     IEnumerator InitAuthenticate()  //vito 인증하여 키값 받기
     {
         //post
-        url = "https://openapi.vito.ai/v1/authenticate";
+        //url = "https://openapi.vito.ai/v1/authenticate";
+        url = APIURL + "authenticate";
         string clientID = "WzZQNfCUtwj-E6AA4f9E";
         string clientSecret = "8Qdb0APc8KihbvHVw32ngEVKqhMrM5GmNU8x-5sC";
         WWWForm form = new WWWForm();
@@ -186,6 +258,11 @@ public class VoiceManager : MonoBehaviour
         www.Dispose();  //통신 종료, 안하면 메모리 누수 발생
     }
 
+    /// <summary>
+    /// This is Deprecated. Use SavWav instead. AudioClip을 byte[]으로 변환한다. 서버로 전송하기 위해서는 AudioClip형식이 아닌 byte[]형식이여야 한다. 정상적으로 동작하지 않으므로 사용되지 않음.
+    /// </summary>
+    /// <param name="audioClip">byte[]으로 변환될 AudioClip</param>
+    /// <returns>byte[] 형식의 AudioClip을 반환한다.</returns>
     byte[] getByteFromAudioClip(AudioClip audioClip)
     {
         float[] floatArrayAudioClip = new float[audioClip.samples]; 
@@ -202,19 +279,24 @@ public class VoiceManager : MonoBehaviour
         return bytes;
     }
 
+    /// <summary>
+    /// 사전에 저장된 .wav 음성 파일을 API 서버로 전송하는 코루틴 함수를 호출한다.
+    /// PostVoice() 코루틴을 호출한다.
+    /// </summary>
     public void CallPost()
     {
-        byte[] temp = System.Text.Encoding.UTF8.GetBytes("test");
-        StartCoroutine(PostVoice(temp));
+        //byte[] temp = System.Text.Encoding.UTF8.GetBytes("test");
+        StartCoroutine(PostVoice());
     }
 
-    IEnumerator PostVoice(byte[] data)      //음성 데이터 전송
+    IEnumerator PostVoice()      //음성 데이터 전송
     {
         isDone = false; //Post 시작시 변환은 완료되지 않은 상태로 표기
 
         yield return StartCoroutine(checkExpired());    //만약 인증 정보가 만료되었다면 코루틴이기때문에 기다려야 오류가 없음
 
-        url = "https://openapi.vito.ai/v1/transcribe";
+        //url = "https://openapi.vito.ai/v1/transcribe";
+        url = APIURL + "transcribe";
 
         string json = JsonUtility.ToJson(config.config);
         byte[] wavBytes = File.ReadAllBytes(Application.persistentDataPath + "/voice.wav");
@@ -253,6 +335,9 @@ public class VoiceManager : MonoBehaviour
         www.Dispose();  //통신 종료, 안하면 메모리 누수 발생
     }
 
+    /// <summary>
+    /// Post 통신으로 받은 TranscribeID를 사용하여 변환된 데이터를 API 서버에 요청한다. GetText() 코루틴을 호출한다. 만약 데이터가 여전히 변환 중이라면 일정 주기마다 재요청을 한다. *** See VoiceManager.Time
+    /// </summary>
     public void CallGetText()
     {
         StartCoroutine(GetText());
@@ -262,7 +347,8 @@ public class VoiceManager : MonoBehaviour
     {
         yield return StartCoroutine(checkExpired());    //만약 인증 정보가 만료되었다면 코루틴이기때문에 기다려야 오류가 없음
 
-        url = "https://openapi.vito.ai/v1/transcribe/" + transcribeID.id;
+        //url = "https://openapi.vito.ai/v1/transcribe/" + transcribeID.id;
+        url = APIURL + "transcribe/" + transcribeID.id;
 
         UnityWebRequest www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Authorization", "Bearer " + auth.access_token);
@@ -306,6 +392,9 @@ public class VoiceManager : MonoBehaviour
         www.Dispose();  //통신 종료, 안하면 메모리 누수 발생
     }
 
+    /// <summary>
+    /// 녹음된 audioclip 재생
+    /// </summary>
     public void PlayRecord()
     {
         if(ReferenceEquals(audioSrc, null)) return;
@@ -313,6 +402,9 @@ public class VoiceManager : MonoBehaviour
         audioSrc.PlayOneShot(recording);
     }
     
+    /// <summary>
+    /// 인증 정보를 갱신해야할지 판단하여 만료되었다면 코루틴으로 인증 통신을 진행한다.
+    /// </summary>
     IEnumerator checkExpired()
     {
         if(auth.isExpired())
@@ -321,21 +413,34 @@ public class VoiceManager : MonoBehaviour
         }
     }
 
+
+
     /*
         이 아래 클래스들은 restAPI의 JSON 형식의 데이터들을 받기 위해 작성된 클래스입니다.
     */
+
+    /// <summary>
+    /// 인증 정보가 담기는 클래스
+    /// </summary>
     [System.Serializable]
     class authenticateDataClass
     {
         public string access_token;
         public int expire_at; //expiration in unixtimestamp
 
+        /// <summary>
+        /// 인증 토큰 및 만료 시간(unix timestamp) 표시
+        /// </summary>
         public void show() //debug
         {
             Debug.Log(access_token);
             Debug.Log(expire_at);
         }
 
+        /// <summary>
+        /// 인증 토큰이 만료되었는지 체크
+        /// </summary>
+        /// <returns>True = 만료됨</returns>
         public bool isExpired() //unix timestamp를 계산하여 인증토큰가 만료되었는지 체크
         {
             var now = System.DateTime.Now.ToLocalTime();
@@ -346,11 +451,11 @@ public class VoiceManager : MonoBehaviour
 
             if(expire_at + 21600 < timestamp ) // 시간 만료 6시간 = 21600초
             {
-                return true;
+                return true;    //만료됨
             }
             else 
             {
-                return false;    //만료됨
+                return false;    
             }
         }
     }
