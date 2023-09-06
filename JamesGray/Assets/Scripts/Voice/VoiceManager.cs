@@ -144,6 +144,9 @@ public class VoiceManager : MonoBehaviour
         if(ReferenceEquals(instance, null))
         {
             instance = this;
+        }
+        else
+        {
             return;
         }
         isDone = false;
