@@ -1,0 +1,110 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 907,
+            "NPCName" : "제임스",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "여기가 아까 관리자분이 말한 곳인가...?",
+                        "벽 너머에서 무슨 소리가 들리는거 같은데....",
+                        "한번 문 가까이 가서 소리를 들어보는게 좋겠군."                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 899,
+            "NPCName" : "아이",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "절 구하러 와주셨군요! 아저씨! 어서 이 감옥 좀 풀어주세요!",
+                        "감옥은 제 옆에 있는 컴퓨터를 이용하면 풀 수 있을거에요!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 910,
+            "NPCName" : "컴퓨터",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[CHOICE] [감옥 제어 프로그램 동작 중. 해제를 위해서는 인증이 필요합니다.] [1. 인증한다.] [MINIGAME] [2-2] [1] [2] [2. 떠난다.] [END] [] [] []"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}
