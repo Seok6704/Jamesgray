@@ -1612,11 +1612,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bdc183f5a409542ba033d64c609e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stt_Done:
+  STTDone:
     m_PersistentCalls:
       m_Calls: []
+  isDone: 0
   DebugText: {fileID: 989007709}
-  audioSrc: {fileID: 0}
+  audioSrc: {fileID: 1839232997}
   Enable_multi_speaker: 0
   user_id: 
   partner_id: 

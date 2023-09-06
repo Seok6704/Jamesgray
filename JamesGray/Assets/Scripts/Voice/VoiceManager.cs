@@ -147,7 +147,7 @@ public class VoiceManager : MonoBehaviour
         }
         else
         {
-            return;
+            return; //이미 VoiceManager객체가 존재한다면 현재 객체 사용하지 않음.
         }
         isDone = false;
 
