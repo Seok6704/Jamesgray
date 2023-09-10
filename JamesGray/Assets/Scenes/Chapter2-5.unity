@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uC5D8\uB9AC\uBCA0\uC774\uD130"
-  ID: 107
+  ID: 200
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -6698,7 +6698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uC81C\uC784\uC2A4"
-  ID: 907
+  ID: 801
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -10163,7 +10163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uBB38"
-  ID: 908
+  ID: 201
   i_Story: 0
   b_visited: 0
   isAlready: 0

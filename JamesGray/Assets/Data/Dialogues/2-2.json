@@ -5,7 +5,7 @@
     "NPC" : 
     [
         {
-            "ID" : 909,
+            "ID" : 911,
             "NPCName" : "아나운서",
 
             "defaultLine" :
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "ID" : 907,
+            "ID" : 801,
             "NPCName" : "제임스",
 
             "defaultLine" :

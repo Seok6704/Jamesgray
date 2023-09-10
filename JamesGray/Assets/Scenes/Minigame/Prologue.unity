@@ -3623,8 +3623,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: "\uC544\uC774"
-  ID: 899
+  s_NPC_Name: "\uB85C\uC988"
+  ID: 800
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -5439,7 +5439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uAE30\uACC4 \uC7A5\uCE58"
-  ID: 900
+  ID: 850
   i_Story: 0
   b_visited: 0
   isAlready: 0

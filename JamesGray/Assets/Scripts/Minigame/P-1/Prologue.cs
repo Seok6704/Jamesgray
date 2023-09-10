@@ -58,7 +58,7 @@ public class Prologue : MonoBehaviour
 
     void RoseDialogue()
     {
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(899, 1);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(800, 1);
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 

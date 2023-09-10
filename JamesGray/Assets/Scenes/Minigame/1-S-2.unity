@@ -273,6 +273,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  Pages: []
   text: {fileID: 795113806}
 --- !u!95 &86097059
 Animator:
@@ -1656,7 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uC544\uB098\uC6B4\uC11C"
-  ID: 905
+  ID: 903
   i_Story: 0
   b_visited: 0
   isAlready: 0

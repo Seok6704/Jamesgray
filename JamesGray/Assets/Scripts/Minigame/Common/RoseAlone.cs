@@ -20,7 +20,7 @@ public class RoseAlone : MonoBehaviour
     {
         flag = true;
         pc.ChangeisOn();
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(899, 0);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(800, 0);
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 

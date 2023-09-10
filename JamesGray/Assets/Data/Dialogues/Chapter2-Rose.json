@@ -5,7 +5,7 @@
     "NPC" : 
     [
         {
-            "ID" : 907,
+            "ID" : 801,
             "NPCName" : "제임스",
             
             "defaultLine" :
@@ -40,8 +40,8 @@
             ]
         },
         {
-            "ID" : 899,
-            "NPCName" : "아이",
+            "ID" : 800,
+            "NPCName" : "로즈",
             
             "defaultLine" :
             [
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "ID" : 910,
+            "ID" : 202,
             "NPCName" : "컴퓨터",
             
             "defaultLine" :

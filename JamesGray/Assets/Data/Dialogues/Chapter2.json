@@ -5,7 +5,7 @@
     "NPC" : 
     [
         {
-            "ID" : 107,
+            "ID" : 200,
             "NPCName" : "엘리베이터",
             
             "defaultLine" :

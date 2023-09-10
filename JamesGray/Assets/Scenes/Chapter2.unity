@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: Elevator
-  ID: 107
+  s_NPC_Name: "\uC5D8\uB9AC\uBCA0\uC774\uD130"
+  ID: 200
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -1569,8 +1569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: Elevator
-  ID: 107
+  s_NPC_Name: "\uC5D8\uB9AC\uBCA0\uC774\uD130"
+  ID: 200
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -6513,8 +6513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: Elevator
-  ID: 107
+  s_NPC_Name: "\uC5D8\uB9AC\uBCA0\uC774\uD130"
+  ID: 200
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -12713,7 +12713,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 1978470564, guid: a25bc03d3a14b8747b7315e621c55ed5, type: 3}
+  m_Sprite: {fileID: -1879160680, guid: 5b8a0b1980338c049a838e30406a49fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

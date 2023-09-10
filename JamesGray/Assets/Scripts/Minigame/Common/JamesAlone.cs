@@ -20,7 +20,7 @@ public class JamesAlone : MonoBehaviour
     {
         flag = true;
         pc.ChangeisOn();
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(907, 0);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(801, 0);
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 

@@ -203,7 +203,7 @@ public class DoorChoice : MonoBehaviour
         if(isClear) SceneManager.LoadScene("Chapter2-Rose");
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(907, 0);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(801, 0);
             Dialog.GetComponent<UI_Mover>().SetPos2Parent();
             Invoke("Restart", 4f);
         }

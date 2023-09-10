@@ -20,7 +20,7 @@ public class StartGame : MonoBehaviour
         if(isChoose) return;
         isChoose = true;
         isClear = true;
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(907, 1);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(850, 1);
         prologue.isClear = true;
         Invoke("SceneChanger", 2f);
     }
@@ -30,7 +30,7 @@ public class StartGame : MonoBehaviour
         if(isChoose) return;
         isChoose = true;
         isClear = false;
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(907, 2);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(850, 2);
         Invoke("SceneChanger", 2f);
     }
 

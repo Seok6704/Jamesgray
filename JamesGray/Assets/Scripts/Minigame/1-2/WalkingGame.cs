@@ -76,22 +76,22 @@ public class WalkingGame : MonoBehaviour
         if(Correct == 0 && Round == 0 || Correct == 3 && Round == 1 || Correct == 2 && Round == 2)
         {
             anim.SetTrigger("Btn_R_Click");
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 4);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 4);
             Round = Round + 1;
             if(Round == 3)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }            
         }
@@ -102,22 +102,22 @@ public class WalkingGame : MonoBehaviour
         if(Correct == 1 && Round == 0 || Correct == 2 && Round == 1 || Correct == 3 && Round == 2)
         {
             anim.SetTrigger("Btn_L_Click");
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 4);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 4);
             Round = Round + 1;
             if(Round == 3)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }  
         }
@@ -128,22 +128,22 @@ public class WalkingGame : MonoBehaviour
         if(Correct == 2 && Round == 0 || Correct == 1 && Round == 1 || Correct == 1 && Round == 2)
         {
             anim.SetTrigger("Btn_U_Click");
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 4);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 4);
             Round = Round + 1;
             if(Round == 3)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }  
         }
@@ -154,22 +154,22 @@ public class WalkingGame : MonoBehaviour
         if(Correct == 3 && Round == 0 || Correct == 0 && Round == 1 || Correct == 0 && Round == 2)
         {
             anim.SetTrigger("Btn_D_Click");
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 4);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 4);
             Round = Round + 1;
             if(Round == 3)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
                 Invoke("SceneChanger", 8f);
             }
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
                 Invoke("SceneChanger", 5f);
             }  
         }

@@ -1411,8 +1411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: "\uC544\uC774"
-  ID: 911
+  s_NPC_Name: "\uB85C\uC988"
+  ID: 800
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -4179,6 +4179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderText: {fileID: 301556399}
+  isClear: 0
 --- !u!1 &1301604791
 GameObject:
   m_ObjectHideFlags: 0

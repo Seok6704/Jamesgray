@@ -22,17 +22,17 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 4)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -43,17 +43,17 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 3)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -63,17 +63,17 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 2)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -83,17 +83,17 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 1)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
         }
@@ -103,17 +103,17 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 0)
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
             Invoke("SceneChanger", 5f);
         }
         else
         {
-            Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 1);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
         }

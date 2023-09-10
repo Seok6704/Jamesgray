@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uCEF4\uD4E8\uD130"
-  ID: 910
+  ID: 202
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -2404,8 +2404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
-  s_NPC_Name: "\uC544\uC774"
-  ID: 899
+  s_NPC_Name: "\uB85C\uC988"
+  ID: 800
   i_Story: 0
   b_visited: 0
   isAlready: 0

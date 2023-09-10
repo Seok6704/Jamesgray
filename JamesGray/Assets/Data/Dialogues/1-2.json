@@ -5,7 +5,7 @@
     "NPC" : 
     [
         {
-            "ID" : 902,
+            "ID" : 901,
             "NPCName" : "아나운서",
 
             "defaultLine" :

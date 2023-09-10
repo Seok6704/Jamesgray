@@ -36,7 +36,7 @@ public class CrossGame : MonoBehaviour
             {
                 isClear = true;
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 2);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
                 isClear = true;
                 Invoke("SceneChanger", 5f);
             }
@@ -50,7 +50,7 @@ public class CrossGame : MonoBehaviour
             if ( time > 60) // 타임 오버
             {
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 3);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
                 isClear = false;
                 Invoke("SceneChanger", 5f);
             }
@@ -66,7 +66,7 @@ public class CrossGame : MonoBehaviour
                 transform.Translate(new Vector3(0.15f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
-                Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 1);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
                 Invoke("SceneChanger", 5f);
             }
         }
