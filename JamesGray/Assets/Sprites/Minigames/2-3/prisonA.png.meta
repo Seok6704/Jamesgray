@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a08657088ad387f4fb9a60e5c80345c0
+guid: e55be51f713e35545bd1b813e591b8ba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: prisonA_0
+      name: prisonA 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d6866f323757f745a0b51d7b397cd64
-      internalID: 1803776941
+      spriteID: 47a90e7f1f4bec7499d0111812aeee26
+      internalID: -1506920887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_1
+      name: prisonA 1_1
       rect:
         serializedVersion: 2
         x: 96
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d51cd8bf0db60e4438e61a6c6f81cbe2
-      internalID: 1644369960
+      spriteID: bbd41c85a43022546a1efc28fcee6c4b
+      internalID: 834433380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_2
+      name: prisonA 1_2
       rect:
         serializedVersion: 2
         x: 192
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f93f4b7f19a97f1489718497c8e8998d
-      internalID: -331653098
+      spriteID: b78b9cf374622674bbcafe69629ea459
+      internalID: 541264737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_3
+      name: prisonA 1_3
       rect:
         serializedVersion: 2
         x: 288
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9de3487c4944cf47bef6d3c37930464
-      internalID: 1692011022
+      spriteID: 31cad417454fcd64a9e4ba8221debd47
+      internalID: 258031275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_4
+      name: prisonA 1_4
       rect:
         serializedVersion: 2
         x: 384
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ae10fd4123c88849997bd32683a96ce
-      internalID: 491057364
+      spriteID: 2a99194b2d3023d44bf97656f2ee4863
+      internalID: -618843293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_5
+      name: prisonA 1_5
       rect:
         serializedVersion: 2
         x: 480
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c6bcac583964894ab3c554c675b4851
-      internalID: -1934193223
+      spriteID: ff5be83507e6bd34b9cb3cb71320f2e0
+      internalID: 417645885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonA_6
+      name: prisonA 1_6
       rect:
         serializedVersion: 2
         x: 576
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8873d82224b0c954dbc0d8d6f94eb33d
-      internalID: 142680460
+      spriteID: 2f9c3e00738eab541b8fc842c5db1e55
+      internalID: -1561348332
       vertices: []
       indices: 
       edges: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      prisonA_2: -331653098
-      prisonA_6: 142680460
-      prisonA_0: 1803776941
-      prisonA_1: 1644369960
-      prisonA_5: -1934193223
-      prisonA_3: 1692011022
-      prisonA_4: 491057364
+      prisonA 1_5: 417645885
+      prisonA 1_1: 834433380
+      prisonA 1_3: 258031275
+      prisonA 1_6: -1561348332
+      prisonA 1_4: -618843293
+      prisonA 1_0: -1506920887
+      prisonA 1_2: 541264737
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
