@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
         
         if(assetBundle == null)
         {
-            assetBundle = new AssetBundleManager(bundleName);
+            //assetBundle = new AssetBundleManager(bundleName);
         }
         
         animator = GetComponent<Animator>();
