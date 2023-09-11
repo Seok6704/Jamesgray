@@ -3,27 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
+//https://docs.unity3d.com/kr/2020.3/Manual/Video.html  //참고
+
 public class VideoManager
 {
-    string path = Application.dataPath + "/Videos/NPC/";
+    //readonly string path = Application.dataPath + "/Videos/NPC/";
+    readonly string path = Application.streamingAssetsPath + "/Videos/";
 
     VideoPlayer video;
 
-    public VideoManager(VideoPlayer v)
+    public VideoManager(VideoPlayer v, AudioSource audiosrc)
     {
-        video = v;
+        video = v;      //영상을 재생할 플레이어 설정
+        //video.SetTargetAudioSource(0, audiosrc);
     }
 
-    string GetPath(int id, int lineID, int index)
+    string GetPath(string sceneName, int id, int lineID, int index)
     {
-        return path + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".mp4";
+        return path + sceneName + '/' + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".mp4";
     }
 
-    public void PlayVideo(int id, int lineID, int index)
+    public void PlayVideo(string sceneName, int id, int lineID, int index)
     {
-        video.url = GetPath(id, lineID, index);
+        if(video.isPlaying) video.Stop();
 
-        if(!System.IO.File.Exists(video.url)) return;
+        video.url = GetPath(sceneName, id, lineID, index);
+
+        if(!System.IO.File.Exists(video.url)) return;  //파일 존재 여부 확인
 
         video.Play();
     }
