@@ -19,6 +19,8 @@ public class VoiceManager : MonoBehaviour
     public string Text  //변환된 텍스트
     {
         get {
+            if(ReferenceEquals(result, null))   //만약 데이터가 아예 없다면 빈칸 리턴하기 
+                return new string("");
             isDone = false;
             return result.results.utterances[0].msg;
         }
@@ -95,7 +97,7 @@ public class VoiceManager : MonoBehaviour
     bool recordingLoop = false;
     
     string url = "";                //자주사용되는 빈 URL... 미리 선언된 전역변수
-    string APIURL = "https://openapi.vito.ai/v1/"; //자주 사용되는 VITO API URL 
+    const string APIURL = "https://openapi.vito.ai/v1/"; //자주 사용되는 VITO API URL 
     string authJsonPath;    //인증 정보가 저장되는 경로. 런타임 중에 설정
 
     float waitTime = 5f;
