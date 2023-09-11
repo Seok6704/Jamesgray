@@ -47,12 +47,17 @@ public class DialoguesManager : MonoBehaviour
     List<string> DataA, DataB;  //선택지 데이터를 저장하는 리스트
     sbyte btnNum; //클릭된 버튼 기억하기
 
+    [SerializeField]
+    string sceneName = "";
+
     void Start()
     {
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
 
-        videoManager = new VideoManager(video);
-        dialogues = new JSONManager(SceneManager.GetActiveScene().name);    //대화문 로드
+        videoManager = new VideoManager(video, audioSrc);
+
+        sceneName = SceneManager.GetActiveScene().name;
+        dialogues = new JSONManager(sceneName);    //대화문 로드
 
         previousStack = new Stack<DialogueNode>();
         nextQ = new DEQ<DialogueNode>();
@@ -137,8 +142,8 @@ public class DialoguesManager : MonoBehaviour
             return;
         }
         isPrintDone = false;
-        PlayAudio(buffer.id, buffer.lineID, buffer.index);
-        //PlayVideo(buffer.id, buffer.lineID, buffer.index);
+        //PlayAudio(buffer.id, buffer.lineID, buffer.index);
+        PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);
         PrintDialogue();
     }
 
@@ -342,13 +347,13 @@ public class DialoguesManager : MonoBehaviour
         
     }
 
-    void PlayVideo(int id, int lineID, int index)
+    void PlayVideo(string sceneName, int id, int lineID, int index)
     {
         if(videoManager.GetStatus())
         {
             videoManager.StopVideo();
         }
-        videoManager.PlayVideo(id, lineID, index);
+        videoManager.PlayVideo(sceneName, id, lineID, index);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////

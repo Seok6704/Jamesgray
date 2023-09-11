@@ -48,7 +48,7 @@ public class DialoguesManager_v2 : MonoBehaviour
     {
         SceneManager.SetActiveScene(gameObject.scene);  //이 스크립트가 속해있는 씬을 Active씬으로 지정
         
-        videoManager = new VideoManager(video); //비디오 플레이 설정
+        videoManager = new VideoManager(video, audioSrc); //비디오 플레이 설정
 
         dialogues = new JSONManager(SceneManager.GetActiveScene().name);
         flag = false;
@@ -188,7 +188,7 @@ public class DialoguesManager_v2 : MonoBehaviour
         {
             videoManager.StopVideo();
         }
-        videoManager.PlayVideo(id, lineID, index);
+        videoManager.PlayVideo(SceneManager.GetActiveScene().name, id, lineID, index);
     }
 
     IEnumerator GetAudioClip(int id, int lineID, int index)
