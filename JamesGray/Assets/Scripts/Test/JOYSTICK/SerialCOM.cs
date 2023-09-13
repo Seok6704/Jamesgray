@@ -14,15 +14,71 @@ using System.Threading;
     블루투스는 시리얼 통신이 맞지만, 안드로이드에서는 COM이 할당되지 않는다고 함. 기기 명이나 MAC을 확인하라고함. SPP도 참고해보라함.
     일단은 유선 시리얼 통신을 가정하고 구현해보겠음.
 */
-public class SerialCOM : MonoBehaviour
+public class SerialCOM
 {
-    public int baudrate = 9600;
-    public int COMNum;
+    public bool IsOpen  //Serial 통신 연결 여부
+    {
+        get 
+        {
+            return sp.IsOpen;
+        }
+    }
+
+    public bool UP
+    {
+        get 
+        {
+            return inputEquals('w');
+        }
+    }
+    public bool DOWN
+    {
+        get
+        {
+            return inputEquals('s');
+        }
+    }
+    public bool LEFT
+    {
+        get
+        {
+            return inputEquals('a');
+        }
+    }
+    public bool RIGHT
+    {
+        get
+        {
+            return inputEquals('d');
+        }
+    }
+
+
     SerialPort sp;
-    int waitFrame = 50;
+
+    int baudRate;
+    byte COMNum;
     char latest;
 
-    void Start()
+    public SerialCOM(int baudRate, byte ComNum)
+    {
+        this.baudRate = baudRate;
+        this.COMNum = ComNum;
+
+        SetSerial();
+    }
+    
+    /// <summary>
+    /// 컨트롤러로 부터 입력 받은 값이 인자와 같은지 체크하는 메서드
+    /// </summary>
+    /// <param name="c">확인하고 싶은 값 (w,a,s,d,n)</param>
+    /// <returns>입력 받은 값이 인자와 같다면 true</returns>
+    bool inputEquals(char c)
+    {
+        return latest == c;
+    }
+
+    /*void Start()
     {
         string[] COMS = SerialPort.GetPortNames();
         for(int i = 0; i < COMS.Length; i++)
@@ -30,7 +86,7 @@ public class SerialCOM : MonoBehaviour
             Debug.Log(COMS[i]);
         }
 
-     /*   string[] COMS = SerialPort.GetPortNames();
+        string[] COMS = SerialPort.GetPortNames();
 
         for(int i = 0; i < COMS.Length; i++)
         {
@@ -47,21 +103,21 @@ public class SerialCOM : MonoBehaviour
         Debug.Log(baudrate);
 
         sp.Open();
-        //Debug.Log(sp.IsOpen);*/
-        latest = 'n';
+        //Debug.Log(sp.IsOpen);
         SetSerial();
-    }
+    }*/
 
     void SetSerial()
     {
-        sp = new SerialPort("COM" + COMNum, baudrate, Parity.None, 8, StopBits.One);
+        latest = 'n';
+        sp = new SerialPort("COM" + COMNum, baudRate, Parity.None, 8, StopBits.One);
 
         sp.Open();
 
         sp.DtrEnable = true;
         sp.ReadTimeout = 5;    
 
-        Debug.Log("COM : " + COMNum + "   ,   BaudRate : " + baudrate);
+        Debug.Log("COM : " + COMNum + "   ,   BaudRate : " + baudRate);
     }
 
     public char GetInput()
@@ -103,13 +159,28 @@ public class SerialCOM : MonoBehaviour
         }
 
         latest = input;
+
         return input;
     }
 
-    private void OnDestroy() {
+    /*void Update()
+    {
+        latest = GetInput();
+    }*/
+
+    ~SerialCOM()
+    {
         if(sp.IsOpen)
             sp.Close();
         Thread.Sleep(250);
         sp = null;
     }
+
+    /*
+    private void OnDestroy() {
+        if(sp.IsOpen)
+            sp.Close();
+        Thread.Sleep(250);
+        sp = null;
+    }*/
 }
