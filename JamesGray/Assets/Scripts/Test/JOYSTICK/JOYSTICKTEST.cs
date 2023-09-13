@@ -13,7 +13,8 @@ public class JOYSTICKTEST : MonoBehaviour
     Vector3 pos;
     private void Awake() {
         pos = circle.transform.position;
-        serial = GetComponent<SerialCOM>();
+        //serial = GetComponent<SerialCOM>();
+        serial = new SerialCOM(9600, 7);
         Debug.Log(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
     }
     private void Update() {
