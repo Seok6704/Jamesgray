@@ -25,6 +25,8 @@ public class PlayerController_v3 : MonoBehaviour
     Rigidbody2D rigid;
     //RaycastHit2D rayHit;
 
+    SerialCOM serial; //유선 연결 패드
+
     private void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -38,6 +40,8 @@ public class PlayerController_v3 : MonoBehaviour
         scanObject = null;
 
         rigid = GetComponent<Rigidbody2D>();
+
+        serial = new SerialCOM(9600, 11);    //9600hz 11번 포트
     }
 
     /*private void FixedUpdate() 
@@ -49,6 +53,8 @@ public class PlayerController_v3 : MonoBehaviour
     {
         int h = (int)dirVec.x, v = (int)dirVec.y;
         Vector3Int nextCell = currentCell;
+
+        serial.GetInput();  //SerialCom 객체는 함수로 호출해야 값을 가져온다.
 
         //Debug.DrawRay(transform.position, dirVec * 0.7f, new Color(0,1,0)); // 게임 뷰에서는 보이지 않지만 플레이 버튼 누르고 씬뷰로 전환하면 보임!
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object"));
@@ -72,25 +78,25 @@ public class PlayerController_v3 : MonoBehaviour
                 scanObject = tempScanObj;
                 OnAction();
             }
-            else if(Input.GetKey(KeyCode.W) || keyPad.UP || Input.GetKey(KeyCode.UpArrow))    
+            else if(Input.GetKey(KeyCode.W) || keyPad.UP || Input.GetKey(KeyCode.UpArrow) || serial.UP)    
             {
                 dirVec = Vector3.up;
                 nextCell.y += 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             }
-            else if(Input.GetKey(KeyCode.S) || keyPad.DOWN || Input.GetKey(KeyCode.DownArrow))
+            else if(Input.GetKey(KeyCode.S) || keyPad.DOWN || Input.GetKey(KeyCode.DownArrow) || serial.DOWN)
             {
                 dirVec = Vector3.down;
                 nextCell.y -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if(Input.GetKey(KeyCode.A) || keyPad.LEFT || Input.GetKey(KeyCode.LeftArrow))
+            else if(Input.GetKey(KeyCode.A) || keyPad.LEFT || Input.GetKey(KeyCode.LeftArrow) || serial.LEFT)
             {
                 dirVec = Vector3.left;
                 nextCell.x -= 1;
                 co = StartCoroutine(MovePlayer(nextCell));
             } 
-            else if(Input.GetKey(KeyCode.D) || keyPad.RIGHT || Input.GetKey(KeyCode.RightArrow))
+            else if(Input.GetKey(KeyCode.D) || keyPad.RIGHT || Input.GetKey(KeyCode.RightArrow) || serial.RIGHT)
             {
                 dirVec = Vector3.right;
                 nextCell.x += 1;

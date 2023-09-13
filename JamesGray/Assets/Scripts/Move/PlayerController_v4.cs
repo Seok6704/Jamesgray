@@ -23,6 +23,8 @@ public class PlayerController_v4 : MonoBehaviour
     Vector3 targetPos;  //이동할 좌표
     Vector2 moveLength; //플레이어 이동 거리를 위한 값, 타일에서 다른 타일로 이동하기 위해 필요한 거리 (x,y), (타일 반지름 * 2) + 타일간 거리로 계산 //거리는 1이기때문에 필요없지만 추후 변동사항을 위한 거리 계산
     Rigidbody2D rigid;
+
+    SerialCOM serial;   //유선 연결 패드
     void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -39,6 +41,8 @@ public class PlayerController_v4 : MonoBehaviour
         scanObject = null;
 
         rigid = GetComponent<Rigidbody2D>();
+
+        serial = new SerialCOM(9600, 11);    //9600hz 11번 포트
     }
 
     void Update() 
@@ -69,7 +73,7 @@ public class PlayerController_v4 : MonoBehaviour
                 scanObject = tempScanObj;   
                 OnAction();
             }
-            else if((Input.GetKey(KeyCode.A) || keyPad.LEFT) || Input.GetKey(KeyCode.LeftArrow))
+            else if(Input.GetKey(KeyCode.A) || keyPad.LEFT || Input.GetKey(KeyCode.LeftArrow) || serial.LEFT)
             {
                 dirVec = Vector3.left;
                 if(ReferenceEquals(Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object")).collider, null))
@@ -79,7 +83,7 @@ public class PlayerController_v4 : MonoBehaviour
                     targetPos.x -= moveLength.x;
                 }
             }
-            else if((Input.GetKey(KeyCode.D) || keyPad.RIGHT) || Input.GetKey(KeyCode.RightArrow))
+            else if(Input.GetKey(KeyCode.D) || keyPad.RIGHT || Input.GetKey(KeyCode.RightArrow) || serial.RIGHT)
             {   
                 dirVec = Vector3.right;
                 if(ReferenceEquals(Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object")).collider, null))
@@ -89,7 +93,7 @@ public class PlayerController_v4 : MonoBehaviour
                     targetPos.x += moveLength.x; 
                 }
             }
-            else if((Input.GetKey(KeyCode.W) || keyPad.UP) || Input.GetKey(KeyCode.UpArrow))
+            else if(Input.GetKey(KeyCode.W) || keyPad.UP || Input.GetKey(KeyCode.UpArrow) || serial.UP)
             {
                 dirVec = Vector3.up;
                 if(ReferenceEquals(Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object")).collider, null))
@@ -99,7 +103,7 @@ public class PlayerController_v4 : MonoBehaviour
                     targetPos.y += moveLength.y;
                 }
             }
-            else if((Input.GetKey(KeyCode.S) || keyPad.DOWN) || Input.GetKey(KeyCode.DownArrow))
+            else if(Input.GetKey(KeyCode.S) || keyPad.DOWN || Input.GetKey(KeyCode.DownArrow) || serial.DOWN)
             {
                 dirVec = Vector3.down;
                 if(ReferenceEquals(Physics2D.Raycast(transform.position, dirVec, 1f, LayerMask.GetMask("Object")).collider, null))
