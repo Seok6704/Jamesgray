@@ -41,7 +41,7 @@ public class PlayerController_v3 : MonoBehaviour
 
         rigid = GetComponent<Rigidbody2D>();
 
-        serial = new SerialCOM(9600, 11);    //9600hz 11번 포트
+        serial = new SerialCOM(9600, 8);    //9600hz 11번 포트
     }
 
     /*private void FixedUpdate() 
