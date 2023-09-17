@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 using System.Threading;
+using System.IO;
 
 //https://velog.io/@anthem53/Unity-Serial-%ED%86%B5%EC%8B%A0-%EB%A9%94%EB%AA%A8 참고
 //https://parksh3641.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-C-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4-%ED%86%B5%EC%8B%A0-%EA%B0%84%EB%8B%A8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
@@ -111,9 +112,16 @@ public class SerialCOM
     {
         latest = 'n';
         sp = new SerialPort("COM" + COMNum, baudRate, Parity.None, 8, StopBits.One);
-
-        sp.Open();
-
+        
+        try
+        {
+            sp.Open();
+        }
+        catch (IOException e)
+        {
+            Debug.Log(e);
+            return;
+        }
         sp.DtrEnable = true;
         sp.ReadTimeout = 5;    
 
@@ -141,8 +149,9 @@ public class SerialCOM
         }
         else if(!sp.IsOpen)
         {
-            Debug.Log("Connecting...");
-            SetSerial();
+            //Debug.Log("Connecting...");
+            //SetSerial();
+            return 'n';
         }
 
         if(streamInput.Length > 1)
