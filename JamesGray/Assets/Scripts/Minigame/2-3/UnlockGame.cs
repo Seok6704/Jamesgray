@@ -11,7 +11,7 @@ public class UnlockGame : MonoBehaviour
     public TextMeshProUGUI orderText; // 입력된 텍스트
     string recordText; // 녹음된 텍스트
     string correctText = "사용을 종료하겠습니다."; // 정답 문구
-    public bool isClear; // 클리어 확인 변수, 클리어 시, 감옥 해제 애니메이션 재생을 위해 해당 스크립트는 public으로 작성되었음.
+    public static bool isClear; // 클리어 확인 변수, 클리어 시, 감옥 해제 애니메이션 재생을 위해 해당 스크립트는 public static으로 작성되었음.
 
     void Start()
     {
