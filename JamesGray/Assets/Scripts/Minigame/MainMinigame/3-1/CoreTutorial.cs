@@ -5,12 +5,27 @@ using UnityEngine.EventSystems;
 
 public class CoreTutorial : MonoBehaviour
 {
+    public bool isMain; // 튜토리얼인지 본 게임인지 구분하는 변수
     GameObject click;
-    int ran;
+    int ran, allClear, fail;
     string problem;
     int incorrect = 0;
     int round = 0;
     bool isChoice = true; // 중복 클릭 방지
+
+    void Start()
+    {
+        if(isMain) 
+        {
+            allClear = 10;
+            fail = 2;
+        }
+        else
+        {
+            allClear = 8;
+            fail = 3;
+        }
+    }
 
     public void OnStartClick()
     {
@@ -26,7 +41,7 @@ public class CoreTutorial : MonoBehaviour
         {
             Debug.Log("correct!");
             round++;
-            if(round >= 8) Debug.Log("Clear!"); // 클리어. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            if(round >= allClear) Debug.Log("Clear!"); // 클리어. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
             else Invoke("TalkProblem", 2f);
         }
         else
@@ -34,8 +49,8 @@ public class CoreTutorial : MonoBehaviour
             Debug.Log("incorrect!");
             round++;
             incorrect++;
-            if(round >= 8) Debug.Log("Clear!");
-            else if(incorrect >= 3) Debug.Log("Fail!"); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            if(round >= allClear) Debug.Log("Clear!");
+            else if(incorrect >= fail) Debug.Log("Fail!"); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
             else Invoke("TalkProblem", 2f);
         }
     }
@@ -43,7 +58,8 @@ public class CoreTutorial : MonoBehaviour
     void TalkProblem() // 문제 제출 함수
     {
         isChoice = false;
-        ran = Random.Range(0, 8);
+        if(!isMain) ran = Random.Range(0, 8);
+        else ran = Random.Range(0, 10);
         switch (ran)
         {
             case 0:
@@ -78,6 +94,15 @@ public class CoreTutorial : MonoBehaviour
                 Debug.Log("로즈 원");
                 problem = "BtnRCir";
                 break;
+            case 8: // 8, 9 번은 3-2 미니게임에서만 적용
+                Debug.Log("로즈 육각형");
+                problem = "BtnRHex";
+                break;
+            case 9:
+                Debug.Log("제임스 육각형");
+                problem = "BtnJHex";
+                break;
+
         }
 
     }
