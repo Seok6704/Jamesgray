@@ -18,7 +18,11 @@ public class prisonController : MonoBehaviour
         if(UnlockGame.isClear)
         {
             anim.SetBool("isUnlock", true);
-            rose.sortingOrder = 3;
         }
+    }
+
+    public void DestroyPrison()
+    {
+        Destroy(GameObject.Find("Prison"));
     }
 }
