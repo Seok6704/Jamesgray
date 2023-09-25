@@ -24,11 +24,11 @@ public class TextOutputManager : MonoBehaviour
     {
         SetText();
 
-        if(typeDone == null)
+        if(ReferenceEquals(null, typeDone))
         {
             typeDone = new UnityEvent();    //이벤트 생성... 스크립트로 이벤트 함수를 사용하려고 하면 이렇게 다들하는데 왜그런지 모르겠음...
         }
-        if(typeStart == null)
+        if(ReferenceEquals(null, typeStart))
         {
             typeStart = new UnityEvent();
         }
@@ -54,7 +54,7 @@ public class TextOutputManager : MonoBehaviour
 
     public void StopTyping()    //출력중이라면 멈추기
     {
-        if(co != null) StopCoroutine(co);
+        if(!ReferenceEquals(null, co)) StopCoroutine(co);
         co = null;
     }
 

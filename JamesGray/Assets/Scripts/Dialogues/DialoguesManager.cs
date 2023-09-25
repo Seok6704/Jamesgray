@@ -143,7 +143,7 @@ public class DialoguesManager : MonoBehaviour
     /// </summary>
     void ShowDialogue()
     {
-        if(buffer == null)   //더이상 출력할 것이 없다면 종료
+        if(ReferenceEquals(null, buffer))   //더이상 출력할 것이 없다면 종료
         {
             EndDialogue();
             return;
@@ -459,7 +459,7 @@ public class DialoguesManager : MonoBehaviour
             return;
         }
 
-        if(buffer != null)
+        if(!ReferenceEquals(null, buffer))
             previousStack.Push(buffer);
 
         buffer = nextQ.FrontDequeue();
@@ -504,7 +504,7 @@ public class DialoguesManager : MonoBehaviour
     /// </summary>
     void SetNPCData(int num)
     {
-        if(currentNPC == null)
+        if(ReferenceEquals(null, currentNPC))
             return;
         
         currentNPC.i_Story = num;
