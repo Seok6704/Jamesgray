@@ -47,6 +47,8 @@ public class DialoguesManager : MonoBehaviour
     List<string> DataA, DataB;  //선택지 데이터를 저장하는 리스트
     sbyte btnNum; //클릭된 버튼 기억하기
 
+    //bool isTypeDone;    //버퍼에 있는 문장 출력 완료 여부
+
     [SerializeField]
     string sceneName = "";
 
@@ -63,7 +65,7 @@ public class DialoguesManager : MonoBehaviour
         nextQ = new DEQ<DialogueNode>();
         buffer = null;
 
-        isPrintDone = false;
+        isPrintDone = true;
 
         currentID = -1; currentLineID = -1;
         currentNPC = null;
@@ -72,6 +74,11 @@ public class DialoguesManager : MonoBehaviour
         DataB = new List<string>();
 
         btnNum = -1;
+
+        //isTypeDone = true;
+
+        tmp_Dialogue.GetComponent<TextOutputManager>().typeDone.AddListener(SetPrintDone);   //이벤트 등록
+        tmp_Dialogue.GetComponent<TextOutputManager>().typeStart.AddListener(SetPrintNotDone);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -141,10 +148,17 @@ public class DialoguesManager : MonoBehaviour
             EndDialogue();
             return;
         }
-        isPrintDone = false;
-        //PlayAudio(buffer.id, buffer.lineID, buffer.index);
-        PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);
-        PrintDialogue();
+
+        if(isPrintDone)
+        {
+            //PlayAudio(buffer.id, buffer.lineID, buffer.index);
+            PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);
+            PrintDialogue();
+        }
+        else
+        {
+            tmp_Dialogue.GetComponent<TextOutputManager>().PrintDirect(CheckContent());
+        }
     }
 
     void PrintDialogue()
@@ -179,8 +193,11 @@ public class DialoguesManager : MonoBehaviour
 
                 "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
 
-                "[CHAPTER] [출력할 문장]] [<이동할 챕터 씬 이름>]"
+                "[CHAPTER] [출력할 문장] [<이동할 챕터 씬 이름>]"
                 다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다. 두번째 []에는 대기 시간을 넣어야함.
+
+                "[OTHER] [출력할 문장] [NPC ID] [LineID] [index]"  
+                다른 NPC의 대사 (영상)을 재생하고 싶을때 사용. 영상 경로를 제공해주어야 하기 때문에 위와 같이 인자값이 필요하다.
     */
 
     /// <summary>
@@ -215,6 +232,7 @@ public class DialoguesManager : MonoBehaviour
         else if(command[0] == "SET")    //storyline 값 올리기라면
         {
             SetNPCData(int.Parse(command[2]));
+            return temp;    //SET 에 경우에는 버퍼를 비우는것이 필요하지는 않으므로 함수를 종료... 그리고 이렇게 해야 다이얼로그 출력 중 다음 버튼 눌렀을때 다이얼로그 종료가 되지 않음
         }
         else if(command[0] == "CLOSE")
         {
@@ -229,6 +247,12 @@ public class DialoguesManager : MonoBehaviour
         {
             //LoadScene(command[2], float.Parse(command[1]), false);
             LoadScene(command[2], 0f, false);   //바로 씬전환
+        }
+        else if(command[0] == "OTHER")  //대화문에서 다른 NPC 대사가 출력할 수 있도록 하기. 현재 버퍼를 대체하는 방식으로 동작
+        {
+            buffer = new DialogueNode(temp, int.Parse(command[2]), int.Parse(command[3]), int.Parse(command[4]));
+            PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);   //새로운 버퍼로 영상 재생
+            return temp;
         }
 
         ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
@@ -302,12 +326,12 @@ public class DialoguesManager : MonoBehaviour
         previousStack.Clear();
         nextQ.Clear();
 
-        isPrintDone = false;
-
         currentID = -1; currentLineID = -1;
         currentNPC = null;
 
         btnNum = -1;
+
+        isPrintDone = true;
 
         DestroyChoice();
     }
@@ -362,23 +386,40 @@ public class DialoguesManager : MonoBehaviour
 
     public void ShowAgain()
     {
+        isPrintDone = true;
         ShowDialogue();
     }
     public void ShowPrevious()
     {
+        isPrintDone = true;
         SetBuffer2Pre();
         ShowDialogue();
     }
     public void ShowNext()
     {
-        SetBuffer2Next();
+        if(isPrintDone)  //문장 출력이 완료되었을때에만 다음 버퍼로 넘어가기 
+        {
+            SetBuffer2Next();
+        }
         ShowDialogue();
     }
-
+    
+    /// <summary>
+    /// 다이얼로그 문장 출력이 완료되면 이 함수가 이벤트로 호출되어 Flag를 초기화한다.
+    /// </summary>
     public void SetPrintDone()
     {
         isPrintDone = true;
     }
+
+    /// <summary>
+    /// 다이얼로그 문장 출력이 시작되면 호출되어 Flag를 초기화한다.
+    /// </summary>
+    void SetPrintNotDone()
+    {
+        isPrintDone = false;
+    }
+
     /// <summary>
     /// 선택지 버튼으로 부터 데이터를 받아오는 함수
     /// </summary>
