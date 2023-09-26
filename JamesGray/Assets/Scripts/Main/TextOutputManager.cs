@@ -18,6 +18,9 @@ public class TextOutputManager : MonoBehaviour
     [Tooltip("1초")]
     public float f_dial_Speed;  
     TMP_Text tmp_Text;
+
+    string outputText = "";
+
     Coroutine co;
     
     private void Awake() 
@@ -57,17 +60,26 @@ public class TextOutputManager : MonoBehaviour
         if(!ReferenceEquals(null, co)) StopCoroutine(co);
         co = null;
     }
+    /// <summary>
+    /// 현재 출력중인 문장 바로 출력하기
+    /// </summary>
+    public void ASAPrint()
+    {
+        PrintDirect(outputText);
+    }
 
     public void Typing(string s_dial) //힌글자씩 천천히 출력하는 함수
     {
         StopTyping();
-        co = StartCoroutine(PutText(s_dial));
+        outputText = s_dial;
+        co = StartCoroutine(PutText());
     }
-    IEnumerator PutText(string s_dial) //한글자씩 코루틴으로 출력 Typing 함수가 불러오는 코루틴
+    IEnumerator PutText() //한글자씩 코루틴으로 출력 Typing 함수가 불러오는 코루틴
     {  //천천히 출력하는 코루틴
         typeStart.Invoke(); //문장 출력 시작 이벤트
-        foreach (char c in s_dial.ToCharArray()) 
+        foreach (char c in outputText.ToCharArray()) 
         {
+
             tmp_Text.text += c;
             yield return new WaitForSeconds(f_dial_Speed);
         }

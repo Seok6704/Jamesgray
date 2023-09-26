@@ -149,16 +149,10 @@ public class DialoguesManager : MonoBehaviour
             return;
         }
 
-        if(isPrintDone)
-        {
-            //PlayAudio(buffer.id, buffer.lineID, buffer.index);
-            PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);
-            PrintDialogue();
-        }
-        else
-        {
-            tmp_Dialogue.GetComponent<TextOutputManager>().PrintDirect(CheckContent());
-        }
+        //PlayAudio(buffer.id, buffer.lineID, buffer.index);
+        PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);
+        PrintDialogue();
+        
     }
 
     void PrintDialogue()
@@ -400,8 +394,12 @@ public class DialoguesManager : MonoBehaviour
         if(isPrintDone)  //문장 출력이 완료되었을때에만 다음 버퍼로 넘어가기 
         {
             SetBuffer2Next();
+            ShowDialogue();
         }
-        ShowDialogue();
+        else
+        {
+            tmp_Dialogue.GetComponent<TextOutputManager>().ASAPrint();
+        }
     }
     
     /// <summary>
