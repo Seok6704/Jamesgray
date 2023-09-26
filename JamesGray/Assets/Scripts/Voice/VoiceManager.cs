@@ -189,7 +189,8 @@ public class VoiceManager : MonoBehaviour
         temp.config.diarization = new diarizationClass();
         temp.config.paragraph_splitter = new paragraphClass();
 
-        temp.config.diarization.use_verification = Enable_multi_speaker;
+        temp.config.use_diarization = Enable_multi_speaker;
+        
         temp.config.use_multi_channel = Enable_Multi_Channel;
         temp.config.use_itn = Enable_itn;
         temp.config.use_disfluency_filter = Enable_disfluency_filter;
@@ -303,7 +304,8 @@ public class VoiceManager : MonoBehaviour
         //url = "https://openapi.vito.ai/v1/transcribe";
         url = APIURL + "transcribe";
 
-        string json = JsonUtility.ToJson(config.config);
+        string json = JsonUtility.ToJson(config);
+        
         byte[] wavBytes = File.ReadAllBytes(Application.persistentDataPath + "/voice.wav");
 
         //json = "--asdandkawdnakjsdnakwda\r\n" + "Content-Disposition: form-data; name=\"config\"\r\n" + "Content-Type: application/json\r\n" + json + "--asdandkawdnakjsdnakwda";
@@ -464,6 +466,7 @@ public class VoiceManager : MonoBehaviour
             }
         }
     }
+
     [System.Serializable]
     class transcribeClass
     {
@@ -524,6 +527,7 @@ public class VoiceManager : MonoBehaviour
     [System.Serializable]
     class configClass
     {
+        public bool use_diarization;
         public diarizationClass diarization;
         public bool use_multi_channel;
         public bool use_itn;
@@ -534,7 +538,7 @@ public class VoiceManager : MonoBehaviour
     [System.Serializable]
     class diarizationClass
     {
-        public bool use_verification;
+        public int spk_count;
     }
 
     [System.Serializable]
