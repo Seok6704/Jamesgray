@@ -17,6 +17,8 @@ using System.IO;
 */
 public class SerialCOM
 {
+    static SerialCOM instance = null;
+
     public bool IsOpen  //Serial 통신 연결 여부
     {
         get 
@@ -53,6 +55,13 @@ public class SerialCOM
             return inputEquals('d');
         }
     }
+    public bool SELECT  //임시
+    {
+        get
+        {
+            return inputEquals('b');
+        }
+    }
 
 
     SerialPort sp;
@@ -63,10 +72,27 @@ public class SerialCOM
 
     public SerialCOM(int baudRate, byte ComNum)
     {
+        if(!ReferenceEquals(null, instance))
+        {
+            return;
+        }
         this.baudRate = baudRate;
         this.COMNum = ComNum;
 
         SetSerial();
+
+        instance = this;
+    }
+
+    /// <summary>
+    /// 현재 존재하는 컨트롤러 시리얼 통신을 가져온다. 주의! SerialCOM 생성자로 생성된 객체가 현재 존재해야함.
+    /// </summary>
+    /// <returns>현재 존재하는 시리얼 통신 반환</returns>
+    public static SerialCOM getInstance()
+    {
+        if(ReferenceEquals(null, instance)) return null;
+        
+        return instance;
     }
     
     /// <summary>
@@ -183,6 +209,8 @@ public class SerialCOM
             sp.Close();
         Thread.Sleep(250);
         sp = null;
+
+        instance = null;
     }
 
     /*
