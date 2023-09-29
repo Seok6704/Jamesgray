@@ -380,12 +380,10 @@ public class DialoguesManager : MonoBehaviour
 
     public void ShowAgain()
     {
-        isPrintDone = true;
         ShowDialogue();
     }
     public void ShowPrevious()
     {
-        isPrintDone = true;
         SetBuffer2Pre();
         ShowDialogue();
     }
