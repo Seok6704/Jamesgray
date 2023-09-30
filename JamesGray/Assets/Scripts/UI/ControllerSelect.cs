@@ -18,8 +18,7 @@ public class ControllerSelect : MonoBehaviour
     static SerialCOM con = null;    //SerialCOM은 플레이어 컨트롤러 스크립트에서 Awake에서 할당한것을 사용하므로 Awake 이후에 할당해야함.
     
     static Color color = Color.yellow;
-    static float outlinePadding = 2.5f;
-    
+    static float outlinePadding = 0.5f;
 
     void Start() 
     {
@@ -54,6 +53,7 @@ public class ControllerSelect : MonoBehaviour
     void EnableSelect()
     {
         currentBtn = defaultBtn;
+        SetHighlight(currentBtn, color, outlinePadding);
     }
 
     void Update()   //입력을 받는다.
@@ -70,28 +70,33 @@ public class ControllerSelect : MonoBehaviour
         }
         else if((!ReferenceEquals(null, con) && con.UP) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            SetHighlight(currentBtn, color, 0f);
+            SetHighlight(currentBtn, new Color(0, 0, 0), 0f);
             currentBtn = GetNearestButton(WAY.UP);
             SetHighlight(currentBtn, color, outlinePadding);
         }
         else if((!ReferenceEquals(null, con) && con.DOWN) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            SetHighlight(currentBtn, color, 0f);
+            SetHighlight(currentBtn, new Color(0, 0, 0), 0f);
             currentBtn = GetNearestButton(WAY.DOWN);
             SetHighlight(currentBtn, color, outlinePadding);
         }
         else if((!ReferenceEquals(null, con) && con.RIGHT) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            SetHighlight(currentBtn, color, 0f);
+            SetHighlight(currentBtn, new Color(0, 0, 0), 0f);
             currentBtn = GetNearestButton(WAY.RIGHT);
             SetHighlight(currentBtn, color, outlinePadding);
         }
         else if((!ReferenceEquals(null, con) && con.LEFT) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            SetHighlight(currentBtn, color, 0f);
+            SetHighlight(currentBtn, new Color(0, 0, 0), 0f);
             currentBtn = GetNearestButton(WAY.LEFT);
             SetHighlight(currentBtn, color, outlinePadding);
         }
+
+         Debug.DrawRay(currentBtn.GetComponent<RectTransform>().position, new Vector3(canvas.dir.x, canvas.dir.y, 0f) * 1000f, Color.red, 0.1f);
+         Debug.DrawRay(currentBtn.GetComponent<RectTransform>().position, new Vector3(canvas.dir.x * -1, canvas.dir.y, 0f) * 1000f, Color.red, 0.1f);
+         Debug.DrawRay(currentBtn.GetComponent<RectTransform>().position, new Vector3(canvas.dir.x, canvas.dir.y * -1, 0f) * 1000f, Color.red, 0.1f);
+         Debug.DrawRay(currentBtn.GetComponent<RectTransform>().position, new Vector3(canvas.dir.x * -1, canvas.dir.y * -1, 0f) * 1000f, Color.red, 0.1f);
     }
     
     /// <summary>
