@@ -2289,6 +2289,9 @@ MonoBehaviour:
   typeDone:
     m_PersistentCalls:
       m_Calls: []
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0
 --- !u!1 &679719431
 GameObject:
@@ -3108,6 +3111,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0.05
 --- !u!1 &892678244
 GameObject:
@@ -3350,6 +3356,18 @@ MonoBehaviour:
       - m_Target: {fileID: 849907067}
         m_TargetAssemblyTypeName: prisonController, Assembly-CSharp
         m_MethodName: UnlockPrison
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1486070449}
+        m_TargetAssemblyTypeName: RoseAlone, Assembly-CSharp
+        m_MethodName: OffRoseDialouge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4820,6 +4838,7 @@ GameObject:
   - component: {fileID: 1486070446}
   - component: {fileID: 1486070447}
   - component: {fileID: 1486070448}
+  - component: {fileID: 1486070449}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5066,10 +5085,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uC81C\uC784\uC2A4"
-  ID: 907
+  ID: 801
   i_Story: 0
   b_visited: 0
   isAlready: 0
+--- !u!114 &1486070449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486070434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602aec35a36e5f7488018b7f5b7ccb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1504600532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,7 +6596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

@@ -16,6 +16,7 @@ using DataStructure;
 public class DialoguesManager : MonoBehaviour
 {
     public UnityEvent DialogueOn, DialogueOff;  //다이얼로그 on/off 이벤트
+    public UnityEvent DialogueNext, DialoguePrevious; //다이얼로그 대화 이동 이벤트 변수, 다이얼로그 진행에 따른 애니메이션 변화에 사용(이석현 삽입)
     JSONManager dialogues;          //현재 챕터 전체 대화문을 담고있는 객체
 
     public PlayerStatus playerStatus;   //플레이어 인벤토리 및 기타 관리하는 스크립트
@@ -386,6 +387,7 @@ public class DialoguesManager : MonoBehaviour
     {
         SetBuffer2Pre();
         ShowDialogue();
+        DialoguePrevious.Invoke();
     }
     public void ShowNext()
     {
@@ -393,6 +395,7 @@ public class DialoguesManager : MonoBehaviour
         {
             SetBuffer2Next();
             ShowDialogue();
+            DialogueNext.Invoke();
         }
         else
         {

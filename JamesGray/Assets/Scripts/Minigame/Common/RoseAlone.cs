@@ -13,10 +13,10 @@ public class RoseAlone : MonoBehaviour
     {
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
         Dialog = GameObject.Find("Panel_Dialog");
-        Invoke("OnJamesDialogue", 1f);
+        Invoke("OnRoseDialogue", 1f);
     }
 
-    void OnJamesDialogue()
+    void OnRoseDialogue()
     {
         flag = true;
         pc.ChangeisOn();
@@ -24,7 +24,7 @@ public class RoseAlone : MonoBehaviour
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 
-    public void OffJamesDialouge()
+    public void OffRoseDialouge()
     {
         if(flag) 
         {

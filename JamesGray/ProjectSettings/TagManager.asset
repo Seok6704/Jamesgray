@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - Border
   - Dialogue
+  - piece
   layers:
   - Default
   - TransparentFX

@@ -3791,6 +3791,9 @@ MonoBehaviour:
   typeDone:
     m_PersistentCalls:
       m_Calls: []
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0
 --- !u!1 &704025162
 GameObject:
@@ -5606,6 +5609,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0.05
 --- !u!1 &892678244
 GameObject:
@@ -5810,7 +5816,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 587647072}
         m_TargetAssemblyTypeName: RoseAlone, Assembly-CSharp
-        m_MethodName: OffJamesDialouge
+        m_MethodName: OffRoseDialouge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5828,6 +5834,7 @@ MonoBehaviour:
   audioSrc: {fileID: 827624926}
   choiceTemplete: {fileID: 329066763}
   choiceGrid: {fileID: 1301604791}
+  sceneName: 
 --- !u!1 &964562738
 GameObject:
   m_ObjectHideFlags: 0
