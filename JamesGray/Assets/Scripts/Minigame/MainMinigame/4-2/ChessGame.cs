@@ -15,6 +15,7 @@ public class ChessGame : MonoBehaviour
     GameObject clickObj, clickCell;
     Outline outline;
     List<GameObject> onOutline = new List<GameObject>();
+    Animator chess;
     Vector3 pos;
     List<string> nowPos = new List<string>();
     int row, cul, row2, cul2;
@@ -23,12 +24,15 @@ public class ChessGame : MonoBehaviour
     NPCManager npcManager;
     Vector3 ponePos, knightPos, bishopWPos, bishopBPos, rookPos;
     bool isClear;
+    int blinkCount;
 
     void Start()
     {
         ran = Random.Range(0,3);
         npcManager = GameObject.Find("Start_Button").GetComponent<NPCManager>();
         npcManager.i_Story = ran;
+        blinkCount = 0;
+        chess = GameObject.Find("Chess").GetComponent<Animator>();
     }
 
     public void MakeProblem() // 문제 출제 함수, Start 버튼 클릭 시, 한번 호출됨.
@@ -307,6 +311,43 @@ public class ChessGame : MonoBehaviour
         ProblemCheck();
         nowPos.Clear();
         PiecePosUpdate();
+    }
+
+    public void PlusBlinkCount()
+    {
+        blinkCount++;
+        OnBlink();
+    }
+
+    public void MinusBlinkCount()
+    {
+        blinkCount--;
+        OnBlink();
+    }
+
+    void OnBlink()
+    {
+        Debug.Log(blinkCount);        
+        chess.SetBool("PoneBlink", false);
+        chess.SetBool("RookBlink", false);
+        chess.SetBool("KnightBlink", false);
+        chess.SetBool("BishopBlink", false);
+
+        switch (blinkCount)
+        {
+            case 2:
+                chess.SetBool("PoneBlink", true);
+                break;
+            case 3:
+                chess.SetBool("RookBlink", true);
+                break;
+            case 4:
+                chess.SetBool("KnightBlink", true);
+                break;
+            case 5:
+                chess.SetBool("BishopBlink", true);
+                break;
+        }
     }
 
     void SceneChanger() //씬 전환 함수

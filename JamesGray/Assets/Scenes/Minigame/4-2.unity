@@ -4082,10 +4082,28 @@ MonoBehaviour:
         m_CallState: 2
   DialogueOff:
     m_PersistentCalls:
+      m_Calls: []
+  DialogueNext:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
-        m_MethodName: SetFlag
+      - m_Target: {fileID: 1269154412}
+        m_TargetAssemblyTypeName: ChessGame, Assembly-CSharp
+        m_MethodName: PlusBlinkCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DialoguePrevious:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1269154412}
+        m_TargetAssemblyTypeName: ChessGame, Assembly-CSharp
+        m_MethodName: MinusBlinkCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
