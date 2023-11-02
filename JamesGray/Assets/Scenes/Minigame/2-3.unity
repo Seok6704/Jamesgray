@@ -1803,6 +1803,9 @@ MonoBehaviour:
   typeDone:
     m_PersistentCalls:
       m_Calls: []
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0
 --- !u!1 &686989501
 GameObject:
@@ -1862,7 +1865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8505baf61e5168d40aef9b97b45704fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bdb1278bec4c474d8fbbfab1304571f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2657,6 +2660,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0.05
 --- !u!1 &892678244
 GameObject:
@@ -2811,6 +2817,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DialogueNext:
+    m_PersistentCalls:
+      m_Calls: []
+  DialoguePrevious:
+    m_PersistentCalls:
+      m_Calls: []
   playerStatus: {fileID: 0}
   sceneManager: {fileID: 0}
   tmp_NpcName: {fileID: 633875627}
@@ -2819,6 +2831,7 @@ MonoBehaviour:
   audioSrc: {fileID: 827624926}
   choiceTemplete: {fileID: 329066763}
   choiceGrid: {fileID: 1301604791}
+  sceneName: 
 --- !u!1 &964562738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4179,7 +4192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderText: {fileID: 301556399}
-  isClear: 0
 --- !u!1 &1301604791
 GameObject:
   m_ObjectHideFlags: 0
