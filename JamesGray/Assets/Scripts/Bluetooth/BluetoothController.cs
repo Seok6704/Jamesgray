@@ -32,7 +32,7 @@ public class BluetoothController
             return;
         }
 
-        instance = this;
+        //instance = this;
 
         //using문을 사용하여 메모리에서 필요없어진 시점에 제거
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) //안드로이드 플러그인에 포함된 UnityPlayer라는 객체 접근
@@ -66,16 +66,15 @@ public class BluetoothController
 
         BLE_Connection = false;
         debug_Once = false;
-
-
     }
 
     public static BluetoothController GetInstance()
     {
         if(ReferenceEquals(instance, null))
         {
-            Debug.Log("Instacne is not available. \n Use Constructor first.");  //인스턴스가 아직 생성안되었을때
-            return null;
+            //Debug.Log("Instacne is not available. \n Use Constructor first.");  //인스턴스가 아직 생성안되었을때
+            //return null;
+            instance = new BluetoothController();
         }
         return instance;
     }
@@ -107,6 +106,12 @@ public class BluetoothController
     {
         System.Object obj = msg;
         javaClassInstance.Call("makeToast", obj);
+    }
+
+    public void ReadCharacteristic(int num)
+    {
+        System.Object obj = num.ToString();
+        javaClassInstance.Call("ReadCharacteristic", obj);
     }
 
     void SetLog(string msg)
@@ -151,4 +156,12 @@ public class BluetoothController
         System.Object msg = "UNITY - " + permissionName + " Not Granted!";
         javaClassInstance.Call("SendLog", msg);
     }
+}
+
+interface IBLE
+{
+    void setLog(string msg);
+    void OutPutLog(string msg);
+    void SetBLEConnection(string msg);
+
 }

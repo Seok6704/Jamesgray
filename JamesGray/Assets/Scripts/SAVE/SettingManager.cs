@@ -10,6 +10,12 @@ public class SettingManager : MonoBehaviour
         get { return setting.onVirtualPad; }
         set { setting.onVirtualPad = value; }
     }
+    public static bool useController
+    {
+        get {return setting.useController;}
+        set {setting.useController = value;}
+    }
+    
     static SettingClass setting = new SettingClass();
 
     public SettingInterface settingInterface;
@@ -71,6 +77,7 @@ public class SettingManager : MonoBehaviour
         newSetting.volume = 1.0f;
         newSetting.difficultOption = 0;
         newSetting.onVirtualPad = false;
+        newSetting.useController = false;
 
         return newSetting;
     }
@@ -82,4 +89,5 @@ public class SettingClass
     public float volume;
     public int difficultOption;
     public bool onVirtualPad;
+    public bool useController;
 }
