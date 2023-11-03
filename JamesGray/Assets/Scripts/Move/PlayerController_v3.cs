@@ -42,6 +42,7 @@ public class PlayerController_v3 : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
 
         serial = new SerialCOM(9600, 8);    //9600hz 11번 포트
+        serial = SerialCOM.getInstance();   //인스턴스 가져오기
     }
 
     /*private void FixedUpdate() 
@@ -53,6 +54,7 @@ public class PlayerController_v3 : MonoBehaviour
     {
         int h = (int)dirVec.x, v = (int)dirVec.y;
         Vector3Int nextCell = currentCell;
+
 
         serial.GetInput();  //SerialCom 객체는 함수로 호출해야 값을 가져온다.
 
