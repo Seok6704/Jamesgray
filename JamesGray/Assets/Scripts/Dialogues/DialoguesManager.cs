@@ -158,6 +158,7 @@ public class DialoguesManager : MonoBehaviour
 
     void PrintDialogue()
     {
+        tmp_NpcName.text = dialogues.GetName(buffer.id);    //매 대사마다 NPC 이름 체크
         ClearDialogue();
         tmp_Dialogue.GetComponent<TextOutputManager>().Typing(CheckContent()); //현재 버퍼에 있는 것을 출력
     }
@@ -246,6 +247,7 @@ public class DialoguesManager : MonoBehaviour
         else if(command[0] == "OTHER")  //대화문에서 다른 NPC 대사가 출력할 수 있도록 하기. 현재 버퍼를 대체하는 방식으로 동작
         {
             buffer = new DialogueNode(temp, int.Parse(command[2]), int.Parse(command[3]), int.Parse(command[4]));
+            tmp_NpcName.text = dialogues.GetName(buffer.id);    //새로운 NPC로 이름 변경
             PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);   //새로운 버퍼로 영상 재생
             return temp;
         }
