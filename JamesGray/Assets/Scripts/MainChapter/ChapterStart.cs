@@ -1,37 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class JamesAlone : MonoBehaviour
+public class ChapterStart : MonoBehaviour
 {
+    Animator startAnim;
     GameObject Dialog;
     PlayerController_v3 pc;
-    bool flag;
+    bool flag = true;
+    
 
     void Start()
     {
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
+        startAnim = GameObject.Find("StartNPC").GetComponent<Animator>();
         Dialog = GameObject.Find("Panel_Dialog");
-        Invoke("OnJamesDialogue", 0.2f);
     }
 
-    void OnJamesDialogue()
+    public void AnimStart()
     {
-        flag = true;
-        pc.ChangeisOn();
+        startAnim.SetBool("OnStart", true);
+    }
+
+    public void DialogStart()
+    {
         Dialog.GetComponent<DialoguesManager>().SetDialogue(801, 0);
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 
-    public void OffJamesDialouge()
+    public void DialogOff()
     {
         if(flag) 
         {
             flag = false;
             pc.ChangeisOn();
         }
-        else return;
     }
-
 }

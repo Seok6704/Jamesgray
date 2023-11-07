@@ -5,12 +5,10 @@ using UnityEngine;
 public class prisonController : MonoBehaviour
 {
     Animator anim;
-    Renderer rose;
 
     void Start()
     {
         anim = GameObject.Find("Prison").GetComponent<Animator>();
-        rose = GameObject.Find("Rose").GetComponent<Renderer>();
     }
 
     public void UnlockPrison()
