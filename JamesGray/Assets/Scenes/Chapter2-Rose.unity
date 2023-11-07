@@ -3353,18 +3353,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 849907067}
-        m_TargetAssemblyTypeName: prisonController, Assembly-CSharp
-        m_MethodName: UnlockPrison
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1486070449}
         m_TargetAssemblyTypeName: RoseAlone, Assembly-CSharp
         m_MethodName: OffRoseDialouge
@@ -3377,6 +3365,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DialogueNext:
+    m_PersistentCalls:
+      m_Calls: []
+  DialoguePrevious:
+    m_PersistentCalls:
+      m_Calls: []
   playerStatus: {fileID: 0}
   sceneManager: {fileID: 1999456656}
   tmp_NpcName: {fileID: 633875627}
@@ -5282,7 +5276,7 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 2
+  m_MaskInteraction: 1
 --- !u!1839735485 &1504600538
 Tilemap:
   m_ObjectHideFlags: 0
