@@ -67,7 +67,7 @@ public class SAVEManager : MonoBehaviour
             temp.Close();
         }
 
-        jsonData = JsonUtility.ToJson(saves);
+        jsonData = JsonUtility.ToJson(saves, true);
 
         File.WriteAllText(filePath, jsonData);  //저장하기 덮어쓰기
     }
