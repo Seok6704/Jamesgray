@@ -10,6 +10,7 @@ using UnityEngine;
 public class Inventory
 {
     sbyte index;
+    InvSave save;   //저장데이터
     List<Page> pages;
     string savefilename = "INV01";
 
@@ -17,7 +18,8 @@ public class Inventory
 
     public Inventory()
     {
-        pages = LoadInventory();
+        save = LoadInventory();
+        pages = save.pages;
         index = 0;
         nullPage = new Page(-1, "", "", "")
         {
@@ -91,12 +93,12 @@ public class Inventory
     /// <param name="sprite">스프라이트 경로. 현재는 사용되지 않음</param>
     public void AddPage(string title, string contents, string context, string sprite = "")
     {
-        pages.Add(new Page((sbyte)pages.Count, sprite, title, contents)  //마지막 장 다음에 새 페이지 추가
+        pages.Add(new Page((sbyte)(pages.Count + 1), sprite, title, contents)  //마지막 장 다음에 새 페이지 추가
         {
             pageContext = context  //MAIN PAGE 생성
         });
     }
-    void SaveInventory()
+    public void SaveInventory()
     {
         string path = Application.persistentDataPath + "/saves/";
         string filePath = path + savefilename + ".json";
@@ -111,13 +113,14 @@ public class Inventory
             FileStream temp = File.Create(filePath);
             temp.Close();
         }
-
-        jsonData = JsonUtility.ToJson(pages);
+        save.pages = pages; //업데이트
+        jsonData = JsonUtility.ToJson(save, true);
+        Debug.Log(jsonData);
 
         File.WriteAllText(filePath, jsonData);  //저장하기 덮어쓰기
     }
 
-    List<Page> LoadInventory()
+    InvSave LoadInventory()
     {
         string path = Application.persistentDataPath + "/saves/";
         string filePath = path + savefilename + ".json";
@@ -129,10 +132,10 @@ public class Inventory
 
         string jsonData = File.ReadAllText(filePath);
 
-        return JsonUtility.FromJson<List<Page>>(jsonData);
+        return JsonUtility.FromJson<InvSave>(jsonData);
     }
 
-    List<Page> MakeDefaultPages()
+    InvSave MakeDefaultPages()
     {   
         string title = " \"탐정\" 제임스 그레이";
         string contents = "";
@@ -140,15 +143,18 @@ public class Inventory
         newPages.Add(new Page(1, "", title, contents) 
         {
             pageContext = "인적 사항"   //MAIN PAGE 생성
-        });  
-        return newPages;
+        });
+        InvSave inv = new InvSave
+        {
+            pages = newPages
+        };
+        return inv;
     }
-
-    private void OnDestroy() 
+    [System.Serializable]
+    public class InvSave
     {
-        SaveInventory();    
+        public List<Page> pages;
     }
-
     [System.Serializable]
     public class Page
     {
