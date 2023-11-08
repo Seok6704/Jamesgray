@@ -18,35 +18,85 @@ public class FixedFollowCamera : MonoBehaviour
 
     public UnityEngine.Tilemaps.Tilemap border;
 
-    bool dialogueOn = false;
+    bool dialogueOn = false, flag = false, isForce = false;
     public GameObject player;
+
+    PlayerController_v3 playerCon;
     Vector3 dialVec, playerPos;
-    Coroutine co;
+    //Coroutine co;
 
     Vector2 maxSize, minSize; //맵의 최소, 최대 좌표
 
     private void Awake() 
     {
-        playerPos = player.transform.position;
-        dialVec = new Vector3(x, y, -10f);
-        co = null;   
+        //x = 3.5f; //다른 씬 다 수정하기 귀찮으니 3.5 로 고정
+
+        //playerPos = player.transform.position;
+        dialVec = new Vector3(x, y, 0);
+        //co = null;   
+
         SetMapSize();
+    }
+
+    private void Start()
+    {
+        playerCon = player.GetComponent<PlayerController_v3>();
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
     }
 
     private void Update() 
     {
-        Vector3 pos;
-        playerPos = player.transform.position;
-        playerPos.z = -10;
+        //Vector3 pos;
+        //playerPos = player.transform.position;
+        //playerPos.z = -10;
 
-        if(ReferenceEquals(co, null))
+        //if(ReferenceEquals(co, null))
+        //{
+            //pos = new Vector3(Mathf.Clamp(playerPos.x, minSize.x, maxSize.x), Mathf.Clamp(playerPos.y, minSize.y, maxSize.y), playerPos.z);
+            //transform.position = pos;
+        //}
+
+
+        ////////////////////////////////////////////////////////////
+        //float dialspeed = 25;
+        //sbyte mod = 0;      // -128 ~ 127
+        Vector3 dir = player.transform.position - this.transform.position;  //방향 구하기
+        Vector3 dest = player.transform.position + dialVec;
+
+        if(dialogueOn)
         {
-            pos = new Vector3(Mathf.Clamp(playerPos.x, minSize.x, maxSize.x), Mathf.Clamp(playerPos.y, minSize.y, maxSize.y), playerPos.z);
-            transform.position = pos;
+            //mod = 1;
+            //dialspeed = dialSpeed;
+            //zoom = Mathf.Lerp(zoom, zoomlv, zoomSpeed);
+
+            transform.position = Vector3.MoveTowards(transform.position, dest, Time.deltaTime * dialSpeed);
         }
+        else
+        {
+            if(flag)  //다이얼로그 끝나고 원상복구시키기
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * dialSpeed);
+                if(transform.position.x - player.transform.position.x < 0.08 && transform.position.y - player.transform.position.y < 0.08)
+                {
+                    playerCon.SetCamera(false);
+                    flag = false;
+                }
+            }
+            else
+            {
+                transform.position = player.transform.position;
+            }
+        }
+
+        if(isForce)
+        {
+            transform.position = dest;
+        }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x, maxSize.x), Mathf.Clamp(transform.position.y, minSize.y, maxSize.y), -10);   //맵 경계 제한 적용
     }
 
-    IEnumerator MoveDialogue()
+    /*IEnumerator MoveDialogue()
     {
         Vector3 dest = player.transform.position + dialVec;
         while(true)
@@ -65,15 +115,30 @@ public class FixedFollowCamera : MonoBehaviour
         }
 
         co = null;
-    }
+    }*/
 
     public void SetFlag()   //이벤트로 호출되면 플레그를 반전, 다이얼로그에서 호출
     {
         dialogueOn = !dialogueOn;
-        if(ReferenceEquals(co, null)) 
-        {   
-            co = StartCoroutine(MoveDialogue());   
+
+        if(!dialogueOn)
+        {
+            playerCon.SetCamera(true);
+            flag = true;
         }
+        //if(ReferenceEquals(co, null)) 
+        //{   
+        //    co = StartCoroutine(MoveDialogue());   
+        //}
+    }
+
+    /// <summary>
+    /// 강제로 카메라가 플레이어를 따라가도록 설정합니다.
+    /// </summary>
+    /// <param name="enable">True = 활성화</param>
+    public void SetForceFollow(bool enable)
+    {
+        isForce = enable;
     }
 
     void SetMapSize()
