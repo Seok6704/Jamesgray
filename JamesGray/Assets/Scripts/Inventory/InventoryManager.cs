@@ -22,7 +22,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake() 
     {
-        if(inventory == null)   //싱글톤
+        if(ReferenceEquals(null, inventory))   //싱글톤
             inventory = new Inventory();
         
         //if(assetBundle == null)
