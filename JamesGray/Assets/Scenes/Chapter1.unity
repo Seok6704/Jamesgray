@@ -9709,6 +9709,7 @@ MonoBehaviour:
   audioSrc: {fileID: 1965333341}
   choiceTemplete: {fileID: 1741792099}
   choiceGrid: {fileID: 1358020341}
+  inv: {fileID: 0}
   sceneName: 
 --- !u!1 &913187224
 GameObject:
