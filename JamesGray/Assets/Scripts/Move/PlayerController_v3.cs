@@ -20,7 +20,7 @@ public class PlayerController_v3 : MonoBehaviour
     Coroutine co;
     Animator animator;
     GameObject scanObject, tempScanObj;
-    bool isOnAction, isOnFreeze;
+    bool isOnAction, isOnFreeze, isCamera;
 
     Rigidbody2D rigid;
     //RaycastHit2D rayHit;
@@ -35,7 +35,7 @@ public class PlayerController_v3 : MonoBehaviour
         co = null;
         dirVec = Vector3.down;  //기본적으로 아래를 보고있으므로...
 
-        isOnAction = false; isOnFreeze = false;
+        isOnAction = false; isOnFreeze = false; isCamera = false;
         tempScanObj = null;
         scanObject = null;
 
@@ -70,7 +70,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
 
 
-        if(co == null && !isOnFreeze)
+        if(co == null && !isOnFreeze && !isCamera)
         {
             //h = 0; 이곳에 있으면 달리는 도중 Idle로 전환되는 문제 발견
             //v = 0;
@@ -110,7 +110,7 @@ public class PlayerController_v3 : MonoBehaviour
                 v = 0;
             }
         }
-        if(isOnAction || isOnFreeze)
+        if(isOnAction || isOnFreeze || isCamera)
         {
             h = 0; v = 0;
         }
@@ -233,6 +233,16 @@ public class PlayerController_v3 : MonoBehaviour
     public void ToggleFreeze()    //플레이어 멈추기 입력을 받기를 멈춘다.
     {
         isOnFreeze = !isOnFreeze;
+    }
+
+
+    /// <summary>
+    /// 카메라가 다이얼로그로 인해 바뀔 때, 플레이어 컨트롤러 통제를 위한 함수. 카메라 모듈에서 사용
+    /// </summary>
+    /// <param name="isOn">활성화 비활성화 여부</param>
+    public void SetCamera(bool isOn)
+    {
+        isCamera = isOn;
     }
 
     public void ChangeisOn() // isOnFreeze, isOnAction 값을 조정하기 위한 함수(이석현 작성)
