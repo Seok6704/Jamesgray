@@ -325,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3005634655068138131, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 302
+      value: -278
       objectReference: {fileID: 0}
     - target: {fileID: 3005634655068138131, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book
       objectReference: {fileID: 0}
+    - target: {fileID: 5164914096969138667, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5675487745736646663, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
       propertyPath: m_SizeDelta.x
       value: 581
@@ -445,7 +449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5675487745736646663, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -43
+      value: 66.213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675487745736646663, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 5919034724656503799, guid: 2204c42eded831346b0bd0452d6ffa47, type: 3}
       propertyPath: m_SizeDelta.x
