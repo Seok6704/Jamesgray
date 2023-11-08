@@ -1656,6 +1656,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1674333194}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1486070446}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1612100323}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetPos2Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ToggleFreeze
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262375809145089332, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetPos2Parent
+      objectReference: {fileID: 0}
     - target: {fileID: 5949284766753927283, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
       propertyPath: m_Name
       value: Panel_Inventory
