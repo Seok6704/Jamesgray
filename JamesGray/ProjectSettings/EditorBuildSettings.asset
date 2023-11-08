@@ -71,6 +71,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter4.unity
     guid: dff31433cb6fc43278957f80421bc569
+  - enabled: 1
+    path: Assets/Scenes/Chapter3(top).unity
+    guid: 1c60446e53644034b8dacc55df4bff4c
+  - enabled: 1
+    path: Assets/Scenes/Minigame/3-1.unity
+    guid: fb7f890ec7aaf43e08c0410bf38f958b
+  - enabled: 1
+    path: Assets/Scenes/Minigame/3-2.unity
+    guid: 38aaf230a72e3f04b87c3aa2a21b4ac3
+  - enabled: 1
+    path: Assets/Scenes/Chapter3.5.unity
+    guid: 617f287a2e2ba6343a4022ef3f09be01
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 414dffcd8273d9d4a959b2cd56b6975a, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 72e61b65354e06f469d8538be6ee976d, type: 2}

@@ -1,0 +1,111 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 201,
+            "NPCName" : "관리자",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "재밌게 즐기셨나요?"                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 801,
+            "NPCName" : "제임스",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[OTHER] [제임스.... 도와주세요...!] [201] [1] [0]",
+                        "(숫자가 적힌 쪽지를 받았다. 쪽지엔 숫자 3이 적혀있다.)",
+                        "[OTHER] [제임스! 이러고 있을때가 아니에요!] [800] [1] [0]",
+                        "[OTHER] [일단 마을로 돌아가요. 제게 좋은 생각이 있어요! (다음을 누르시면 마을로 이동됩니다.)] [800] [1] [0]",
+                        "[CHAPTER] [이동합니다.] [CHAPTER4]"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 800,
+            "NPCName" : "로즈",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "이제 타워 최상층으로 이동하면 돼요!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}

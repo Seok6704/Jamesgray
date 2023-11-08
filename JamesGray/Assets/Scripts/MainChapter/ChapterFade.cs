@@ -15,10 +15,10 @@ public class ChapterFade : MonoBehaviour
         panel = GameObject.Find("Panel_Chapter");
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
         pc.ChangeisOn();
-        StartCoroutine("OnFadein");
+        StartCoroutine("OnFadeOut");
     }
     
-    IEnumerator OnFadein()
+    IEnumerator OnFadeOut()
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         float fadeCount = 0;
@@ -28,10 +28,10 @@ public class ChapterFade : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
             text.color = new Color(text.color.r, text.color.g, text.color.b, fadeCount);
         }
-        StartCoroutine("OnFadeOut");
+        StartCoroutine("OnFadein");
     }
 
-    IEnumerator OnFadeOut()
+    IEnumerator OnFadein()
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
         float fadeCount = 1;

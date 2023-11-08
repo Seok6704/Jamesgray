@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CoreTutorial : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class CoreTutorial : MonoBehaviour
     int incorrect = 0;
     int round = 0;
     bool isChoice = true; // 중복 클릭 방지
+    bool isClear = false;
+    public static bool isClear2 = false; // 3-2 클리어 확인용 변수
 
     void Start()
     {
         if(isMain) 
         {
-            allClear = 10;
+            allClear = 1;
             fail = 2;
         }
         else
@@ -41,7 +44,12 @@ public class CoreTutorial : MonoBehaviour
         {
             Debug.Log("correct!");
             round++;
-            if(round >= allClear) Debug.Log("Clear!"); // 클리어. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            if(round >= allClear)
+            {
+                if(isMain) isClear2 = true;
+                isClear = true;
+                Invoke("SceneChanger", 1f);
+            }
             else Invoke("TalkProblem", 2f);
         }
         else
@@ -49,8 +57,13 @@ public class CoreTutorial : MonoBehaviour
             Debug.Log("incorrect!");
             round++;
             incorrect++;
-            if(round >= allClear) Debug.Log("Clear!");
-            else if(incorrect >= fail) Debug.Log("Fail!"); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            if(round >= allClear)
+            {
+                if(isMain) isClear2 = true;
+                isClear = true;
+                Invoke("SceneChanger", 1f);
+            }
+            else if(incorrect >= fail) Invoke("SceneChanger", 1f); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
             else Invoke("TalkProblem", 2f);
         }
     }
@@ -105,5 +118,22 @@ public class CoreTutorial : MonoBehaviour
 
         }
 
+    }
+
+    void SceneChanger() //씬 전환 함수
+    {
+        SceneManager.UnloadSceneAsync(gameObject.scene);    //현재 씬 종료
+        SceneManager.SetActiveScene(LoadingScene.preScene); //기억하고 있던 이전 씬을 액티브로 전환
+        
+        GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+        for(int i = 0; i < objects.Length; i++)
+        {
+            if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
+            {
+                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
+                break;
+            }
+        }
     }
 }
