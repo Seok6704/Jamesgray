@@ -2109,6 +2109,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UI_Mover, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1552829595674916901, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552829595674916901, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1145
+      objectReference: {fileID: 0}
     - target: {fileID: 5949284766753927283, guid: b27492916b58fa146a67c4ff244022ba, type: 3}
       propertyPath: m_Name
       value: Panel_Inventory
