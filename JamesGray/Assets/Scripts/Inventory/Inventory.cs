@@ -13,10 +13,16 @@ public class Inventory
     List<Page> pages;
     string savefilename = "INV01";
 
+    Page nullPage;
+
     public Inventory()
     {
         pages = LoadInventory();
         index = 0;
+        nullPage = new Page(-1, "", "", "")
+        {
+            pageContext = ""
+        };
 
     }
     public int GetPageNum()   //페이지 정보 불러오기
@@ -24,25 +30,45 @@ public class Inventory
         return pages[index].GetNum();
     }
 
+    /// <summary>
+    /// 현재 인덱스의 페이지를 반환한다.
+    /// </summary>
+    /// <returns>현재 인덱스가 가르키고 있는 지점의 페이지를 반환</returns>
     public Page GetPage()
     {
         return pages[index];
     }
+    /// <summary>
+    /// 주어진 인덱스의 페이지를 반환한다. 만약 인덱스가 벗어났다면 null 반환
+    /// </summary>
+    /// <param name="i">받고자 하는 페이지의 인덱스</param>
+    /// <returns>해당 인덱스의 페이지</returns>
+    public Page GetPage(int i)
+    {
+        if(0 > i || i > pages.Count) return nullPage;
 
+        return pages[i - 1];
+    }
+
+    /// <summary>
+    /// 현재 인덱스의 값을 범위 내에서 감소.
+    /// </summary>
     public void MoveLeftPage()   //왼쪽 페이지로 이동
     {
         if(IsLeftEnd())
             return;
 
-        index -= 1;
+        index -= 2;
     }
-
+    /// <summary>
+    /// 현재 인덱스의 값을 범위 내에서 증가.
+    /// </summary>
     public void MoveRightPage()  //오른쪽 페이지로 이동
     {
         if(IsRightEnd())
             return;
 
-        index += 1;
+        index += 2;
     }
 
     public bool IsLeftEnd()
@@ -52,10 +78,24 @@ public class Inventory
     }
     public bool IsRightEnd()
     {
-        if(index == pages.Count - 1 || pages.Count == 0) return true;
+        if(index + 2 >= pages.Count || pages.Count == 0) return true;
         return false;
     }
 
+    /// <summary>
+    /// 마지막 페이지 다음에 새 페이지를 추가함.
+    /// </summary>
+    /// <param name="title">제목</param>
+    /// <param name="contents">내용</param>
+    /// <param name="context">페이지 종류</param>
+    /// <param name="sprite">스프라이트 경로. 현재는 사용되지 않음</param>
+    public void AddPage(string title, string contents, string context, string sprite = "")
+    {
+        pages.Add(new Page((sbyte)pages.Count, sprite, title, contents)  //마지막 장 다음에 새 페이지 추가
+        {
+            pageContext = context  //MAIN PAGE 생성
+        });
+    }
     void SaveInventory()
     {
         string path = Application.persistentDataPath + "/saves/";
@@ -94,13 +134,13 @@ public class Inventory
 
     List<Page> MakeDefaultPages()
     {   
-        //일단 필요하다고 생각되는 페이지 : 1. 목표, 2. 아이템, 3. 일지
+        string title = " \"탐정\" 제임스 그레이";
+        string contents = "";
         List<Page> newPages = new List<Page>();
-        for(int i = 0; i < 2; i++)  //디폴트로 3페이지 생성하기
+        newPages.Add(new Page(1, "", title, contents) 
         {
-            newPages.Add(new Page((sbyte)i) {pageContext = (CONTEXT.OBJECTIVE + i).ToString()});
-        }
-
+            pageContext = "인적 사항"   //MAIN PAGE 생성
+        });  
         return newPages;
     }
 
@@ -113,15 +153,18 @@ public class Inventory
     public class Page
     {
         public sbyte num;
-        public string pageContext;
-        public List<Content> lContents;
-        public List<Content> rContents;
+        public string pageContext;  //페이지 종류
+        public Content content; //페이지 내용용
+        //public List<Content> lContents;
+        //public List<Content> rContents;
         
-        public Page(sbyte num)
+        public Page(sbyte num, string sprite, string title, string contents)
         {
             this.num = num;
-            lContents = new List<Content>();
-            rContents = new List<Content>();
+            //lContents = new List<Content>();
+            //rContents = new List<Content>();
+            //this.content = new Content();
+            content = new Content("", title, contents); //스프라이트는 없음
         }
 
         public int GetNum()
@@ -132,13 +175,15 @@ public class Inventory
     [System.Serializable]
     public class Content
     {
-        public string sprite;       //보여줄 스프라이트 경로
+        public string sprite;       //보여줄 스프라이트 경로, 사용되지 않을예정
+        public string title; //제목
         public string content;      //인벤토리에서 설명으로 사용될 내용
-    }
 
-    public enum CONTEXT
-    {
-        OBJECTIVE,
-        JOURNAL
+        public Content(string sprite, string title, string content)
+        {
+            this.sprite = sprite;
+            this.title = title;
+            this.content = content;
+        }
     }
 }

@@ -37,6 +37,8 @@ public class DialoguesManager : MonoBehaviour
     public Button choiceTemplete;   //선택지 템플릿, Prefab으로 만들어야하나 일단 이걸로
     public GameObject choiceGrid;   //선택지가 모이게 될 그리드 그룹 레이아웃 
 
+    public InventoryManager inv;
+
     DEQ<DialogueNode> nextQ; Stack<DialogueNode> previousStack; //각각 이후 대화문, 이전 대화문
     DialogueNode buffer;  //버퍼, 위 큐 사이에 중간 역할 즉 현재 출력하고 있는 것을 의미
     bool isPrintDone;   //출력이 끝났는지 체크하는 변수 Sync용 변수
@@ -75,6 +77,8 @@ public class DialoguesManager : MonoBehaviour
         DataB = new List<string>();
 
         btnNum = -1;
+
+        inv = GameObject.FindAnyObjectByType<InventoryManager>();   //인벤토리 매니저 찾기
 
         //isTypeDone = true;
 
@@ -189,11 +193,15 @@ public class DialoguesManager : MonoBehaviour
 
                 "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
 
-                "[CHAPTER] [출력할 문장] [<이동할 챕터 씬 이름>]"
-                다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다. 두번째 []에는 대기 시간을 넣어야함.
+                "[CHAPTER] [" "] [<이동할 챕터 씬 이름>]"
+                다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다.
 
                 "[OTHER] [출력할 문장] [NPC ID] [LineID] [index]"  
                 다른 NPC의 대사 (영상)을 재생하고 싶을때 사용. 영상 경로를 제공해주어야 하기 때문에 위와 같이 인자값이 필요하다.
+
+                "[HINT] [힌트를 얻었다!] [<힌트 이름>] [<힌트 내용>]"
+                예시) "[HINT] ["힌트를 얻었다!"] [잃어버린 주민등록증] [제임스 그레이\n12345-6789012]"
+                주의! 중복 힌트 수령을 막기위해 반드시 한번만 호출되는 구조로 만들어야함! storyLine을 무조건 변경하는것을 추천
     */
 
     /// <summary>
@@ -250,6 +258,10 @@ public class DialoguesManager : MonoBehaviour
             tmp_NpcName.text = dialogues.GetName(buffer.id);    //새로운 NPC로 이름 변경
             PlayVideo(sceneName, buffer.id, buffer.lineID, buffer.index);   //새로운 버퍼로 영상 재생
             return temp;
+        }
+        else if(command[0] == "HINT")   //인벤토리에 추가
+        {
+            inv.AddPage(command[2], command[3], "힌트");
         }
 
         ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
