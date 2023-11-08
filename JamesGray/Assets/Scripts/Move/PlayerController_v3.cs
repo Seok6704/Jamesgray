@@ -110,7 +110,7 @@ public class PlayerController_v3 : MonoBehaviour
                 v = 0;
             }
         }
-        if(isOnAction)
+        if(isOnAction || isOnFreeze)
         {
             h = 0; v = 0;
         }
