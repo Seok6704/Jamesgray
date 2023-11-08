@@ -139,8 +139,8 @@ public class Inventory
 
     InvSave MakeDefaultPages()
     {   
-        string title = " \"탐정\" 제임스 그레이";
-        string contents = "";
+        string title = " ";
+        string contents = "\"탐정\" 제임스 그레이";
         List<Page> newPages = new List<Page>();
         newPages.Add(new Page(1, "", title, contents) 
         {
