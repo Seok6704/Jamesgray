@@ -125,6 +125,8 @@ public class Inventory
         string path = Application.persistentDataPath + "/saves/";
         string filePath = path + savefilename + ".json";
 
+        Debug.Log("세이브 경로 - " + filePath);
+
         if(!File.Exists(filePath))
         {
             return MakeDefaultPages();
