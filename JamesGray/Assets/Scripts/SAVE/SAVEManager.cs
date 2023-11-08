@@ -22,7 +22,19 @@ public class SAVEManager : MonoBehaviour
     [SerializeField]
     static bool isLoad = false;
     //List<GameObject> NPCs;
-    static SAVES saves;
+    static SAVES saves = null;
+
+    /// <summary>
+    /// 세이브 파일에 저장된 챕터명 프로퍼티
+    /// </summary>
+    public static string saveSceneName 
+    {
+        get {
+                if(ReferenceEquals(null, saves))    //세이브 파일이 없을경우
+                    return "";
+                return saves.chapter;
+            }
+    }
 
     private void Start() 
     {
