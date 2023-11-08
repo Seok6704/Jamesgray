@@ -20,9 +20,9 @@ public class InventoryManager : MonoBehaviour
     //static AssetBundleManager assetBundle;
     //static string bundleName = "inventory_assets";
 
-    private void Awake() 
+    private void Start() 
     {
-        if(ReferenceEquals(null, inventory))   //싱글톤
+        if(ReferenceEquals(null, inventory))
             inventory = new Inventory();
         
         //if(assetBundle == null)
@@ -96,6 +96,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OnDestroy() 
     {
+        inventory.SaveInventory();
         inventory = null;    
     }
 }
