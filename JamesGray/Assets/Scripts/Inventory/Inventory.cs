@@ -93,6 +93,10 @@ public class Inventory
     /// <param name="sprite">스프라이트 경로. 현재는 사용되지 않음</param>
     public void AddPage(string title, string contents, string context, string sprite = "")
     {
+        if(CheckExist(contents))    //만약 이미 있는 내용이면 반환
+        {
+            return;
+        }
         pages.Add(new Page((sbyte)(pages.Count + 1), sprite, title, contents)  //마지막 장 다음에 새 페이지 추가
         {
             pageContext = context  //MAIN PAGE 생성
@@ -151,6 +155,23 @@ public class Inventory
             pages = newPages
         };
         return inv;
+    }
+
+    /// <summary>
+    /// 내용이 일치하는 것이 있다면 존재 여부 반환
+    /// </summary>
+    /// <param name="data">비교할 내용</param>
+    /// <returns>존재한다면 참을 반환합니다.</returns>
+    bool CheckExist(string data)
+    {
+        foreach(Page p in pages)
+        {
+            if(p.content.content == data)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     [System.Serializable]
     public class InvSave
