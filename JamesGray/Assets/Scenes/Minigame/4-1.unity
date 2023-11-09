@@ -4856,7 +4856,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tileMap: {fileID: 2051956385}
-  speed: 0.02
+  speed: 0.015
   keyPad: {fileID: 1612100322}
 --- !u!114 &1486070447
 MonoBehaviour:
@@ -4882,6 +4882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77b996bd8632482dbe0a7d3356e3d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 369215514}
 --- !u!1 &1504600532
 GameObject:
   m_ObjectHideFlags: 0

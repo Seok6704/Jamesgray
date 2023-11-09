@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class NavigationGame : MonoBehaviour
 {
-    FixedFollowCamera cam;
+    public FixedFollowCamera cam;
 
     void Start()
     {
         cam.SetForceFollow(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
