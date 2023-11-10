@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NavigationGame : MonoBehaviour
 {
@@ -24,35 +23,65 @@ public class NavigationGame : MonoBehaviour
         switch (other.gameObject.name)
         {
             case "DB" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
+                pc.ChangeisOn();
+                Invoke("OnReset", 2f);
                 break;
             case "JS" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
+                pc.ChangeisOn();
+                Invoke("OnReset", 2f);
                 break;
             case "GS" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
+                pc.ChangeisOn();
+                Invoke("OnReset", 2f);
                 break;
             case "SG" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
+                pc.ChangeisOn();
+                Invoke("OnReset", 2f);
                 break;
             case "UR" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
+                pc.ChangeisOn();
+                Invoke("OnReset", 2f);
                 break;
-            case "BB" :
+            case "Start" :
                 if(round == 0) round++;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
                 break;
-            case "SS" :
+            case "BB" :
                 if(round == 1) round++;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
                 break;
-            case "GSA" :
+            case "SS" :
                 if(round == 2) round++;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 break;
-            case "SGA" :
+            case "GSA" :
                 if(round == 3) round++;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 4);
                 break; 
-            case "URA" :
+            case "SGA" :
                 if(round == 4) round++;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 5);
                 break;
+            case "End" :
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 7);
+                pc.ChangeisOn();
+                Invoke("EndGame", 2f);
+                break;
         }
+    }
+
+    void OnReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void EndGame()
+    {
+        SceneManager.LoadScene("Chapter1");
     }
 }
