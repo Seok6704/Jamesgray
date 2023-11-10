@@ -22,7 +22,7 @@ public class FixedFollowCamera : MonoBehaviour
     public GameObject player;
 
     PlayerController_v3 playerCon;
-    Vector3 dialVec, playerPos;
+    Vector3 dialVec, playerPos, borderPos;
     //Coroutine co;
 
     Vector2 maxSize, minSize; //맵의 최소, 최대 좌표
@@ -42,6 +42,7 @@ public class FixedFollowCamera : MonoBehaviour
     {
         playerCon = player.GetComponent<PlayerController_v3>();
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        borderPos = border.transform.position;
     }
 
     private void Update() 
@@ -95,7 +96,8 @@ public class FixedFollowCamera : MonoBehaviour
             playerCon.SetCamera(false);
         }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x, maxSize.x), Mathf.Clamp(transform.position.y, minSize.y, maxSize.y), -10);   //맵 경계 제한 적용
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x + borderPos.x, maxSize.x + borderPos.x), Mathf.Clamp(transform.position.y, minSize.y + borderPos.y, maxSize.y + borderPos.y), -10);   //맵 경계 제한 적용
+        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x, maxSize.x), Mathf.Clamp(transform.position.y, minSize.y, maxSize.y), -10);   //맵 경계 제한 적용
     }
 
     /*IEnumerator MoveDialogue()
@@ -154,6 +156,6 @@ public class FixedFollowCamera : MonoBehaviour
 
         maxSize.x = bound.xMax - width; maxSize.y = bound.yMax - height;    //카메라 이동 제한 좌표 추가
         minSize.x = bound.xMin + width; minSize.y = bound.yMin + height;
-        //Debug.Log(maxSize + "   "  + minSize);
+        //Debug.Log("CAMERA --- " + maxSize + "   "  + minSize);
     }
 }
