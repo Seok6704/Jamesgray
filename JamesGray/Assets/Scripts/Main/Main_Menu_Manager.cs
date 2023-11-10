@@ -21,6 +21,8 @@ public class Main_Menu_Manager : MonoBehaviour
     RectTransform rect;
     RectTransform canvas;
     Vector3 pos;
+
+    GameObject load;    //이어하기 버튼 객체
     void Start() 
     {
         rect = GetComponent<RectTransform>();
@@ -37,6 +39,15 @@ public class Main_Menu_Manager : MonoBehaviour
         {
             transform.GetChild(i).GetChild(0).GetComponent<Text_Fading>().SetTransparent();
         }
+
+        load = GameObject.Find("Btn_Load");
+
+        if(!GameObject.FindFirstObjectByType<SAVEManager>().IsSaveExist())
+        {
+            //load.SetActive(false);  //세이브 파일 없으면 치워버리기
+            load.transform.position = load.transform.position * 100000;
+        }
+        
     }
     public void ActiveEvent()
     {
