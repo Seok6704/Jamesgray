@@ -18,7 +18,7 @@ public class ChapterFade : MonoBehaviour
         StartCoroutine("OnFadeOut");
     }
     
-    IEnumerator OnFadeOut()
+    IEnumerator OnFadein()
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         float fadeCount = 0;
@@ -31,7 +31,7 @@ public class ChapterFade : MonoBehaviour
         StartCoroutine("OnFadein");
     }
 
-    IEnumerator OnFadein()
+    IEnumerator OnFadeOut()
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
         float fadeCount = 1;
