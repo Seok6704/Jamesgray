@@ -45,6 +45,18 @@ public class SAVEManager : MonoBehaviour
         }    
     }
 
+    public bool IsSaveExist()
+    {
+        string path = Application.persistentDataPath + "/saves/";
+        string filePath = path + savefilename + ".json";
+
+        if(File.Exists(filePath))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void SAVE()
     {
         List<GameObject> NPCs = FindByComponent<NPCManager>(FindObjectsOfType<GameObject>());
