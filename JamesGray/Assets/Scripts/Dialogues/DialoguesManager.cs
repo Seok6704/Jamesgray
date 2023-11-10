@@ -50,6 +50,8 @@ public class DialoguesManager : MonoBehaviour
     List<string> DataA, DataB;  //선택지 데이터를 저장하는 리스트
     sbyte btnNum; //클릭된 버튼 기억하기
 
+    GameObject nextBtn = null;
+
     //bool isTypeDone;    //버퍼에 있는 문장 출력 완료 여부
 
     [SerializeField]
@@ -84,6 +86,15 @@ public class DialoguesManager : MonoBehaviour
 
         tmp_Dialogue.GetComponent<TextOutputManager>().typeDone.AddListener(SetPrintDone);   //이벤트 등록
         tmp_Dialogue.GetComponent<TextOutputManager>().typeStart.AddListener(SetPrintNotDone);
+
+        foreach(Button btn in GetComponentsInChildren<Button>())    //자식들 중 버튼 오브젝트 전부 호출
+        {
+            if(btn.gameObject.name == "Btn_Next")   //다음 버튼 찾기
+            {
+                nextBtn = btn.gameObject;
+                break;
+            }
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -202,6 +213,9 @@ public class DialoguesManager : MonoBehaviour
                 "[HINT] [힌트를 얻었다!] [<힌트 이름>] [<힌트 내용>]"
                 예시) "[HINT] ["힌트를 얻었다!"] [잃어버린 주민등록증] [제임스 그레이\n12345-6789012]"
                 주의! 중복 힌트 수령을 막기위해 반드시 한번만 호출되는 구조로 만들어야함! storyLine을 무조건 변경하는것을 추천
+
+                "[NEVEREND] [출력할 문장]"
+                이 명령어를 만나면 다음 버튼이 비활성화되어 다음문장으로 가거나 종료를 할 수 없습니다.
     */
 
     /// <summary>
@@ -262,6 +276,11 @@ public class DialoguesManager : MonoBehaviour
         else if(command[0] == "HINT")   //인벤토리에 추가
         {
             inv.AddPage(command[2], command[3], "힌트");
+        }
+        else if(command[0] == "NEVEREND")
+        {
+            nextBtn.SetActive(false);
+            return temp;    //pre나 again으로 문장이 재호출되어도 명령어를 유지하기
         }
 
         ClearPre(); //명령문일 경우 Pre와 버퍼를 비운다. 선택지로 다이얼로그의 분기가 생기는데 뒤로 돌아가면 꼬일수도있기때문.
@@ -325,6 +344,7 @@ public class DialoguesManager : MonoBehaviour
         DestroyChoice();
         tmp_Dialogue.GetComponent<TextOutputManager>().StopTyping();    //만약 아직 타이핑 중인데 넘기기 동작이면 멈추기
         tmp_Dialogue.GetComponent<TextOutputManager>().ClearText();
+        nextBtn.SetActive(true);    //매 문장바다 true로 고정, NEVEREND 명령어 만날때는 false로 바뀌므로...
     }
     /// <summary>
     /// 초기화 함수
