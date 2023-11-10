@@ -76,7 +76,8 @@ public class FixedFollowCamera : MonoBehaviour
             if(flag)  //다이얼로그 끝나고 원상복구시키기
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * dialSpeed);
-                if(transform.position.x - player.transform.position.x < 0.08 && transform.position.y - player.transform.position.y < 0.08)
+                Vector3 tmp = transform.position;
+                if((tmp.x - player.transform.position.x < 0.08 && tmp.y - player.transform.position.y < 0.08) || (tmp.x >= maxSize.x || tmp.x <= minSize.x || tmp.y >= maxSize.y || tmp.y <= minSize.y))
                 {
                     playerCon.SetCamera(false);
                     flag = false;
