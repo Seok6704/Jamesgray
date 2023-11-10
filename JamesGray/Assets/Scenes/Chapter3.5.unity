@@ -10195,7 +10195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chapter 3
+  m_text: "Chapter 3\n<size=150>-\uD0C0\uC6CC \uB85C\uBE44-</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}

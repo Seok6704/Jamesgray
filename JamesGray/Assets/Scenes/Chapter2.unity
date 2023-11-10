@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 98562210}
   - component: {fileID: 98562212}
   - component: {fileID: 98562211}
+  - component: {fileID: 98562213}
   m_Layer: 8
   m_Name: Mom
   m_TagString: NPC
@@ -365,6 +366,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &98562213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98562209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC5C4\uB9C8"
+  ID: 203
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &106500077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,6 +2433,7 @@ GameObject:
   - component: {fileID: 368004765}
   - component: {fileID: 368004767}
   - component: {fileID: 368004766}
+  - component: {fileID: 368004768}
   m_Layer: 8
   m_Name: Counter1
   m_TagString: NPC
@@ -2514,6 +2534,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &368004768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368004764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC548\uB0B4\uC6D0"
+  ID: 202
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &369215509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,6 +4972,7 @@ GameObject:
   - component: {fileID: 732866457}
   - component: {fileID: 732866459}
   - component: {fileID: 732866458}
+  - component: {fileID: 732866460}
   m_Layer: 8
   m_Name: Woman
   m_TagString: NPC
@@ -5034,6 +5073,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &732866460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732866456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC5EC\uC790"
+  ID: 208
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &749102222
 GameObject:
   m_ObjectHideFlags: 0
@@ -5868,6 +5925,7 @@ GameObject:
   - component: {fileID: 874868223}
   - component: {fileID: 874868225}
   - component: {fileID: 874868224}
+  - component: {fileID: 874868226}
   m_Layer: 8
   m_Name: Worker0
   m_TagString: NPC
@@ -5968,6 +6026,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &874868226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874868222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC5F0\uAD6C\uC6D01"
+  ID: 205
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &886637697
 GameObject:
   m_ObjectHideFlags: 0
@@ -9802,6 +9878,7 @@ GameObject:
   - component: {fileID: 1356564072}
   - component: {fileID: 1356564075}
   - component: {fileID: 1356564073}
+  - component: {fileID: 1356564076}
   m_Layer: 8
   m_Name: Counter0
   m_TagString: NPC
@@ -9902,6 +9979,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1356564076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356564071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC548\uB0B4\uC6D0"
+  ID: 202
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &1358020341
 GameObject:
   m_ObjectHideFlags: 0
@@ -10155,7 +10250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chapter 2
+  m_text: "Chapter 2\n<size=150>-\uD0C0\uC6CC \uB85C\uBE44-</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
@@ -13016,6 +13111,7 @@ GameObject:
   - component: {fileID: 1612066543}
   - component: {fileID: 1612066545}
   - component: {fileID: 1612066544}
+  - component: {fileID: 1612066546}
   m_Layer: 8
   m_Name: Cleaner
   m_TagString: NPC
@@ -13116,6 +13212,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1612066546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612066542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uCCAD\uC18C\uBD80"
+  ID: 207
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1001 &1612100320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16438,6 +16552,7 @@ GameObject:
   - component: {fileID: 2038441454}
   - component: {fileID: 2038441456}
   - component: {fileID: 2038441457}
+  - component: {fileID: 2038441458}
   m_Layer: 8
   m_Name: StartNPC
   m_TagString: NPC
@@ -16570,6 +16685,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5015ce4ec909f34478ef1cd0f5bc0419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2038441458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038441452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uAD00\uB9AC\uC790"
+  ID: 201
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0
 --- !u!1 &2040536787
 GameObject:
   m_ObjectHideFlags: 0
@@ -31656,6 +31789,7 @@ GameObject:
   - component: {fileID: 2137746955}
   - component: {fileID: 2137746957}
   - component: {fileID: 2137746956}
+  - component: {fileID: 2137746958}
   m_Layer: 8
   m_Name: Worker1
   m_TagString: NPC
@@ -31756,3 +31890,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2137746958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137746954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9871c731b75dab48a1f23ceb88347ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
+  s_NPC_Name: "\uC5F0\uAD6C\uC6D02"
+  ID: 206
+  i_Story: 0
+  b_visited: 0
+  isAlready: 0

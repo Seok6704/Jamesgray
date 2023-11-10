@@ -8455,7 +8455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chapter 1
+  m_text: "Chapter 1\n<size=150>-\uD640\uB9AC\uBAB0\uB9AC \uB9C8\uC744-</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}

@@ -122,6 +122,238 @@
                     ]
                 }
             ]
+        },
+        {
+            "ID" : 202,
+            "NPCName" : "안내원",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "홀리몰리 타워에 어서오세요~ 무엇을 도와드릴까요?"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 203,
+            "NPCName" : "엄마",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "타워 구경 재밌었지?",
+                        "[OTHER] [네! 재밌었어요! 다음에 또 와요!] [204] [1] [0]"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 204,
+            "NPCName" : "아이",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "네! 재밌었어요! 다음에 또 와요!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 205,
+            "NPCName" : "연구원1",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "어....? 서버가 왜 뜨겁지...?"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 206,
+            "NPCName" : "연구원2",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "서버실이 평소보다 더운데...?"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 207,
+            "NPCName" : "청소부",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "오늘은 깨끗~하구만!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 208,
+            "NPCName" : "여자",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "여기 자판기 커피 맛있는데?"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
         }
     ]
 }
