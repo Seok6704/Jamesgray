@@ -7,13 +7,12 @@ public class NavigationGame : MonoBehaviour
 {
     public FixedFollowCamera cam;
     int round = 0;
-    GameObject Dialog;
+    public GameObject Dialog;
     PlayerController_v3 pc;
 
     void Start()
     {
         cam.SetForceFollow(true);
-        Dialog = GameObject.Find("Panel_Dialog");
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
     }
 
@@ -82,6 +81,6 @@ public class NavigationGame : MonoBehaviour
 
     void EndGame()
     {
-        SceneManager.LoadScene("Chapter1");
+        SceneManager.LoadScene("Chapter4-1");
     }
 }
