@@ -91,6 +91,7 @@ public class FixedFollowCamera : MonoBehaviour
         if(isForce)
         {
             transform.position = dest;
+            playerCon.SetCamera(false);
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x, maxSize.x), Mathf.Clamp(transform.position.y, minSize.y, maxSize.y), -10);   //맵 경계 제한 적용
