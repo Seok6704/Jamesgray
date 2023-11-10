@@ -94,6 +94,8 @@ public class SAVEManager : MonoBehaviour
         jsonData = JsonUtility.ToJson(saves, true);
 
         File.WriteAllText(filePath, jsonData);  //저장하기 덮어쓰기
+
+        GameObject.FindObjectOfType<InventoryManager>().SaveInventory();    //세이브파일과 동기화를 위해 세이브 파일이 저장될때 함께 저장되도록함.
     }
 
     public void LOAD()

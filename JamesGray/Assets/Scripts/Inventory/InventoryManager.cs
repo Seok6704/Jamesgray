@@ -94,9 +94,11 @@ public class InventoryManager : MonoBehaviour
         animator.SetTrigger("RIGHT");
     }
 
-    private void OnDestroy() 
+    /// <summary>
+    /// 인벤토리 내용을 저장하도록 명령. 세이브 파일과 동기화를 위해 세이브매니저에서만 호출하도록 할것.
+    /// </summary>
+    public void SaveInventory()
     {
         inventory.SaveInventory();
-        inventory = null;    
     }
 }
