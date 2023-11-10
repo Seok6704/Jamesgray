@@ -187,7 +187,8 @@ public class DialoguesManager : MonoBehaviour
     명령문 구조 : "[명령종류] [출력할대사] ..."
     - 예시 -
                 "[CHOICE] [선택지 출력예시, 1 번 - 미니게임 1-1 실행, 2 번 - 종료, 3 번 - 코덱스] [1.네] [MINIGAME] [1-1] [] [] , [2.아니오] [END] [] [] [] , [3.궁금한거물어보기] [CODEX] [0] [] []"
-
+                '
+                MINIGAME_SCENE 일 경우 그냥 챕터로 넘어가도록함 no additive
                 3번째 []부터는 5개의 []가 하나의 선택지로 취급, [][][][][] 가 몇개 있냐에 따라 선택지 갯수가 달라진다.
                 [출력할 대사] [명령문] [데이터] [내부데이터] [내부데이터] 형식
                 MINIGAME 다음에는 해당 미니게임 씬 이름이 필요, 내부데이터는 첫번째가 성공시, 두번째가 실패시의 값을 가짐 , 불러오고 싶은 다이얼로그 storyline값이 필요
@@ -471,7 +472,7 @@ public class DialoguesManager : MonoBehaviour
         {
             SetCodex(int.Parse(data));
         }
-        else if(command == "CHAPTER")
+        else if(command == "CHAPTER" || command == "MINIGAME_SCENE")
         {
             LoadScene(data, 0.1f ,false);
         }
