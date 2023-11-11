@@ -15,8 +15,9 @@ public class PasswordGame : MonoBehaviour
     List<int> password = new List<int> (); // 비밀번호 리스트 0~9
     int ran; // 랜덤 변수
     public TextMeshProUGUI text; // 입력된 암호 텍스트
-    string answer = "39"; // 정답 암호 텍스트
+    string answer = "36"; // 정답 암호 텍스트
     int now; // 현재 리스트에서 꺼낸 암호
+    bool fail;
 
     void Start()
     {
@@ -38,15 +39,18 @@ public class PasswordGame : MonoBehaviour
 
     public void EnterClick() // 입력 버튼 클릭
     {
-        text.text += now.ToString(); // 현재 암호 텍스트에 입력
-        StopCoroutine("EnterPassword");
-        SetpWord();
-        StartCoroutine("EnterPassword");
-        
-        if(text.text == answer)
+        if(!fail)
         {
-            Debug.Log("정답입니다.");
+            text.text += now.ToString(); // 현재 암호 텍스트에 입력
             StopCoroutine("EnterPassword");
+            SetpWord();
+            StartCoroutine("EnterPassword");
+        
+            if(text.text == answer)
+            {
+                Debug.Log("정답입니다.");
+                StopCoroutine("EnterPassword");
+            }
         }
     }
 
@@ -54,8 +58,16 @@ public class PasswordGame : MonoBehaviour
     {
         while(true)
         {
+            if(text.text.Length >= 3)
+            {
+                fail = true;
+                Debug.Log("패스워드 길이 초과");
+                Debug.Log("실패입니다.");
+                StopCoroutine("EnterPassword");
+            }
             if(password.Count <= 0)
             {
+                fail = true;
                 Debug.Log("숫자 끝!");
                 Debug.Log("실패하셨습니다.");
                 StopCoroutine("EnterPassword");
