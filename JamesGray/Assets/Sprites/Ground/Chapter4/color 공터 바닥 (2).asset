@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Crosswalk
+  m_Name: "color \uACF5\uD130 \uBC14\uB2E5 (2)"
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 1db3190fc15003a498b1c3b697c0c918, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77dc6e2b7f6bea6468f0f0ad264f9fc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
