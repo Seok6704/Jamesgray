@@ -26,6 +26,8 @@ public class BluetoothController
 
     public BluetoothController()
     {
+        if (Application.platform != RuntimePlatform.Android) return;
+
         if(!ReferenceEquals(null, instance))
         {   
             Debug.Log("Bluetooth Instacne is Already available\n Use instance method instead.");   //이미 객체가 존재한다면
@@ -111,7 +113,12 @@ public class BluetoothController
     public void ReadCharacteristic(int num)
     {
         System.Object obj = num.ToString();
-        javaClassInstance.Call("ReadCharacteristic", obj);
+        javaClassInstance.Call("ReadCharacteristic");
+    }
+    public void SendLog(string msg)
+    {
+        System.Object obj = msg;
+        javaClassInstance.Call("SendLog", obj);
     }
 
     void SetLog(string msg)

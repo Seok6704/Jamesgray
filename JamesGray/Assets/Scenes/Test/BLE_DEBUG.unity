@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614957723}
-  - component: {fileID: 1614957722}
+  - component: {fileID: 1614957724}
   m_Layer: 0
   m_Name: M
   m_TagString: Untagged
@@ -343,19 +343,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1614957722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614957721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 693beb77812e91849a2e04ef93228f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t: {fileID: 879932154}
 --- !u!4 &1614957723
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +358,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1614957724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614957721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d172cfadfb9c54fa4b8268a4a9500b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BLE_Connection: 0
+  BLE_Ready2Read: 0
 --- !u!1 &1639590648
 GameObject:
   m_ObjectHideFlags: 0
