@@ -1,0 +1,74 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 801,
+            "NPCName" : "제임스",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "이곳은 아무것도 없는 것 같군. 층 수를 다시 확인해 봐야겠어."                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 200,
+            "NPCName" : "엘리베이터",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[CHOICE] [엘리베이터를 이용하시겠습니까?] [1. 네] [CHAPTER] [Chapter2] [1] [2] [2. 아니오] [END] [] [] []"                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}

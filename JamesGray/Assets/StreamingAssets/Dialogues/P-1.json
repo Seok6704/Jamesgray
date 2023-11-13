@@ -1,0 +1,57 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 850,
+            "NPCName" : "기계장치",
+
+            "defaultLine" :
+            [
+                "..."
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+                    
+                    "content" :
+                    [
+                        "사용자의 정보가 확인되었습니다. 코어 동작 시스템을 시작하시겠습니까?"
+                    ]
+                },
+                {
+                    "lineID" : 1,
+                    
+                    "content" :
+                    [
+                        "코어 동작을 시작합니다."
+                    ]
+                },
+                {
+                    "lineID" : 2,
+                    
+                    "content" :
+                    [
+                        "코어 동작을 취소하셨습니다."
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}

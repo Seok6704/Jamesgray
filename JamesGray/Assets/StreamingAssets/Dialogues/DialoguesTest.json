@@ -1,0 +1,78 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 101,
+            "NPCName" : "POP Cat",
+
+            "defaultLine" :
+            [
+                "..."
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+                    
+                    "content" :
+                    [
+                        "[POP]안녕!",
+                        "[UNPOP]이걸 보고 있다면[POP] Json 불러오기에 성공한거야![UNPOP]",
+                        "DEFAULT TEST",
+                        "[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP[0]POP[1]POP"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 102,
+            "NPCName" : "아이",
+
+            "defaultLine" :
+            [
+                "..."
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+                    
+                    "content" :
+                    [
+                        "나는 결국 '그것'을 작동시키기 위해 왔다. 그 누구도 아닌 나만이 할 수 있는 일이다. 이 코어는 내 힘으로 만들어 진 것이니까...!",
+                        "아버지를 막기 위해서는 이게 최선이었어... 이제 저 코어를 다시 없애기만 하면... 다시 모든게 정상으로 돌아올거야... 그런데 머리가 너무 어지러운걸...."
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}

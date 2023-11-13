@@ -1,0 +1,389 @@
+{
+    "spritePath" : "Assets/Sprites/NPC/",
+    "auidoPath" : "Assets/Sounds/NPC/",
+    
+    "NPC" : 
+    [
+        {
+            "ID" : 200,
+            "NPCName" : "엘리베이터",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[CHOICE] [최상층으로 이동하시겠습니까?] [1. 네] [CHAPTER] [CHAPTER3(top)] [1] [2] [2. 아니오] [END] [] [] []"                      
+                    ]
+                },
+                {
+                    "lineID" : 1,
+                    
+                    "content" :
+                    [
+                        "[SET] [이동합니다.] [-1]"
+                    ]
+                },
+                {
+                    "lineID" : 2,
+                    
+                    "content" :
+                    [
+                        "[SET] [목적지를 다시 한번 확인해 주십시오.] [0]"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 201,
+            "NPCName" : "관리자",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "재밌게 즐기시고 가세요."                      
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 801,
+            "NPCName" : "제임스",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "[OTHER] [이제 타워 최상층으로 이동하면 돼요!] [800] [1] [0]",
+                        "[OTHER] [엘리베이터를 이용하면 쉽게 갈 수 있어요.] [800] [1] [0]"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 800,
+            "NPCName" : "로즈",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "이제 타워 최상층으로 이동하면 돼요!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 202,
+            "NPCName" : "안내원",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "홀리몰리 타워에 어서오세요~ 무엇을 도와드릴까요?"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 203,
+            "NPCName" : "엄마",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "이제 어디를 가볼까?",
+                        "[OTHER] [음.... 배고파요! 밥 먹으러 가요!] [204] [1] [0]"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 204,
+            "NPCName" : "아이",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "음.... 배고파요! 밥 먹으러 가요!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 205,
+            "NPCName" : "연구원1",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "어...?! 어....?!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 206,
+            "NPCName" : "연구원2",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "하.... 큰일났다...."
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 207,
+            "NPCName" : "청소부",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "오늘은 깨끗~하구만!"
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        },
+        {
+            "ID" : 208,
+            "NPCName" : "여자",
+            
+            "defaultLine" :
+            [
+                ""
+            ],
+
+            "storyLine" : 
+            [
+                {
+                    "lineID" : 0,
+            
+                    "content" :
+                    [
+                        "이런데서 자판기 운영하면 얼마나 벌려나..."
+                    ]
+                }
+            ],
+
+            "codex" :
+            [
+                {
+                    "num" : 0,
+
+                    "codexes" :
+                    [
+                        "코덱스 출력"
+                    ]
+                }
+            ]
+        }
+    ]
+}
