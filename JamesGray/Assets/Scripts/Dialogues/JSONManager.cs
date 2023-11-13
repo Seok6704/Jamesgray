@@ -80,8 +80,18 @@ public class JSONManager
 
     public JSONManager(string sceneName)
     {
-        string filePath = Application.dataPath + "/Data/Dialogues/" + sceneName + ".json";
-        if(!File.Exists(filePath)) return;
+        //string filePath = Application.dataPath + "/Data/Dialogues/" + sceneName + ".json";
+        string filePath = Application.streamingAssetsPath + "/Dialogues/" + sceneName + ".json";
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            WWW w = new WWW(filePath);
+            while(!w.isDone);
+            string androidJson = w.text;
+            dial = JsonUtility.FromJson<Dialogue>(androidJson);
+            dial.SetDictionary();
+            return;
+        }
+        else if(!File.Exists(filePath)) return; 
         string jsonText = File.ReadAllText(filePath);
         dial = JsonUtility.FromJson<Dialogue>(jsonText);
 
