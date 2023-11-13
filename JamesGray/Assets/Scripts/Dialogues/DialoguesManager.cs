@@ -205,7 +205,7 @@ public class DialoguesManager : MonoBehaviour
 
                 "[GET] [<아이템이름> 아이템을 얻었다!] [<Item ID>]"
 
-                "[CHAPTER] [" "] [<이동할 챕터 씬 이름>]"
+                "[CHAPTER] ["NPC이름"] [<이동할 챕터 씬 이름>]"
                 다른 챕터로 이동하고자 할때 사용, 해당 명령문을 만나면 바로 이동합니다.
 
                 "[OTHER] [출력할 문장] [NPC ID] [LineID] [index]"  
@@ -265,6 +265,7 @@ public class DialoguesManager : MonoBehaviour
         else if(command[0] == "CHAPTER")
         {
             //LoadScene(command[2], float.Parse(command[1]), false);
+            tmp_NpcName.text = command[1];  
             LoadScene(command[2], 0f, false);   //바로 씬전환
         }
         else if(command[0] == "OTHER")  //대화문에서 다른 NPC 대사가 출력할 수 있도록 하기. 현재 버퍼를 대체하는 방식으로 동작
