@@ -44,4 +44,9 @@ public class ChapterStart : MonoBehaviour
             pc.ChangeisOn();
         }
     }
+
+    public void OffForce()
+    {
+        GameObject.Find("force").SetActive(false);
+    }
 }

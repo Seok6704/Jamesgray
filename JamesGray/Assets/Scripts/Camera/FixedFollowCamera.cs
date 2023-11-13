@@ -12,9 +12,9 @@ public class FixedFollowCamera : MonoBehaviour
     [Range(-15, 15)]
     public float y;
 
-    [Header("다이얼로그 위치 이동 속도")]
-    [Range(1, 25f)]
-    public float dialSpeed;
+    /*[Header("다이얼로그 위치 이동 속도")]
+    [Range(1, 25f)]*/
+    float dialSpeed;
 
     public UnityEngine.Tilemaps.Tilemap border;
 
@@ -33,6 +33,7 @@ public class FixedFollowCamera : MonoBehaviour
 
         //playerPos = player.transform.position;
         dialVec = new Vector3(x, y, 0);
+        dialSpeed = 40f;
         //co = null;   
 
     }
