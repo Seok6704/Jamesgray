@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DadFightGame : MonoBehaviour
 {
     public GameObject Dialog;
-    bool left, right, up, down; // 패턴 회피용 변수
     int ran;
     bool phase2;
-    int dadHp = 10;
-    int myHp = 3;
+    public static int dadHp;
+    static int myHp;
+    public static Slider nDadHp, nMyHp;
+    PlayerController_v3 pc;
+
+    void Start()
+    {
+        dadHp = 10;
+        myHp = 5;
+        nDadHp = GameObject.Find("DHpBar").GetComponent<Slider>();
+        nMyHp = GameObject.Find("JHpBar").GetComponent<Slider>();
+        pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
+    }
 
     public void OnStart()
     {
@@ -21,10 +33,16 @@ public class DadFightGame : MonoBehaviour
     {
         if(myHp <= 0)
         {
-            Debug.Log("게임 오버");
+            pc.ChangeisOn();
+            Invoke("OnReset", 2f);
             return;
         }
         if(dadHp <= 5) phase2 = true;
+        if(dadHp <= 0)
+        {
+            pc.ChangeisOn();
+            Invoke("EndGame", 2f);
+        }
         ran = Random.Range(0, 4);
         switch (ran)
         {
@@ -45,15 +63,15 @@ public class DadFightGame : MonoBehaviour
 
     void AttackVoice(int num)
     {
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(803, num);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(804, num);
         Debug.Log("문제 : " + num);
-        BtnActive();
         if(!phase2) StartCoroutine(RoseVoice(num));
         StartCoroutine(OnAttackEffect(num));
     }
 
     IEnumerator RoseVoice(int num)
     {
+        Debug.Log("로즈 대사");
         Dialog.GetComponent<DialoguesManager>().SetDialogue(800, num);
         yield break;
     }
@@ -61,70 +79,22 @@ public class DadFightGame : MonoBehaviour
     IEnumerator OnAttackEffect(int num)
     {
         yield return new WaitForSecondsRealtime(2f);
-        BtnDeActive();
         GameObject.Find("Attack").transform.GetChild(num).gameObject.SetActive(true);
-        GameObject.Find("Attack").transform.GetChild(num).gameObject.GetComponent<Animator>().SetTrigger("OnAttack");
     }
 
-    void BtnActive()
+    public static void isDamage()
     {
-        GameObject.Find("Panel_Minigame").transform.GetChild(1).gameObject.SetActive(true);
-        left = false;
-        right = false;
-        up = false;
-        down = false;
+        myHp--;
+        nMyHp.value = myHp;
     }
 
-    void BtnDeActive()
+    void OnReset()
     {
-        GameObject.Find("Panel_Minigame").transform.GetChild(1).gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void isDamage()
+    void EndGame()
     {
-        switch (ran)
-        {
-            case 0:
-                if(down) dadHp--;
-                else myHp--;
-                break;
-            case 1:
-                if(up) dadHp--;
-                else myHp--;
-                break;
-            case 2:
-                if(left) dadHp--;
-                else myHp--;
-                break;
-            case 3:
-                if(right) dadHp--;
-                else myHp--;
-                break;
-        }
-        Debug.Log("아버지 체력 : " + dadHp);
-        Debug.Log("내 체력 : " + myHp);
-    }
-
-    public void BtnClick()
-    {
-        switch (EventSystem.current.currentSelectedGameObject.name)
-        {
-            case "Left":
-                left = true;
-                BtnDeActive();
-                break;
-            case "Up":
-                up = true;
-                BtnDeActive();
-                break;
-            case "Right":
-                right = true;
-                BtnDeActive();
-                break;
-            case "Down":
-                down = true;
-                BtnDeActive();
-                break;
-        }
+        SceneManager.LoadScene("4-5(Clear)");
     }
 }

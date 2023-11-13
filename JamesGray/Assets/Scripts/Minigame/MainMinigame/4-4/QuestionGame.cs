@@ -12,7 +12,7 @@ public class QuestionGame : MonoBehaviour
     string recordText; // 녹음된 텍스트
     List<string> answerList = new List<string> {"홀리 몰리.", "제임스.", "로즈.", "자동차.", "타워."};
     string correctText;
-    bool isClear;
+    public static bool isClear;
     int ran, count = 0;
 
     void Start()
@@ -91,7 +91,7 @@ public class QuestionGame : MonoBehaviour
         if(recordText == correctText) 
         {
             answerList.RemoveAt(ran);
-            if(count >= 3)
+            if(count >= 1)
             {
                 isClear = true;
                 Invoke("SceneChanger", 2f);
