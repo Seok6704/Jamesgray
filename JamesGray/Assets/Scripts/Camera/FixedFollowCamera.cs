@@ -150,7 +150,7 @@ public class FixedFollowCamera : MonoBehaviour
     {
         Vector2 bias = new Vector2(-3.5f, -1);                  //bias를 사용하여 챕터 1에서 맵이 짤리는 문제 방지
         float height = Camera.main.orthographicSize;            //orthographicSize * 2 = Height // 우리가 필요한 것은 중간값이므로 * 2생략
-        height = 5; //임시방편... 왜 씬을 Additive로 불러오면 카메라 값이 변경되는 것인지 불분명...
+        //height = 5; //임시방편... 왜 씬을 Additive로 불러오면 카메라 값이 변경되는 것인지 불분명...
         float width = height * Screen.width / Screen.height;    //Height * aspect = Width //위에서 Height에 / 2를 하였으므로 너비의 중간값을 구할수있다.
         height += bias.y; width += bias.x;
 
