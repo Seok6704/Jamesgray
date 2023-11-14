@@ -71,13 +71,15 @@ public class ChessGame : MonoBehaviour
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
             isClear = true;
-            Invoke("NextScene", 1f);
+            ClearAndFail.GameClear();
+            Invoke("NextScene", 3f);
         }
         if(count >= 15)
         {
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 4);
             isClear = false;
-            Invoke("SceneChanger", 1f);
+            ClearAndFail.GameFail();
+            Invoke("SceneChanger", 3f);
         }
     }
 
