@@ -4298,7 +4298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1.8
   y: 0
-  dialSpeed: 20
   border: {fileID: 1504600538}
   player: {fileID: 1486070434}
 --- !u!1 &385042510
@@ -13462,7 +13461,7 @@ Transform:
   m_GameObject: {fileID: 1269702560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.69, y: -1.38, z: 9.820742}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1995092630}
@@ -13502,18 +13501,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.92, y: 1.6}
+    oldSize: {x: 6, y: 5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 1.4}
+  m_Size: {x: 6, y: 4}
   m_EdgeRadius: 0
 --- !u!212 &1269702564
 SpriteRenderer:
@@ -16690,6 +16689,9 @@ MonoBehaviour:
   tileMap: {fileID: 2051956385}
   speed: 0.02
   keyPad: {fileID: 1612100322}
+  BLE_Connection: 0
+  BLE_Ready2Read: 0
+  BLE_Scan: 0
 --- !u!114 &1486070447
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1424,7 +1424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1.8
   y: 0
-  dialSpeed: 20
   border: {fileID: 1504600538}
   player: {fileID: 1486070434}
 --- !u!1 &422280022
@@ -5806,6 +5805,9 @@ MonoBehaviour:
   tileMap: {fileID: 2051956385}
   speed: 0.015
   keyPad: {fileID: 1612100322}
+  BLE_Connection: 0
+  BLE_Ready2Read: 0
+  BLE_Scan: 0
 --- !u!114 &1486070447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11499,8 +11501,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996794124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.96, y: -4.7137184, z: 1.7615278}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 2.18, y: -4.65, z: 1.7615278}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 466295614}
