@@ -36,27 +36,22 @@ public class QuestionGame : MonoBehaviour
         switch (answerList[ran])
         {
             case "홀리 몰리.":
-                Debug.Log("저희 마을의 이름은 무엇입니까?");
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
                 correctText = answerList[ran];
                 break;
             case "제임스.":
-                Debug.Log("당신이 플레이하고 있는 캐릭터의 이름은 무엇입니까?");
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
                 correctText = answerList[ran];
                 break;
             case "로즈.":
-                Debug.Log("당신과 동행하고 있는 아이의 이름은 무엇입니까?");
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 correctText = answerList[ran];
                 break;
             case "자동차.":
-                Debug.Log("제임스가 저희 마을에 올 때 이용한 수단은 무엇이었습니까?");
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 4);
                 correctText = answerList[ran];
                 break;
             case "타워.":
-                Debug.Log("아이를 구출한 장소는 어디였습니까?");
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 5);
                 correctText = answerList[ran];
                 break;
@@ -81,6 +76,7 @@ public class QuestionGame : MonoBehaviour
     {
         voice.stopRecording();
         voice.CallPost(); // 녹음된, wav 파일 전송
+        orderText.text = "현재 입력된 명령 : 명령 입력중....";
         StartCoroutine(GetText());
     }
 
@@ -100,6 +96,7 @@ public class QuestionGame : MonoBehaviour
             if(count >= 3)
             {
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 2f);
             }
             else

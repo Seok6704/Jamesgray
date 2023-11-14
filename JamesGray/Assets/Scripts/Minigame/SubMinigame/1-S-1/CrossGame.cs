@@ -59,13 +59,13 @@ public class CrossGame : MonoBehaviour
 
             if(Move && pos.x <= 2150 && !M_Stop) // 버튼이 클릭되고 있고, Walker가 도착점에 도착하지 않았을 경우, 위치 이동.
             {
-                transform.Translate(new Vector3(10f, 0, 0));
+                transform.Translate(new Vector3(8f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
             }
 
             else if( Move && pos.x <= 2150 && M_Stop ) // 버튼이 클릭되고 있고, 음악이 멈춰있는 도중일 경우
             {
-                transform.Translate(new Vector3(10f, 0, 0));
+                transform.Translate(new Vector3(8f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
