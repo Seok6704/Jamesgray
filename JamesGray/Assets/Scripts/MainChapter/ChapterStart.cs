@@ -38,6 +38,7 @@ public class ChapterStart : MonoBehaviour
 
     public void DialogOff()
     {
+        if(!isFirst) return;
         if(flag) 
         {
             flag = false;

@@ -40,6 +40,7 @@ public class SAVEManager : MonoBehaviour
     {
         if(isLoad)
         {
+            Debug.Log(isLoad);
             SetNPCs();
             isLoad = false;
         }    
@@ -134,6 +135,8 @@ public class SAVEManager : MonoBehaviour
             NPCs[i].GetComponent<NPCManager>().i_Story = saves.npcs[i].storyLine;
             NPCs[i].GetComponent<PositionManager>().SetPos(saves.npcs[i].GetPos());
         }
+
+        saves = null;
     }
 
     /// <summary>
