@@ -5806,7 +5806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 1597382653}
   f_fading_speed: 0.003
-  f_max: 0.5
+  f_max: 1
   f_min: 0
 --- !u!1 &1623964614
 GameObject:
@@ -6703,7 +6703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 1734197218}
   f_fading_speed: 0.003
-  f_max: 0.5
+  f_max: 1
   f_min: 0
 --- !u!114 &1734197218
 MonoBehaviour:
@@ -7551,7 +7551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   f_grayStrength: 0
-  f_graySpeed: 0.006
+  f_graySpeed: 0.08
 --- !u!1 &2029866428
 GameObject:
   m_ObjectHideFlags: 0
