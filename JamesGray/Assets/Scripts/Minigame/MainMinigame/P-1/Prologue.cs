@@ -49,7 +49,7 @@ public class Prologue : MonoBehaviour
         float fadeCount = 0;
         while(fadeCount < 1.0f)
         {
-            fadeCount += 0.01f;
+            fadeCount += 0.005f;
             yield return new WaitForSeconds(0.07f);
             fadeimg.color = new Color(0, 0, 0, fadeCount);
         }
