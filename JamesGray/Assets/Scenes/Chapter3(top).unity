@@ -2696,7 +2696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2694746544419516812, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6916970303845653459, guid: def07e8b62f52784fae66a3bcb5230f0, type: 3}
       propertyPath: m_Pivot.x
@@ -3333,6 +3333,9 @@ MonoBehaviour:
   tileMap: {fileID: 43871229}
   speed: 0.015
   keyPad: {fileID: 346288218}
+  BLE_Connection: 0
+  BLE_Ready2Read: 0
+  BLE_Scan: 0
 --- !u!114 &587647065
 MonoBehaviour:
   m_ObjectHideFlags: 0
