@@ -51,6 +51,7 @@ public class PasswordGame : MonoBehaviour
         
             if(text.text == answer)
             {
+                ClearAndFail.GameClear();
                 Invoke("NextScene", 2f);
                 StopCoroutine("EnterPassword");
             }
@@ -64,12 +65,14 @@ public class PasswordGame : MonoBehaviour
             if(text.text.Length >= 3)
             {
                 fail = true;
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 2f);
                 StopCoroutine("EnterPassword");
             }
             if(password.Count <= 0)
             {
                 fail = true;
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 2f);
                 StopCoroutine("EnterPassword");
             }
