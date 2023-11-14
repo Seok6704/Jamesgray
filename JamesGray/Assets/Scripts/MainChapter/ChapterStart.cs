@@ -14,7 +14,7 @@ public class ChapterStart : MonoBehaviour
     void Start()
     {
         isFirst = !(SAVEManager.saveSceneName == SceneManager.GetActiveScene().name);   //현재 씬과 세이브 파일의 씬 이름이 같다면 false로 오프닝을 스킵
-        if(!isFirst) return;
+        //if(!isFirst) return;
 
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
         startAnim = GameObject.Find("StartNPC").GetComponent<Animator>();

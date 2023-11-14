@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ChapterFade : MonoBehaviour
 {
@@ -9,11 +10,19 @@ public class ChapterFade : MonoBehaviour
     GameObject panel;
     PlayerController_v3 pc;
     public UnityEngine.Events.UnityEvent fadeDone;
+    bool isFirst = true;
 
     void Start()
     {
+        isFirst = !(SAVEManager.saveSceneName == SceneManager.GetActiveScene().name);   //현재 씬과 세이브 파일의 씬 이름이 같다면 false로 오프닝을 스킵
         panel = GameObject.Find("Panel_Chapter");
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
+        
+        if(!isFirst) 
+        {
+            StartCoroutine("OnFadeOut");
+            return;
+        }
         pc.ChangeisOn();
         StartCoroutine("OnFadein");
     }
