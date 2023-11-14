@@ -38,7 +38,6 @@ public class Trickery : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(isClear);
         if( Score > 2 && flag == false)
         {
             flag = true;
@@ -51,6 +50,7 @@ public class Trickery : MonoBehaviour
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Win") as AudioClip;
             audioSrc.PlayOneShot(clip);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         if (fail > 1 && flag == false)
@@ -65,6 +65,7 @@ public class Trickery : MonoBehaviour
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Lose") as AudioClip;
             audioSrc.PlayOneShot(clip);
             isClear = false;
+            ClearAndFail.GameFail();
             Invoke("SceneChanger", 5f);
         }
         if(pos[ram] == 1645 && round >= 1 && flag == true)

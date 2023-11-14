@@ -22,16 +22,26 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 4)
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         else
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
+                ClearAndFail.GameFail();
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
@@ -43,16 +53,26 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 3)
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         else
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
+                ClearAndFail.GameFail();
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
@@ -63,16 +83,26 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 2)
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         else
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
+                ClearAndFail.GameFail();
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
@@ -83,16 +113,26 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 1)
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         else
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
+                ClearAndFail.GameFail();
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }
@@ -103,16 +143,26 @@ public class ChoiceGame : MonoBehaviour
     {
         if(Correct == 0)
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
         }
         else
         {
+            if(audioSrc.isPlaying)
+            {
+               audioSrc.Stop();
+            }
             Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
             Fail = Fail + 1;
             if(Fail > 2)
             {
+                ClearAndFail.GameFail();
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 3);
                 Invoke("SceneChanger", 5f);
             }

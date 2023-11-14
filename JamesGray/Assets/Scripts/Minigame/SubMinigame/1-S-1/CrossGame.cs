@@ -38,6 +38,7 @@ public class CrossGame : MonoBehaviour
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 5f);
             }
 
@@ -51,22 +52,24 @@ public class CrossGame : MonoBehaviour
             {
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
+                ClearAndFail.GameFail();
                 isClear = false;
                 Invoke("SceneChanger", 5f);
             }
 
             if(Move && pos.x <= 2150 && !M_Stop) // 버튼이 클릭되고 있고, Walker가 도착점에 도착하지 않았을 경우, 위치 이동.
             {
-                transform.Translate(new Vector3(0.15f, 0, 0));
+                transform.Translate(new Vector3(1f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
             }
 
             else if( Move && pos.x <= 2150 && M_Stop ) // 버튼이 클릭되고 있고, 음악이 멈춰있는 도중일 경우
             {
-                transform.Translate(new Vector3(0.15f, 0, 0));
+                transform.Translate(new Vector3(1f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 1);
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 5f);
             }
         }

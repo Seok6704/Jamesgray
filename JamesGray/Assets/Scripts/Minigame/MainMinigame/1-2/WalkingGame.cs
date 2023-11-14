@@ -82,6 +82,7 @@ public class WalkingGame : MonoBehaviour
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -92,6 +93,7 @@ public class WalkingGame : MonoBehaviour
             if(Fail > 2)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 5f);
             }            
         }
@@ -108,6 +110,7 @@ public class WalkingGame : MonoBehaviour
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -118,6 +121,7 @@ public class WalkingGame : MonoBehaviour
             if(Fail > 2)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 5f);
             }  
         }
@@ -134,6 +138,7 @@ public class WalkingGame : MonoBehaviour
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -144,6 +149,7 @@ public class WalkingGame : MonoBehaviour
             if(Fail > 2)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 5f);
             }  
         }
@@ -160,6 +166,7 @@ public class WalkingGame : MonoBehaviour
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 2);
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 8f);
             }
         }
@@ -170,6 +177,7 @@ public class WalkingGame : MonoBehaviour
             if(Fail > 2)
             {
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(901, 3);
+                ClearAndFail.GameFail();
                 Invoke("SceneChanger", 5f);
             }  
         }
