@@ -274,7 +274,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   Pages: []
-  text: {fileID: 795113806}
+  textL: {fileID: 0}
+  textR: {fileID: 0}
 --- !u!95 &86097059
 Animator:
   serializedVersion: 5
@@ -895,6 +896,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeDone:
+    m_PersistentCalls:
+      m_Calls: []
+  typeStart:
     m_PersistentCalls:
       m_Calls: []
   f_dial_Speed: 0
@@ -1640,6 +1644,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeStart:
+    m_PersistentCalls:
+      m_Calls: []
   f_dial_Speed: 0.05
 --- !u!1 &892678244
 GameObject:
@@ -1819,6 +1826,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DialogueNext:
+    m_PersistentCalls:
+      m_Calls: []
+  DialoguePrevious:
+    m_PersistentCalls:
+      m_Calls: []
   playerStatus: {fileID: 0}
   sceneManager: {fileID: 0}
   tmp_NpcName: {fileID: 633875627}
@@ -1827,6 +1840,7 @@ MonoBehaviour:
   audioSrc: {fileID: 827624926}
   choiceTemplete: {fileID: 2065627233}
   choiceGrid: {fileID: 1681849984}
+  inv: {fileID: 0}
   sceneName: 
 --- !u!114 &892678251
 MonoBehaviour:
@@ -2821,7 +2835,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 6b80658b5f8fc454486e4add9f7c8cbd, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 385cebbd3c33c9042971bbb1771bee80, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -5187,7 +5201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 6b80658b5f8fc454486e4add9f7c8cbd, type: 2}
+  m_Texture: {fileID: 8400000, guid: 385cebbd3c33c9042971bbb1771bee80, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
