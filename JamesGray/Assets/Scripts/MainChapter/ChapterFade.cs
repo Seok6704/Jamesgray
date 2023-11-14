@@ -15,7 +15,7 @@ public class ChapterFade : MonoBehaviour
         panel = GameObject.Find("Panel_Chapter");
         pc = GameObject.Find("Player").GetComponent<PlayerController_v3>();
         pc.ChangeisOn();
-        StartCoroutine("OnFadeOut");
+        StartCoroutine("OnFadein");
     }
     
     IEnumerator OnFadein()
@@ -28,7 +28,7 @@ public class ChapterFade : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
             text.color = new Color(text.color.r, text.color.g, text.color.b, fadeCount);
         }
-        StartCoroutine("OnFadein");
+        StartCoroutine("OnFadeOut");
     }
 
     IEnumerator OnFadeOut()

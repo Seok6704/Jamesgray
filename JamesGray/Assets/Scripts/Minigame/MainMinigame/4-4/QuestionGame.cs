@@ -91,7 +91,7 @@ public class QuestionGame : MonoBehaviour
         if(recordText == correctText) 
         {
             answerList.RemoveAt(ran);
-            if(count >= 1)
+            if(count >= 3)
             {
                 isClear = true;
                 Invoke("SceneChanger", 2f);
