@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
-public class BluetoothController
+public class BluetoothController : MonoBehaviour
 {
     private static BluetoothController instance = null; //싱글톤 디자인
     
@@ -21,7 +21,9 @@ public class BluetoothController
         "android.permission.BLUETOOTH_ADMIN",
         "android.permission.BLUETOOTH_CONNECT",
         "android.permission.BLUETOOTH_SCAN",
-        "android.permission.ACCESS_BACKGROUND_LOCATION"
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.INTERNET"
     };
 
     public BluetoothController()
@@ -54,20 +56,43 @@ public class BluetoothController
         callbacks.PermissionDenied += PermissionCallbacks_PermissionDenied;
         callbacks.PermissionGranted += PermissionCallbacks_PermissionGranted;
         callbacks.PermissionDeniedAndDontAskAgain += PermissionCallbacks_PermissionDeniedAndDontAskAgain;
-    
+
+        List<string> permissionNeeds = new List<string>();
         for(int i = 0; i < PERMISSIONS.Length; i++)
         {
             if(!Permission.HasUserAuthorizedPermission(PERMISSIONS[i]))
             {
                 System.Object msg = PERMISSIONS[i] + " need Permission.";
                 javaClassInstance.Call("SendLog", msg);
+                permissionNeeds.Add(PERMISSIONS[i]);
             }
+            Debug.Log(PERMISSIONS[i] + " is Granted.");
         }
 
-        Permission.RequestUserPermissions(PERMISSIONS, callbacks);
+        //Permission.RequestUserPermissions(PERMISSIONS, callbacks);
+
+        StartCoroutine(SetPermission(permissionNeeds));
 
         BLE_Connection = false;
         debug_Once = false;
+    }
+
+    IEnumerator SetPermission(List<string> permissions)
+    {
+        for(int i = 0; i < permissions.Count; i++)
+        {
+            Permission.RequestUserPermission(permissions[i]);
+            yield return new WaitForSeconds(0.2f);
+            yield return new WaitUntil(() => Application.isFocused==true);
+        }
+
+        for(int i = 0; i < permissions.Count; i++)
+        {
+            if(!Permission.HasUserAuthorizedPermission(permissions[i]))
+            {
+                Debug.Log(permissions[i] + " is Not Granted.");
+            }
+        }
     }
 
     public static BluetoothController GetInstance()
