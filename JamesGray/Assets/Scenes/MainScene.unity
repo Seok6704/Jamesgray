@@ -6702,7 +6702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 1734197218}
-  f_fading_speed: 0.003
+  f_fading_speed: 0.006
   f_max: 1
   f_min: 0
 --- !u!114 &1734197218
