@@ -179,6 +179,13 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
         }
         currentCell = cellPos;
     }
+    /// <summary>
+    /// 게임 로드 시 현재 위치를 업데이트한다.
+    /// </summary>
+    public void UpdateCell()
+    {
+        currentCell = tileMap.WorldToCell(this.transform.position);
+    }
 
     Vector3 CelltoWorld(Vector3Int cellPos) //게임내 타일 중앙의 좌표값을 구해주는 함수  이미 멤버 함수가 존재하여 더이상 필요없음
     {
