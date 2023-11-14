@@ -127,6 +127,7 @@ public class SAVEManager : MonoBehaviour
         ///플레이어 및 npc 데이터 적용 부분
 
         player.GetComponent<PositionManager>().SetPos(saves.player.GetPos());
+        player.GetComponent<PlayerController_v3>().UpdateCell();    //플레이어 위치변경하였으므로 업데이트한다.
 
         for(int i = 0; i < NPCs.Count; i++) //데이터 반영
         {
