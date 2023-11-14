@@ -44,14 +44,14 @@ public class VideoManager : MonoBehaviour
             //Debug.Log(output);
             url = GetAndroidPath(sceneName, id, lineID, index);
             //StartCoroutine(LoadVideo(url, output));
-            //Debug.Log(url);
+            Debug.Log(url);
             //return;
         }
         else
         {
-            if(!System.IO.File.Exists(video.url)) 
+            if(!System.IO.File.Exists(url)) 
             {
-               Debug.Log("NO FILE");
+                Debug.Log("NO FILE : " + url);
                 return;  //파일 존재 여부 확인
             }
         }
