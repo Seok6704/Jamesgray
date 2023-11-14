@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 /*
 미니게임 4-3 관련 문서입니다.
@@ -15,9 +16,10 @@ public class PasswordGame : MonoBehaviour
     List<int> password = new List<int> (); // 비밀번호 리스트 0~9
     int ran; // 랜덤 변수
     public TextMeshProUGUI text; // 입력된 암호 텍스트
-    string answer = "36"; // 정답 암호 텍스트
+    string answer = "3"; // 정답 암호 텍스트 (임시, 본 정답은 36)
     int now; // 현재 리스트에서 꺼낸 암호
     bool fail;
+    bool isClear;
 
     void Start()
     {
@@ -33,7 +35,8 @@ public class PasswordGame : MonoBehaviour
     {
         for(int i = 0; i < 10; i++)
         {
-            password.Add(i);
+            //password.Add(i);
+            password.Add(3);
         }
     }
 
@@ -48,7 +51,7 @@ public class PasswordGame : MonoBehaviour
         
             if(text.text == answer)
             {
-                Debug.Log("정답입니다.");
+                Invoke("NextScene", 2f);
                 StopCoroutine("EnterPassword");
             }
         }
@@ -61,15 +64,13 @@ public class PasswordGame : MonoBehaviour
             if(text.text.Length >= 3)
             {
                 fail = true;
-                Debug.Log("패스워드 길이 초과");
-                Debug.Log("실패입니다.");
+                Invoke("SceneChanger", 2f);
                 StopCoroutine("EnterPassword");
             }
             if(password.Count <= 0)
             {
                 fail = true;
-                Debug.Log("숫자 끝!");
-                Debug.Log("실패하셨습니다.");
+                Invoke("SceneChanger", 2f);
                 StopCoroutine("EnterPassword");
             }
             else
@@ -100,6 +101,26 @@ public class PasswordGame : MonoBehaviour
         }
         else flag = false;
     }*/
+    void SceneChanger() //씬 전환 함수
+    {
+        SceneManager.UnloadSceneAsync(gameObject.scene);    //현재 씬 종료
+        SceneManager.SetActiveScene(LoadingScene.preScene); //기억하고 있던 이전 씬을 액티브로 전환
+        
+        GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
 
+        for(int i = 0; i < objects.Length; i++)
+        {
+            if(objects[i].name == "SceneManager" || objects[i].name == "Scene Manager")
+            {
+                objects[i].GetComponent<SceneController>().AdditiveEnded(isClear);
+                break;
+            }
+        }
+    }
+
+    void NextScene()
+    {
+        SceneManager.LoadScene("4-5");
+    }
 
 }
