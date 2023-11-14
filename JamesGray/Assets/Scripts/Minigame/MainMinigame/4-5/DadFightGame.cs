@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class DadFightGame : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class DadFightGame : MonoBehaviour
             pc.ChangeisOn();
             ClearAndFail.GameClear();
             Invoke("EndGame", 2f);
+            return;
         }
         ran = Random.Range(0, 4);
         switch (ran)
