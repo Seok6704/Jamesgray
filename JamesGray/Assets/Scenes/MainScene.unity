@@ -6069,7 +6069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1635059717}
-  f_fading_speed: 0.002
+  f_fading_speed: 0.01
   is_fading: 1
 --- !u!114 &1635059717
 MonoBehaviour:
