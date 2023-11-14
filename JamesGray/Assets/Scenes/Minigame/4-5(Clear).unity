@@ -2051,7 +2051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uC544\uBC84\uC9C0"
-  ID: 802
+  ID: 803
   i_Story: 0
   b_visited: 0
   isAlready: 0

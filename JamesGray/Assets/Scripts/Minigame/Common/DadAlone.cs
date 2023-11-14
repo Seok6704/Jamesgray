@@ -16,7 +16,7 @@ public class DadAlone : MonoBehaviour
     void OnDadDialogue()
     {
         flag = true;
-        Dialog.GetComponent<DialoguesManager>().SetDialogue(802, 0);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(803, 0);
         Dialog.GetComponent<UI_Mover>().SetPos2Parent();
     }
 
