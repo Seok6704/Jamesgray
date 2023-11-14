@@ -26,6 +26,10 @@ public class VideoManager : MonoBehaviour
     {
         return path + sceneName + '/' + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".mp4";
     }
+    string GetAndroidPath(string sceneName, int id, int lineID, int index)
+    {
+        return "jar:file://" + Application.dataPath + "!/assets/Videos/" + sceneName + '/' + id.ToString() + '/' + lineID.ToString() + '/' + index.ToString() + ".mp4";
+    }
 
     public void PlayVideo(string sceneName, int id, int lineID, int index)
     {
@@ -37,19 +41,27 @@ public class VideoManager : MonoBehaviour
         {
             //video.url = GetAndroidPath(sceneName, id, lineID, index);
             //UnityWebRequest w = UnityWebRequest.Get(url);
-            Debug.Log(url);
             //Debug.Log(output);
-
+            url = GetAndroidPath(sceneName, id, lineID, index);
             //StartCoroutine(LoadVideo(url, output));
+            //Debug.Log(url);
             //return;
+        }
+        else
+        {
+            if(!System.IO.File.Exists(video.url)) 
+            {
+               Debug.Log("NO FILE");
+                return;  //파일 존재 여부 확인
+            }
         }
         video.url = url;
 
-        if(!System.IO.File.Exists(video.url)) 
-        {
-            Debug.Log("NO FILE");
-            return;  //파일 존재 여부 확인
-        }
+        //if(!System.IO.File.Exists(video.url)) 
+        //{
+         //   Debug.Log("NO FILE");
+          //  return;  //파일 존재 여부 확인
+        //}
 
 
 
