@@ -7,7 +7,7 @@ public class Grayscale_CamerEffect : MonoBehaviour
 {
     Material CameraMaterial;
     public float grayScale = 0.0f;
-    float appliedTime = 2.0f;
+    float appliedTime = 1.0f;
 
     void Start(){
         CameraMaterial = new Material(Shader.Find("Custom/GrayScale"));
