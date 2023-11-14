@@ -16628,7 +16628,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tileMap: {fileID: 2051956385}
-  speed: 0.02
+  speed: 1.5
   keyPad: {fileID: 1612100322}
   BLE_Connection: 0
   BLE_Ready2Read: 0
