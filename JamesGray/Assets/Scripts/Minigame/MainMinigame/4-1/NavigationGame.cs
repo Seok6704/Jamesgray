@@ -24,26 +24,31 @@ public class NavigationGame : MonoBehaviour
             case "DB" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
                 pc.ChangeisOn();
+                ClearAndFail.GameFail();
                 Invoke("OnReset", 2f);
                 break;
             case "JS" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
                 pc.ChangeisOn();
+                ClearAndFail.GameFail();
                 Invoke("OnReset", 2f);
                 break;
             case "GS" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
                 pc.ChangeisOn();
+                ClearAndFail.GameFail();
                 Invoke("OnReset", 2f);
                 break;
             case "SG" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
                 pc.ChangeisOn();
+                ClearAndFail.GameFail();
                 Invoke("OnReset", 2f);
                 break;
             case "UR" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 6);
                 pc.ChangeisOn();
+                ClearAndFail.GameFail();
                 Invoke("OnReset", 2f);
                 break;
             case "Start" :
@@ -69,6 +74,7 @@ public class NavigationGame : MonoBehaviour
             case "End" :
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 7);
                 pc.ChangeisOn();
+                ClearAndFail.GameClear();
                 Invoke("EndGame", 2f);
                 break;
         }
