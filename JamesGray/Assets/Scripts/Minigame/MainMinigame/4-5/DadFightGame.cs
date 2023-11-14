@@ -73,14 +73,14 @@ public class DadFightGame : MonoBehaviour
 
     IEnumerator RoseVoice(int num)
     {
+        yield return new WaitForSeconds(3f);
         Debug.Log("로즈 대사");
         Dialog.GetComponent<DialoguesManager>().SetDialogue(800, num);
-        yield break;
     }
 
     IEnumerator OnAttackEffect(int num)
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(6f);
         GameObject.Find("Attack").transform.GetChild(num).gameObject.SetActive(true);
     }
 
