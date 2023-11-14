@@ -1705,7 +1705,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1.8
   y: 0
-  dialSpeed: 20
   border: {fileID: 1504600538}
   player: {fileID: 1486070434}
 --- !u!1001 &381435780
@@ -6112,6 +6111,9 @@ MonoBehaviour:
   tileMap: {fileID: 2051956385}
   speed: 0.02
   keyPad: {fileID: 1612100322}
+  BLE_Connection: 0
+  BLE_Ready2Read: 0
+  BLE_Scan: 0
 --- !u!114 &1486070447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8799,7 +8801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uBB38"
-  ID: 908
+  ID: 201
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -9756,7 +9758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uBB38"
-  ID: 908
+  ID: 201
   i_Story: 0
   b_visited: 0
   isAlready: 0
@@ -10384,7 +10386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 892678244}
   s_NPC_Name: "\uBB38"
-  ID: 908
+  ID: 201
   i_Story: 0
   b_visited: 0
   isAlready: 0
