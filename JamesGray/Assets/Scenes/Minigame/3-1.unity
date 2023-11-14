@@ -2761,6 +2761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMain: 0
+  Dialog: {fileID: 892678244}
 --- !u!1 &1278132952
 GameObject:
   m_ObjectHideFlags: 0
