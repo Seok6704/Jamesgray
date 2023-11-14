@@ -76,7 +76,7 @@ public class SettingManager : MonoBehaviour
         
         newSetting.volume = 1.0f;
         newSetting.difficultOption = 0;
-        newSetting.onVirtualPad = false;
+        newSetting.onVirtualPad = true;
         newSetting.useController = false;
 
         return newSetting;
