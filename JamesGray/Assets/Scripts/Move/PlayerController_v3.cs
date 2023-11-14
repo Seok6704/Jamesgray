@@ -51,6 +51,8 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
 
         rigid = GetComponent<Rigidbody2D>();
 
+        speed = 1.5f;   //고정
+
         //serial = new SerialCOM(9600, 8);    //9600hz 11번 포트, 시리얼 사용하지않기
         //serial = SerialCOM.getInstance();   //인스턴스 가져오기
     }
@@ -162,7 +164,7 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
                 break;
                 
             }
-            transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
+            transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed * Time.deltaTime);
             //Vector3 towardsPos = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
             //rigid.MovePosition(towardsPos);
             yield return null;
