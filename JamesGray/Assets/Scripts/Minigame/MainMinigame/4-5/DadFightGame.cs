@@ -34,6 +34,7 @@ public class DadFightGame : MonoBehaviour
         if(myHp <= 0)
         {
             pc.ChangeisOn();
+            ClearAndFail.GameFail();
             Invoke("OnReset", 2f);
             return;
         }
@@ -41,6 +42,7 @@ public class DadFightGame : MonoBehaviour
         if(dadHp <= 0)
         {
             pc.ChangeisOn();
+            ClearAndFail.GameClear();
             Invoke("EndGame", 2f);
         }
         ran = Random.Range(0, 4);
