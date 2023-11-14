@@ -113,6 +113,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter4-1(color).unity
     guid: 7f14e2a5d13a33b48a7a1c8f3d00f91c
+  - enabled: 1
+    path: Assets/Scenes/Chapter4-1.unity
+    guid: f235d8bb02b396e468c4e3c2482a67ea
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 414dffcd8273d9d4a959b2cd56b6975a, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 72e61b65354e06f469d8538be6ee976d, type: 2}
