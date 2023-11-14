@@ -85,6 +85,7 @@ public class JSONManager
         if (Application.platform == RuntimePlatform.Android)
         {
             WWW w = new WWW(filePath);
+            Debug.Log(filePath);
             while(!w.isDone);
             string androidJson = w.text;
             dial = JsonUtility.FromJson<Dialogue>(androidJson);
