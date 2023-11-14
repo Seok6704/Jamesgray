@@ -2857,6 +2857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfe1ba7d35a64d4caa0488f27ff6aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
   orderText: {fileID: 872769383}
 --- !u!114 &1269154413
 MonoBehaviour:
