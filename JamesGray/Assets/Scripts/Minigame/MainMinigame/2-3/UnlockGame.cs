@@ -36,6 +36,7 @@ public class UnlockGame : MonoBehaviour
     {
         voice.stopRecording();
         voice.CallPost(); // 녹음된, wav 파일 전송
+        orderText.text = "현재 입력된 명령 : 명령 입력중....";
         StartCoroutine(GetText());
     }
 
@@ -52,11 +53,13 @@ public class UnlockGame : MonoBehaviour
         if(recordText == correctText) 
         {
             isClear = true;
+            ClearAndFail.GameClear();
             Invoke("SceneChanger", 2f);
         }
         else
         {
             isClear = false;
+            ClearAndFail.GameFail();
             Invoke("SceneChanger", 2f);
         }
     }

@@ -27,6 +27,7 @@ public class DoorChoice : MonoBehaviour
             if(ram == 0)
             {
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChange", 2f);
             }
             else Invoke("SceneChange", 2f);
@@ -42,6 +43,7 @@ public class DoorChoice : MonoBehaviour
             if(ram == 1)
             {
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChange", 2f);
             }
             else Invoke("SceneChange", 2f);
@@ -57,6 +59,7 @@ public class DoorChoice : MonoBehaviour
             if(ram == 2)
             {
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChange", 2f);
             }
             else Invoke("SceneChange", 2f);
@@ -72,6 +75,7 @@ public class DoorChoice : MonoBehaviour
             if(ram == 3)
             {
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChange", 2f);
             }
             else Invoke("SceneChange", 2f);

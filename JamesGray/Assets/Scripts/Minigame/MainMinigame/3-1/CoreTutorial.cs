@@ -49,6 +49,7 @@ public class CoreTutorial : MonoBehaviour
             {
                 if(isMain) isClear2 = true;
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 1f);
             }
             else Invoke("TalkProblem", 2f);
@@ -62,9 +63,14 @@ public class CoreTutorial : MonoBehaviour
             {
                 if(isMain) isClear2 = true;
                 isClear = true;
+                ClearAndFail.GameClear();
                 Invoke("SceneChanger", 1f);
             }
-            else if(incorrect >= fail) Invoke("SceneChanger", 1f); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            else if(incorrect >= fail)
+            {
+                ClearAndFail.GameFail();
+                Invoke("SceneChanger", 1f); // 실패. 본 버전에서는 해당 부분이 씬 전환으로 대체 될 예정
+            }
             else Invoke("TalkProblem", 2f);
         }
     }
