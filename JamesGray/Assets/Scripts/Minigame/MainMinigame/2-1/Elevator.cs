@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Elevator : MonoBehaviour
 {
     Animator ele0, ele1, ele2, james;
-    public AudioSource audioSrc;
+    public GameObject Dialog;
     bool isClear;
     bool isChoose = false;
     int ran;
@@ -147,72 +147,34 @@ public class Elevator : MonoBehaviour
 
     void RobbySound()
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/RobbyFloor") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 1);
     }
 
     void FifthFloorSound()
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/FifthFloor") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 3);
     }
 
     void B1FloorSound()
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/B1Floor") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 5);
     }
 
     void RobbyMoveSound()
     {
         isClear = false;
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/RobbyMove") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 2);
     }
 
     void FifthFloorMoveSound()
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/FifthMove") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 4);
     }
 
     void B1FloorMoveSound()
     {
         isClear = false;
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/2-1/B1Move") as AudioClip;
-        audioSrc.PlayOneShot(clip);
-    }
-
-    public void BtnStartClick()
-    {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(910, 6);
     }
 
     void SceneChanger() //씬 전환 함수
