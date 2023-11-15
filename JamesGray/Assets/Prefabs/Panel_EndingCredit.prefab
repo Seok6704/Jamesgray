@@ -876,8 +876,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6491750323913734703}
   m_HandleRect: {fileID: 2901539694125935743}
   m_Direction: 2
-  m_Value: 0.99999946
-  m_Size: 0.07841874
+  m_Value: 0.9999997
+  m_Size: 0.07841875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -952,7 +952,7 @@ MonoBehaviour:
 
 
 
-    Nuts & Nerds Present'
+    Nuts & Nerds Presents'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
