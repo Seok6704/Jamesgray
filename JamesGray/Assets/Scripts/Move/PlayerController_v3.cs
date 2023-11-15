@@ -127,10 +127,6 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
         {
             h = 0; v = 0;
         }
-        else
-        {
-            h = (int)dirVec.x; v = (int)dirVec.y;
-        }
 
         if(animator.GetInteger("hAxisRaw") != h)
         {
@@ -173,14 +169,14 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
             //rigid.MovePosition(towardsPos);
             yield return null;
         }
-        //if(checkKey())
-        //{
-        //    co = StartCoroutine(MovePlayer(new Vector3Int(cellPos.x + (int)dirVec.x, cellPos.y + (int)dirVec.y, cellPos.z)));
-        //}
-        //else
-        //{
+        if(checkKey())
+        {
+            co = StartCoroutine(MovePlayer(new Vector3Int(cellPos.x + (int)dirVec.x, cellPos.y + (int)dirVec.y, cellPos.z)));
+        }
+        else
+        {
             co = null;
-        //}
+        }
         currentCell = cellPos;
     }
     /// <summary>
