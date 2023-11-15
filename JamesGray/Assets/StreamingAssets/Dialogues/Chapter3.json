@@ -20,7 +20,7 @@
             
                     "content" :
                     [
-                        "[CHOICE] [최상층으로 이동하시겠습니까?] [1. 네] [CHAPTER] [CHAPTER3(top)] [1] [2] [2. 아니오] [END] [] [] []"                      
+                        "[CHOICE] [최상층으로 이동하시겠습니까?] [1. 네] [CHAPTER] [CHAPTER3_top] [1] [2] [2. 아니오] [END] [] [] []"                      
                     ]
                 },
                 {

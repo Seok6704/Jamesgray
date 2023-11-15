@@ -27,6 +27,6 @@ public class EndingControl : MonoBehaviour
 
     public void SceneChange()
     {
-        SceneManager.LoadScene("Chapter4-1(Color)");
+        SceneManager.LoadScene("Chapter4-1_Color");
     }
 }

@@ -124,7 +124,7 @@
                     
                     "content" :
                     [
-                        "[CHOICE] [밖으로 나가시겠습니까] [1. 네] [MINIGAME_SCENE] [4-5(END)] [1] [2] [2. 아니오] [END] [] [] []"
+                        "[CHOICE] [밖으로 나가시겠습니까] [1. 네] [MINIGAME_SCENE] [4-5_END] [1] [2] [2. 아니오] [END] [] [] []"
                     ]
                 }
             ],

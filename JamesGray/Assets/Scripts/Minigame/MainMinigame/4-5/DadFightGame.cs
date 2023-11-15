@@ -97,6 +97,6 @@ public class DadFightGame : MonoBehaviour
 
     void EndGame()
     {
-        SceneManager.LoadScene("4-5(Clear)");
+        SceneManager.LoadScene("4-5_Clear");
     }
 }
