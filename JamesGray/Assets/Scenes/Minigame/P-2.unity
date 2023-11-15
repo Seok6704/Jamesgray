@@ -2951,34 +2951,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueOn:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1143713734}
-        m_TargetAssemblyTypeName: UI_Mover, Assembly-CSharp
-        m_MethodName: SetPos2Parent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   DialogueOff:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FixedFollowCamera, Assembly-CSharp
-        m_MethodName: SetFlag
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   DialogueNext:
     m_PersistentCalls:
       m_Calls: []
@@ -4036,8 +4012,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim_H: {fileID: 1201034321}
   anim_B: {fileID: 1444498486}
+  Dialog: {fileID: 1143713731}
   isClear: 0
-  audioSrc: {fileID: 827624926}
 --- !u!1 &1370140214
 GameObject:
   m_ObjectHideFlags: 0

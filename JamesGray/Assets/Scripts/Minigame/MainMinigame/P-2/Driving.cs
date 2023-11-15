@@ -8,8 +8,8 @@ public class Driving : MonoBehaviour
 {
     public Animator anim_H; //핸들 애니메이션 변수
     public Animator anim_B; // 배경 애니메이션 변수
+    public GameObject Dialog;
     public bool isClear; // 미니게임 클리어 여부 체크
-    public AudioSource audioSrc;
     float time;
     int count; // 정답 횟수
     bool flag; // 타이머 시작 타이밍 용 변수
@@ -59,12 +59,7 @@ public class Driving : MonoBehaviour
         if(count == 3 && if_flag)
         {
             if_flag = false;
-            if(audioSrc.isPlaying)
-            {
-                audioSrc.Stop();
-            }
-            AudioClip clip = Resources.Load("Sounds/Minigame/P-2/Goal") as AudioClip;
-            audioSrc.PlayOneShot(clip);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(851, 4);
             Invoke("scene_change", 6f);
         }
     }
@@ -101,22 +96,16 @@ public class Driving : MonoBehaviour
 
     void Nav_On(int ramdom) // 네비게이션 출력 함수
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
         if(ramdom == 0)
         {
             if(count != 2) left.SetActive(true);
-            AudioClip clip = Resources.Load("Sounds/Minigame/P-2/Left") as AudioClip;
-            audioSrc.PlayOneShot(clip);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(851, 2);
             is_right = false;
         }
         if(ramdom == 1)
         {
             if(count != 2) right.SetActive(true);
-            AudioClip clip = Resources.Load("Sounds/Minigame/P-2/Right") as AudioClip;
-            audioSrc.PlayOneShot(clip);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(851, 1);
             is_right = true;
         }
     }
@@ -129,10 +118,6 @@ public class Driving : MonoBehaviour
     public void On_flag() // 시작 버튼에 들어가는 함수, 타이머 초기화 및 오디오 겹치는거 방지
     {
         flag = true;
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
     }
 
     void way_reset() // 현재 목적지 선정 함수, 네비게이션 방향 설정 및 ram 변수 값 변경
@@ -145,12 +130,7 @@ public class Driving : MonoBehaviour
 
     void Game_Fail() // 게임 실패 함수
     {
-        if(audioSrc.isPlaying)
-        {
-            audioSrc.Stop();
-        }
-        AudioClip clip = Resources.Load("Sounds/Minigame/P-2/Fail") as AudioClip;
-        audioSrc.PlayOneShot(clip);
+        Dialog.GetComponent<DialoguesManager>().SetDialogue(851, 3);
         count = 10;
         Invoke("Scene_Restart", 5f);
     }
