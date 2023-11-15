@@ -169,8 +169,12 @@ MonoBehaviour:
     \uC18C\uB9AC</size>\n<size=50>(\uC7AC)\uC804\uC8FC\uC815\uBCF4\uBB38\uD654\uC0B0\uC5C5\uC9C4\uD765\uC6D0</size>\n<size=30>https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?</size>\n<size=30>wrtSn=13316646&menuNo=200020</size>\n\n<size=70>\uC090
     - \uC18C\uB9AC(\uC624\uB2F5\uC6A9)</size>\n<size=50>RICHERlandTV</size>\n<size=30>https://freesound.org/people/RICHERlandTV/sounds/216090/</size>\n\n<size=70>\uC0C8\uB07C
     \uACE0\uC591\uC774(\uACE0\uC591\uC774 \uC18C\uB9AC)</size>\n<size=50>\uD55C\uAD6D\uC800\uC791\uAD8C\uC704\uC6D0\uD68C(\uAE40\uC6A9\uBC30)</size>\n<size=30>https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?</size>\n<size=30>wrtSn=13253790&menuNo=200020</size>\n\n<size=70>\uAC15\uC544\uC9C0
-    \uC9D6\uB294 \uC18C\uB9AC(\uAC15\uC544\uC9C0 \uC18C\uB9AC)</size>\n<size=50>\uD55C\uAD6D\uC800\uC791\uAD8C\uC704\uC6D0\uD68C(\uAE40\uC6A9\uBC30)</size>\n<size=30>https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?</size>\n<size=30>wrtSn=13252722&menuNo=200020</size>\n\n\n\n\n\n\n\n\n\uD50C\uB808\uC774
-    \uD574\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4."
+    \uC9D6\uB294 \uC18C\uB9AC(\uAC15\uC544\uC9C0 \uC18C\uB9AC)</size>\n<size=50>\uD55C\uAD6D\uC800\uC791\uAD8C\uC704\uC6D0\uD68C(\uAE40\uC6A9\uBC30)</size>\n<size=30>https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?</size>\n<size=30>wrtSn=13252722&menuNo=200020</size>\n\n\n\n\n\uBCF8
+    \uC560\uD50C\uB9AC\uCF00\uC774\uC158\uC740 \uACFC\uD559\uAE30\uC220\uC815\uBCF4\uD1B5\uC2E0\uBD80
+    \uC815\uBCF4\uD1B5\uC2E0\uCC3D\uC758\uC778\uC7AC\uC591\uC131\uC0AC\uC5C5\uC758
+    \uC9C0\uC6D0\uC744 \uD1B5\uD574 \uC218\uD589\uD55C\nICT \uBA58\uD1A0\uB9C1 \uD504\uB85C\uC81D\uD2B8\uC758
+    \uACB0\uACFC\uBB3C\uC785\uB2C8\uB2E4.\n\n\n\n\uD50C\uB808\uC774 \uD574\uC8FC\uC154\uC11C
+    \uAC10\uC0AC\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
   m_sharedMaterial: {fileID: -8265519875392603468, guid: 107dbbc0a47800b47894c4a8d3a58efa, type: 2}
@@ -876,8 +880,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6491750323913734703}
   m_HandleRect: {fileID: 2901539694125935743}
   m_Direction: 2
-  m_Value: 0.9999997
-  m_Size: 0.07841875
+  m_Value: 0.99999946
+  m_Size: 0.07841874
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
