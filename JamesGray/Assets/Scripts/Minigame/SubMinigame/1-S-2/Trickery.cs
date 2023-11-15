@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Trickery : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Trickery : MonoBehaviour
     int fail = 0; // 틀린 횟수
     bool flag = false; // if문 반복 방지용 플래그
     bool isClear; // 승리 변수
-    int[] pos = new int[] { 1645, 1170, 695 }; // 고양이 위치 변수 각각 컵3 컵2 컵1 위치값
+    //int[] pos = new int[] { 1645, 1170, 695 }; // 고양이 위치 변수 각각 컵3 컵2 컵1 위치값
+    List<int> pos = new List<int>();
     Vector3 C1_pos, C2_pos, C3_pos; // 컵 위치 변수
 
     void Start()
@@ -33,7 +35,10 @@ public class Trickery : MonoBehaviour
         C2_pos = GameObject.Find("Cup_2").transform.position;
         C3_pos = GameObject.Find("Cup_3").transform.position;
         Cat = GameObject.Find("Cat");
-        ram = Random.Range(0,3);
+        pos.Add((int)C3_pos.x);
+        pos.Add((int)C2_pos.x);
+        pos.Add((int)C1_pos.x);
+        ram = UnityEngine.Random.Range(0,3);
         Cat.SetActive(false);
     }
 
@@ -67,17 +72,17 @@ public class Trickery : MonoBehaviour
             ClearAndFail.GameFail();
             Invoke("SceneChanger", 5f);
         }
-        if(pos[ram] == 1645 && round >= 1 && flag == true)
+        if(pos[ram] == C3_pos.x && round >= 1 && flag == true)
         {
-            Cat.transform.position = new Vector3 (1645, 785, 0);
+            Cat.transform.position = C3_pos;
         }
-        if(pos[ram] == 1170 && round >= 1 && flag == true)
+        if(pos[ram] == C2_pos.x && round >= 1 && flag == true)
         {
-            Cat.transform.position = new Vector3 (1170, 785, 0);
+            Cat.transform.position = C2_pos;
         }
-        if(pos[ram] == 695 && round >= 1 && flag == true)
+        if(pos[ram] == C1_pos.x && round >= 1 && flag == true)
         {
-            Cat.transform.position = new Vector3 (695, 785, 0);
+            Cat.transform.position =C1_pos;
         }
         if(round >= 1 && flag == false)
         {
@@ -94,7 +99,7 @@ public class Trickery : MonoBehaviour
         anim_C2.SetTrigger("Cup_Shuffle");
         anim_C3.SetTrigger("Cup_Shuffle");
         round = round + 1;
-        ram = Random.Range(0,3);
+        ram = UnityEngine.Random.Range(0,3);
         Invoke("Btn_Active",2f);
     }
 

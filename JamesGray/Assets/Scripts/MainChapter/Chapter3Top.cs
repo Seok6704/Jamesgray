@@ -49,7 +49,7 @@ public class Chapter3Top : MonoBehaviour
         float fadeCount = 0;
         while(fadeCount < 1.0f)
         {
-            fadeCount += 0.01f;
+            fadeCount += 0.005f;
             yield return new WaitForSeconds(0.02f);
             attack.color = new Color(attack.color.r, attack.color.g, attack.color.b, fadeCount);
         }
