@@ -25,6 +25,8 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
     Rigidbody2D rigid;
     //RaycastHit2D rayHit;
 
+    FixedFollowCamera cam = null;
+
     //SerialCOM serial; //유선 연결 패드, 최종은 블루투스이기때문에 사용X
 
 
@@ -53,6 +55,7 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
 
         speed = 3f;   //고정
 
+        cam = GameObject.FindObjectOfType<FixedFollowCamera>();
         //serial = new SerialCOM(9600, 8);    //9600hz 11번 포트, 시리얼 사용하지않기
         //serial = SerialCOM.getInstance();   //인스턴스 가져오기
     }
@@ -165,6 +168,8 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
                 
             }
             transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed * Time.deltaTime);
+            cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            cam.UseClamp();
             //Vector3 towardsPos = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
             //rigid.MovePosition(towardsPos);
             yield return null;

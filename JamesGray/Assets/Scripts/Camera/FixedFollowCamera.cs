@@ -73,6 +73,7 @@ public class FixedFollowCamera : MonoBehaviour
             //zoom = Mathf.Lerp(zoom, zoomlv, zoomSpeed);
 
             transform.position = Vector3.MoveTowards(transform.position, dest, Time.deltaTime * dialSpeed);
+            UseClamp();
         }
         else
         {
@@ -85,10 +86,11 @@ public class FixedFollowCamera : MonoBehaviour
                     playerCon.SetCamera(false);
                     flag = false;
                 }
+                UseClamp();
             }
             else
             {
-                transform.position = player.transform.position;
+                //transform.position = player.transform.position;
             }
         }
 
@@ -96,9 +98,10 @@ public class FixedFollowCamera : MonoBehaviour
         {
             transform.position = dest;
             playerCon.SetCamera(false);
+            UseClamp();
         }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x + borderPos.x, maxSize.x + borderPos.x), Mathf.Clamp(transform.position.y, minSize.y + borderPos.y, maxSize.y + borderPos.y), -10);   //맵 경계 제한 적용
+        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x + borderPos.x, maxSize.x + borderPos.x), Mathf.Clamp(transform.position.y, minSize.y + borderPos.y, maxSize.y + borderPos.y), -10);   //맵 경계 제한 적용
         //transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x, maxSize.x), Mathf.Clamp(transform.position.y, minSize.y, maxSize.y), -10);   //맵 경계 제한 적용
     }
 
@@ -122,6 +125,11 @@ public class FixedFollowCamera : MonoBehaviour
 
         co = null;
     }*/
+
+    public void UseClamp()
+    {
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x + borderPos.x, maxSize.x + borderPos.x), Mathf.Clamp(transform.position.y, minSize.y + borderPos.y, maxSize.y + borderPos.y), -10);   //맵 경계 제한 적용
+    }
 
     public void SetFlag()   //이벤트로 호출되면 플레그를 반전, 다이얼로그에서 호출
     {
