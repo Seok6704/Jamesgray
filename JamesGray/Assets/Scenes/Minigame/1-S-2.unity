@@ -4462,6 +4462,7 @@ MonoBehaviour:
   anim_C2: {fileID: 1994099650}
   anim_C3: {fileID: 1469017925}
   audioSrc: {fileID: 827624926}
+  Dialog: {fileID: 892678244}
 --- !u!1 &1285241067
 GameObject:
   m_ObjectHideFlags: 0
