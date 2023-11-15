@@ -22,6 +22,7 @@ public class Trickery : MonoBehaviour
     //int[] pos = new int[] { 1645, 1170, 695 }; // 고양이 위치 변수 각각 컵3 컵2 컵1 위치값
     List<int> pos = new List<int>();
     Vector3 C1_pos, C2_pos, C3_pos; // 컵 위치 변수
+    bool isStart;
 
     void Start()
     {
@@ -31,19 +32,25 @@ public class Trickery : MonoBehaviour
         Btn_S_1 = GameObject.Find("Btn_S_1");
         Btn_S_2 = GameObject.Find("Btn_S_2");
         Btn_S_3 = GameObject.Find("Btn_S_3");
-        C1_pos = GameObject.Find("Cup_1").transform.position;
-        C2_pos = GameObject.Find("Cup_2").transform.position;
-        C3_pos = GameObject.Find("Cup_3").transform.position;
         Cat = GameObject.Find("Cat");
-        pos.Add((int)C3_pos.x);
-        pos.Add((int)C2_pos.x);
-        pos.Add((int)C1_pos.x);
         ram = UnityEngine.Random.Range(0,3);
         Cat.SetActive(false);
     }
 
+    public void OnStart()
+    {
+        C1_pos = GameObject.Find("Cup_1").transform.position;
+        C2_pos = GameObject.Find("Cup_2").transform.position;
+        C3_pos = GameObject.Find("Cup_3").transform.position;
+        pos.Add((int)C3_pos.x);
+        pos.Add((int)C2_pos.x);
+        pos.Add((int)C1_pos.x);
+        isStart = true;
+    }
+
     void Update()
     {
+        if(!isStart) return;
         if( Score > 2 && flag == false)
         {
             flag = true;
@@ -116,7 +123,7 @@ public class Trickery : MonoBehaviour
     {
         Cat.SetActive(true);
         anim_C1.SetTrigger("Cup_Open");
-        if(Cat.transform.position.x == 695) Score = Score + 1;
+        if(Cat.transform.position.x == C1_pos.x) Score = Score + 1;
         else fail = fail + 1;
         flag = false; 
     }
@@ -124,7 +131,7 @@ public class Trickery : MonoBehaviour
     {
         Cat.SetActive(true);
         anim_C2.SetTrigger("Cup_Open");
-        if(Cat.transform.position.x == 1170) Score = Score + 1;
+        if(Cat.transform.position.x == C2_pos.x) Score = Score + 1;
         else fail = fail + 1; 
         flag = false; 
     }
@@ -132,7 +139,7 @@ public class Trickery : MonoBehaviour
     {
         Cat.SetActive(true);
         anim_C3.SetTrigger("Cup_Open");
-        if(Cat.transform.position.x == 1645) Score = Score + 1;
+        if(Cat.transform.position.x == C3_pos.x) Score = Score + 1;
         else fail = fail + 1; 
         flag = false; 
     }
@@ -154,7 +161,7 @@ public class Trickery : MonoBehaviour
         {
             audioSrc.Stop();
         }
-        if(Cat.transform.position.x == 695)
+        if(Cat.transform.position.x == C1_pos.x)
         {
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Cat") as AudioClip;
             audioSrc.PlayOneShot(clip);
@@ -171,7 +178,7 @@ public class Trickery : MonoBehaviour
         {
             audioSrc.Stop();
         }
-        if(Cat.transform.position.x == 1170)
+        if(Cat.transform.position.x == C2_pos.x)
         {
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Cat") as AudioClip;
             audioSrc.PlayOneShot(clip);
@@ -188,7 +195,7 @@ public class Trickery : MonoBehaviour
         {
             audioSrc.Stop();
         }
-        if(Cat.transform.position.x == 1645)
+        if(Cat.transform.position.x == C3_pos.x)
         {
             AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Cat") as AudioClip;
             audioSrc.PlayOneShot(clip);
