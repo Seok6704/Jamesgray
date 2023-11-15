@@ -68,7 +68,6 @@ public class DadFightGame : MonoBehaviour
     void AttackVoice(int num)
     {
         Dialog.GetComponent<DialoguesManager>().SetDialogue(804, num);
-        Debug.Log("문제 : " + num);
         if(!phase2) StartCoroutine(RoseVoice(num));
         StartCoroutine(OnAttackEffect(num));
     }
@@ -76,7 +75,6 @@ public class DadFightGame : MonoBehaviour
     IEnumerator RoseVoice(int num)
     {
         yield return new WaitForSeconds(3f);
-        Debug.Log("로즈 대사");
         Dialog.GetComponent<DialoguesManager>().SetDialogue(800, num);
     }
 

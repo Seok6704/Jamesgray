@@ -3606,6 +3606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da224ce520e349cc9b51900ba23717a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dialog: {fileID: 892678244}
   text: {fileID: 1674755884}
 --- !u!1 &1300994564
 GameObject:

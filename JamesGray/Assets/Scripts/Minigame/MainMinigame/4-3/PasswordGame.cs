@@ -12,11 +12,11 @@ using UnityEngine.SceneManagement;
 public class PasswordGame : MonoBehaviour
 {
     //Dictionary<int, int> pWord = new Dictionary<int, int> (); 딕셔너리로 구성하여, Value 값을 호출할 수 있는 횟수로 하려 했으나, 랜덤성을 부여하는 과정에서 적합하지 않아 반려함.
-
+    public GameObject Dialog;
     List<int> password = new List<int> (); // 비밀번호 리스트 0~9
     int ran; // 랜덤 변수
     public TextMeshProUGUI text; // 입력된 암호 텍스트
-    string answer = "3"; // 정답 암호 텍스트 (임시, 본 정답은 36)
+    string answer = "36"; // 정답 암호 텍스트 (임시, 본 정답은 36)
     int now; // 현재 리스트에서 꺼낸 암호
     bool fail;
     bool isClear;
@@ -33,10 +33,9 @@ public class PasswordGame : MonoBehaviour
 
     void SetpWord() // 패스워드 세팅, 리스트를 다시 초기화 하기 위해 제작, 초기화 하지 않을 경우, 암호가 랜덤으로 지급되어, 후에 입력하는 암호가 먼저 나올 경우, 입력할 수 없게 됨.
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 1; i < 10; i++)
         {
-            //password.Add(i);
-            password.Add(3);
+            password.Add(i);
         }
     }
 
@@ -51,8 +50,9 @@ public class PasswordGame : MonoBehaviour
         
             if(text.text == answer)
             {
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 1);
                 ClearAndFail.GameClear();
-                Invoke("NextScene", 2f);
+                Invoke("NextScene", 4f);
                 StopCoroutine("EnterPassword");
             }
         }
@@ -65,25 +65,28 @@ public class PasswordGame : MonoBehaviour
             if(text.text.Length >= 3)
             {
                 fail = true;
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
                 ClearAndFail.GameFail();
-                Invoke("SceneChanger", 2f);
-                StopCoroutine("EnterPassword");
+                Invoke("SceneChanger", 4f);
+                yield break;
             }
-            if(password.Count <= 0)
+            else if(password.Count <= 0)
             {
                 fail = true;
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, 2);
                 ClearAndFail.GameFail();
-                Invoke("SceneChanger", 2f);
-                StopCoroutine("EnterPassword");
+                Invoke("SceneChanger", 4f);
+                yield break;
             }
             else
             {
+                yield return new WaitForSeconds(2f);
                 ran = Random.Range(0, password.Count - 1);
-                Debug.Log(password[ran]);
+                Dialog.GetComponent<DialoguesManager>().SetDialogue(900, password[ran] + 2);
                 now = password[ran];
                 password.RemoveAt(ran);
             }
-            yield return new WaitForSeconds(2f);
+            
         }
     }
 
