@@ -10,6 +10,7 @@ public class Trickery : MonoBehaviour
     public Animator anim_C2; //컵 2 애니메이션
     public Animator anim_C3; //컵 3 애니메이션
     public AudioSource audioSrc;
+    public GameObject Dialog;
     GameObject Cat, Btn_S_1, Btn_S_2, Btn_S_3; // 고양이, 소리듣기 1, 2, 3 버튼 변수
     int ram; // 랜덤 변수
     int round = 0; // 라운드 체크
@@ -47,8 +48,7 @@ public class Trickery : MonoBehaviour
             {
                 audioSrc.Stop();
             }
-            AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Win") as AudioClip;
-            audioSrc.PlayOneShot(clip);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 2);
             isClear = true;
             ClearAndFail.GameClear();
             Invoke("SceneChanger", 5f);
@@ -62,8 +62,7 @@ public class Trickery : MonoBehaviour
             {
                 audioSrc.Stop();
             }
-            AudioClip clip = Resources.Load("Sounds/Minigame/1-S-2/Lose") as AudioClip;
-            audioSrc.PlayOneShot(clip);
+            Dialog.GetComponent<DialoguesManager>().SetDialogue(903, 1);
             isClear = false;
             ClearAndFail.GameFail();
             Invoke("SceneChanger", 5f);

@@ -34,6 +34,10 @@ public class CrossGame : MonoBehaviour
             pos = this.transform.position; // 현재 Walker 위치 담는 변수
             if(pos.x >= 2140) // 도착 지점 도달 시
             {
+                if(audioSrc.isPlaying)
+                {
+                    audioSrc.Stop();
+                }
                 isClear = true;
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 2);
@@ -50,6 +54,10 @@ public class CrossGame : MonoBehaviour
 
             if ( time > 60) // 타임 오버
             {
+                if(audioSrc.isPlaying)
+                {
+                    audioSrc.Stop();
+                }
                 flag = false;
                 Dialog.GetComponent<DialoguesManager>().SetDialogue(902, 3);
                 ClearAndFail.GameFail();
@@ -65,6 +73,10 @@ public class CrossGame : MonoBehaviour
 
             else if( Move && pos.x <= 2150 && M_Stop ) // 버튼이 클릭되고 있고, 음악이 멈춰있는 도중일 경우
             {
+                if(audioSrc.isPlaying)
+                {
+                    audioSrc.Stop();
+                }
                 transform.Translate(new Vector3(8f, 0, 0));
                 anim.SetBool("Btn_R_Click", true);
                 flag = false;
