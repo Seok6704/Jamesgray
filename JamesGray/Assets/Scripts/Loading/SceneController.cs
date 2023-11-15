@@ -91,4 +91,9 @@ public class SceneController : MonoBehaviour
         eventSys.GetComponent<UnityEngine.EventSystems.EventSystem>().enabled = enable;
         eventSys.GetComponent<UnityEngine.EventSystems.StandaloneInputModule>().enabled = enable;
     }
+
+    public void QuitApplication()
+    {
+        Application.Quit(); //종료하기
+    }
 }
