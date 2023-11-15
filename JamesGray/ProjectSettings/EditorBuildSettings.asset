@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter4.unity
     guid: dff31433cb6fc43278957f80421bc569
   - enabled: 1
-    path: Assets/Scenes/Chapter3(top).unity
+    path: Assets/Scenes/Chapter3_top.unity
     guid: 1c60446e53644034b8dacc55df4bff4c
   - enabled: 1
     path: Assets/Scenes/Minigame/3-1.unity
@@ -99,19 +99,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter4-2.unity
     guid: 3e41169e6b46af041ad8cfdedd153700
   - enabled: 1
-    path: Assets/Scenes/Minigame/4-5(Minigame).unity
+    path: Assets/Scenes/Minigame/4-5_Minigame.unity
     guid: 85295f760d71bd9418dc2b99076036f1
   - enabled: 1
     path: Assets/Scenes/Minigame/4-5.unity
     guid: 52630062a0d604d7e8b39378dcb28727
   - enabled: 1
-    path: Assets/Scenes/Minigame/4-5(Clear).unity
+    path: Assets/Scenes/Minigame/4-5_Clear.unity
     guid: 774233f7ce121ea4c92cc4242184e928
   - enabled: 1
-    path: Assets/Scenes/Minigame/4-5(END).unity
+    path: Assets/Scenes/Minigame/4-5_END.unity
     guid: 6f4396b3aca7f2f4bb17a78251d872f3
   - enabled: 1
-    path: Assets/Scenes/Chapter4-1(color).unity
+    path: Assets/Scenes/Chapter4-1_color.unity
     guid: 7f14e2a5d13a33b48a7a1c8f3d00f91c
   - enabled: 1
     path: Assets/Scenes/Chapter4-1.unity
