@@ -34,7 +34,7 @@ public class ScrollManager : MonoBehaviour
     {
         while(true)
         {
-            contents.position = Vector2.MoveTowards(contents.position, new Vector2(contents.position.x, contents.position.y + 100), 0.01f);
+            contents.position = Vector2.MoveTowards(contents.position, new Vector2(contents.position.x, contents.position.y + 100), 0.03f);
             yield return null;
 
             if(stopScroll)
