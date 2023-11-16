@@ -21,12 +21,12 @@ public class CoreTutorial : MonoBehaviour
     {
         if(isMain) 
         {
-            allClear = 1;
+            allClear = 10;
             fail = 2;
         }
         else
         {
-            allClear = 1;
+            allClear = 8;
             fail = 3;
         }
     }
