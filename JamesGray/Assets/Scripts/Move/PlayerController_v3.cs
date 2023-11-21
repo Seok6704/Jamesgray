@@ -20,7 +20,7 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
     Coroutine co;
     Animator animator;
     GameObject scanObject, tempScanObj;
-    bool isOnAction, isOnFreeze, isCamera;
+    public bool isOnAction, isOnFreeze, isCamera;
 
     Rigidbody2D rigid;
     //RaycastHit2D rayHit;
@@ -145,6 +145,7 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
         {
             animator.SetBool("isWalk", false);
         }
+        cam.SetCamPos(new Vector3(transform.position.x, transform.position.y, -10));
     }
 
     IEnumerator MovePlayer(Vector3Int cellPos)
@@ -170,8 +171,9 @@ public class PlayerController_v3 : MonoBehaviour, IBLE
             transform.position = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed * Time.deltaTime);
             if(!ReferenceEquals(null, cam)) //FixedFollowCamera 스크립트가 없으면 예외
                 {
-                    cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                    cam.UseClamp();
+                    //cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                    //cam.UseClamp();
+                    cam.SetCamPos(new Vector3(transform.position.x, transform.position.y, -10));
                 }
             //Vector3 towardsPos = Vector3.MoveTowards(transform.position, tileMap.GetCellCenterWorld(cellPos), speed);
             //rigid.MovePosition(towardsPos);

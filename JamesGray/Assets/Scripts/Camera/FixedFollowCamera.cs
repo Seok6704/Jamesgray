@@ -26,6 +26,7 @@ public class FixedFollowCamera : MonoBehaviour
     //Coroutine co;
 
     Vector2 maxSize, minSize; //맵의 최소, 최대 좌표
+    float xx,yy;    //lerp를 위한 임시 변수
 
     private void Awake() 
     {
@@ -34,6 +35,7 @@ public class FixedFollowCamera : MonoBehaviour
         //playerPos = player.transform.position;
         dialVec = new Vector3(x, y, 0);
         dialSpeed = 40f;
+        xx = 0; yy = 0;
         //co = null;   
 
     }
@@ -44,10 +46,11 @@ public class FixedFollowCamera : MonoBehaviour
         playerCon = player.GetComponent<PlayerController_v3>();
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
         borderPos = border.transform.position;
+        isForce = false;
         //Debug.Log("Border -- " + borderPos);
     }
 
-    private void Update() 
+    private void Update2() 
     {
         //Vector3 pos;
         //playerPos = player.transform.position;
@@ -130,16 +133,40 @@ public class FixedFollowCamera : MonoBehaviour
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minSize.x + borderPos.x, maxSize.x + borderPos.x), Mathf.Clamp(transform.position.y, minSize.y + borderPos.y, maxSize.y + borderPos.y), -10);   //맵 경계 제한 적용
     }
+    public void SetCamPos(Vector3 pos)
+    {
+        if(isForce)
+        {
+            Vector3 dest = player.transform.position + dialVec;
+            transform.position = dest;
+            playerCon.SetCamera(false);
+            UseClamp();
+            return;
+        }
+        else if(dialogueOn)
+        {
+            xx = Mathf.Lerp(xx, x, Time.deltaTime * dialSpeed);
+            yy = Mathf.Lerp(yy, y, Time.deltaTime * dialSpeed);
+        }
+        else
+        {
+            xx = Mathf.Lerp(xx, 0, Time.deltaTime * dialSpeed);
+            yy = Mathf.Lerp(yy, 0, Time.deltaTime * dialSpeed);
+        }
+        Vector3 p = new Vector3(pos.x + xx, pos.y + yy, pos.z);
+        transform.position = p;
+        UseClamp();
+    }
 
     public void SetFlag()   //이벤트로 호출되면 플레그를 반전, 다이얼로그에서 호출
     {
         dialogueOn = !dialogueOn;
 
-        if(!dialogueOn)
-        {
-            playerCon.SetCamera(true);
-            flag = true;
-        }
+        //if(!dialogueOn)
+        //{
+            //playerCon.SetCamera(true);
+            //flag = true;
+        //}
         //if(ReferenceEquals(co, null)) 
         //{   
         //    co = StartCoroutine(MoveDialogue());   
