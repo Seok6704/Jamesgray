@@ -6260,6 +6260,9 @@ MonoBehaviour:
   tileMap: {fileID: 2051956385}
   speed: 0.015
   keyPad: {fileID: 1612100322}
+  isOnAction: 0
+  isOnFreeze: 0
+  isCamera: 0
   BLE_Connection: 0
   BLE_Ready2Read: 0
   BLE_Scan: 0
@@ -11421,7 +11424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
+  m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0.5372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
